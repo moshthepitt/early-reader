@@ -13,6 +13,7 @@ import * as print from './views/print.js';
 import * as settings from './views/settings.js';
 import * as guide from './views/guide.js';
 import * as how from './views/how.js';
+import { MARK } from './icons.js';
 
 const app = document.getElementById('app');
 
@@ -32,12 +33,18 @@ const NAV = [
   ['story', 'Story time'],
   ['texts', 'Texts'],
   ['progress', 'Progress'],
+];
+// Tools sit on a second, quieter row so the daily screens stay first.
+const TOOLS = [
   ['print', 'Print'],
   ['sounds', 'Sounds'],
-  ['how', 'How it works'],
-  ['guide', 'Guide'],
   ['kids', 'Kids'],
   ['settings', 'Settings'],
+];
+// Reading for the parent, beside the name on a phone and at the end on a wide screen.
+const DOCS = [
+  ['guide', 'Guide'],
+  ['how', 'How it works'],
 ];
 
 const screens = { today, burst: burstView, kids, progress, story, texts, sounds, print, settings, guide, how };
@@ -73,8 +80,8 @@ function render() {
       setState(store.load());
     }
   }
-  const nav = NAV.map(([k, label]) => `<a href="#/${k}" class="${r.name === k || (r.name === 'burst' && k === 'today') ? 'on' : ''}">${label}</a>`).join('');
-  app.innerHTML = `<header class="top"><a class="brand" href="#/today">Early Reader</a><nav>${nav}</nav></header><main>${VIEWS[r.name](r.arg)}</main><footer class="foot">Everything you enter is saved on this device. Early Reader has no server, so there is nowhere for it to be sent. <a href="#/how">How it works</a></footer>`;
+  const links = (list) => list.map(([k, label]) => `<a href="#/${k}" class="${r.name === k || (r.name === 'burst' && k === 'today') ? 'on' : ''}">${label}</a>`).join('');
+  app.innerHTML = `<header class="top"><a class="brand" href="#/today">${MARK}Early Reader</a><nav class="screens" aria-label="Screens"><div class="nav-main">${links(NAV)}</div><div class="nav-tools">${links(TOOLS)}</div></nav><nav class="nav-docs" aria-label="Help">${links(DOCS)}</nav></header><main>${VIEWS[r.name](r.arg)}</main><footer class="foot">Everything you enter is saved on this device. Early Reader has no server, so there is nowhere for it to be sent. <a href="#/how">How it works</a></footer>`;
   window.scrollTo(0, 0);
 }
 

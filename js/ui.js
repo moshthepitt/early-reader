@@ -53,7 +53,7 @@ export function selectedChild(arg) {
 }
 
 export function noKids() {
-  return `<section class="card"><h1>Welcome</h1><p>Add your children to start. What you enter is saved on this device only - Early Reader has no server and no accounts.</p><a class="btn primary" href="#/kids">Add a child</a> <a class="btn" href="#/guide">Read the guide first</a></section>`;
+  return `<section class="card banded"><h1>Welcome</h1><p>Add your children to start. What you enter is saved on this device only - Early Reader has no server and no accounts.</p><a class="btn primary" href="#/kids">Add a child</a> <a class="btn" href="#/guide">Read the guide first</a></section>`;
 }
 
 export const actions = {

@@ -1,5 +1,6 @@
 import * as progress from '../progress.js';
 import { escapeHtml as h } from '../util.js';
+import { FACES } from '../icons.js';
 import { today, selectedChild, noKids, childPicker, stageBadge, findChild, persist } from '../ui.js';
 
 export function viewProgress(arg) {
@@ -45,7 +46,7 @@ export function viewProgress(arg) {
     </section>
     <section class="card">
       <h2>Letters and sounds</h2>
-      <p class="muted small">Left dot: sound. Right dot: name. Grey: not yet · yellow: learning · orange: wobbly · green: known (right on 2+ days) · dark green: secure.</p>
+      <p class="muted small">Left bead: sound. Right bead: name. Hollow: not yet · yellow: learning · red: wobbly · green: known (right on 2+ days) · dark green: secure.</p>
       <div class="sound-grid">${grid.map((x) => `<div class="sg"><b>${h(x.g)}</b><span>${cell(x.sound)}${x.name ? cell(x.name) : ''}</span></div>`).join('')}</div>
     </section>
     ${
@@ -64,7 +65,7 @@ export function viewProgress(arg) {
     <section class="card">
       <h2>This week</h2>
       <p>${week.bursts} bursts on ${week.days} days, about ${week.minutes} min. ${week.accuracy !== null ? `${week.accuracy}% right first try.` : ''}</p>
-      <p>Mood: 😀 ${week.moods.keen} · 🙂 ${week.moods.ok} · 😕 ${week.moods.low}${week.stops ? ` · stopped early ${week.stops}` : ''}</p>
+      <p>Mood: ${FACES.keen} ${week.moods.keen} keen · ${FACES.ok} ${week.moods.ok} OK · ${FACES.low} ${week.moods.low} not today${week.stops ? ` · stopped early ${week.stops}` : ''}</p>
       <p class="muted small">Aim for about 80% right. If it is much lower, slow down and review. If it is always 100%, add new letters faster.</p>
     </section>
     <section class="card muted small">

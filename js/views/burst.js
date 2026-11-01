@@ -1,6 +1,7 @@
 import * as G from '../data/en.js';
 import * as session from '../session.js';
 import { escapeHtml as h, makeRng } from '../util.js';
+import { GAMES, FACES } from '../icons.js';
 import { state, burst, setBurst, content, today, siblingName, findChild, noKids, stageBadge, persist } from '../ui.js';
 
 export function viewBurst(id) {
@@ -14,8 +15,8 @@ export function viewBurst(id) {
       ${stageBadge(c)}
       <p>Let ${h(c.name)} choose the game:</p>
       <div class="choose">
-        <button class="choice-btn" data-action="burst-start" data-variant="cards"><span>🃏</span>Card game</button>
-        <button class="choice-btn" data-action="burst-start" data-variant="tiles"><span>🧩</span>Tile game</button>
+        <button class="choice-btn" data-action="burst-start" data-variant="cards">${GAMES.cards}Card game</button>
+        <button class="choice-btn" data-action="burst-start" data-variant="tiles">${GAMES.tiles}Tile game</button>
       </div>
       <p class="muted small">Have letter cards or tiles ready from the Print tab. A burst takes about 2-3 minutes. Stop any time.</p>
       <a class="btn ghost" href="#/today">Back</a>
@@ -24,7 +25,7 @@ export function viewBurst(id) {
 
   if (burst.phase === 'done') {
     const b = burst.record;
-    return `<section class="card">
+    return `<section class="card banded">
       <h1>Done!</h1>
       <p>${b.scored ? `${b.correct} of ${b.scored} right first try.` : 'Practice finished.'} ${b.stoppedEarly ? 'You stopped early. That is fine.' : ''}</p>
       ${
@@ -32,9 +33,9 @@ export function viewBurst(id) {
           ? '<p>Saved.</p>'
           : `<p>How did that feel for ${h(c.name)}?</p>
         <div class="choose three">
-          <button class="choice-btn" data-action="mood" data-mood="keen"><span>😀</span>Keen</button>
-          <button class="choice-btn" data-action="mood" data-mood="ok"><span>🙂</span>OK</button>
-          <button class="choice-btn" data-action="mood" data-mood="low"><span>😕</span>Not today</button>
+          <button class="choice-btn" data-action="mood" data-mood="keen">${FACES.keen}Keen</button>
+          <button class="choice-btn" data-action="mood" data-mood="ok">${FACES.ok}OK</button>
+          <button class="choice-btn" data-action="mood" data-mood="low">${FACES.low}Not today</button>
         </div>`
       }
       <p class="muted">Leave a gap before the next burst later today.</p>
@@ -45,6 +46,7 @@ export function viewBurst(id) {
   const step = burst.plan.steps[burst.index];
   const total = burst.plan.steps.length;
   const stepNo = `${burst.index + 1} / ${total}`;
+  const beads = burst.plan.steps.map((s, i) => `<i class="${i < burst.index ? 'done' : i === burst.index ? 'now' : ''}"></i>`).join('');
   const offer = burst.offerFinish
     ? `<div class="notice">Two misses in a row. Finish on an easy one now?
         <div class="row"><button class="btn" data-action="finish-now">Finish now</button><button class="btn ghost" data-action="keep-going">Keep going</button></div></div>`
@@ -66,7 +68,7 @@ export function viewBurst(id) {
   const praiseLine = burst.lastPraise ? `<p class="praise">Say: "${h(burst.lastPraise)}"</p>` : '';
 
   return `<section class="burst">
-    <div class="burst-top"><span>${h(c.name)} · ${stepNo}</span><b>${h(step.title)}</b></div>
+    <div class="burst-top"><span>${h(c.name)} · ${stepNo}<span class="beads" aria-hidden="true">${beads}</span></span><b>${h(step.title)}</b></div>
     ${praiseLine}
     ${offer}
     ${childCard(step)}

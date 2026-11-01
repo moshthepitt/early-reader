@@ -7,6 +7,9 @@ function minutesAgo(ts) {
   return ts ? Math.round((Date.now() - ts) / 60000) : null;
 }
 
+// The first letter of their name: often the first letter a child knows.
+const avatar = (c) => `<span class="avatar" aria-hidden="true">${h([...c.name][0] || '')}</span>`;
+
 export function viewToday() {
   if (!state.children.length) return noKids();
   const t = today();
@@ -24,12 +27,12 @@ export function viewToday() {
              <div class="row"><button class="btn" data-action="stage-up" data-id="${h(c.id)}">Move up</button><button class="btn ghost" data-action="stage-dismiss" data-id="${h(c.id)}">Not yet</button></div></div>`
           : '';
       if (c.paused) {
-        return `<section class="card kid"><h2>${h(c.name)} <small>${h(ageText(c.birth))}</small></h2>${stageBadge(c)}
+        return `<section class="card kid s${h(c.stage)}"><h2>${avatar(c)}${h(c.name)} <small>${h(ageText(c.birth))}</small></h2>${stageBadge(c)}
           <p>Paused. A break of weeks or months is fine.</p>
           <button class="btn" data-action="unpause" data-id="${h(c.id)}">Start again</button></section>`;
       }
-      return `<section class="card kid">
-        <h2>${h(c.name)} <small>${h(ageText(c.birth))}</small></h2>
+      return `<section class="card kid s${h(c.stage)}">
+        <h2>${avatar(c)}${h(c.name)} <small>${h(ageText(c.birth))}</small></h2>
         ${stageBadge(c)}
         <p class="muted">${h(session.STAGES[c.stage].short)}</p>
         <p>Today: <b>${sum.count}</b> ${sum.count === 1 ? 'burst' : 'bursts'} (${Math.round(sum.seconds / 60)} min). Aim for 2-4 short bursts spread across the day.</p>
