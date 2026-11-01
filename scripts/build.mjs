@@ -64,7 +64,7 @@ html = html.replace(/\n\s*/g, '\n').trim() + '\n';
 
 write('index.html', html);
 write('app.js', appJs);
-const DOCS = ['docs/parents-guide.md', 'docs/books.md'];
+const DOCS = ['docs/parents-guide.md', 'docs/how-it-works.md', 'docs/books.md'];
 for (const f of ['manifest.webmanifest', 'icons/icon.svg', 'icons/icon-192.png', 'icons/icon-512.png', ...DOCS]) copy(f);
 
 // The service worker caches exactly what was built, under a version tied to its content.

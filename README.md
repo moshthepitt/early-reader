@@ -5,7 +5,7 @@ I want my kids, aged 3 and 4, reading as early as possible. Before building anyt
 What to teach turns out to be fairly settled. Link letters to sounds, train the ear to hear the sounds inside words, blend sounds without pauses, and talk a lot about books. Home programmes mostly fail on delivery - lessons run too long, kids get bored, parents stop. In two recent UK trials, parents of 3- and 4-year-olds got through 58-65% of the planned sessions and the programme showed no effect. So this app has one job: tell the parent what to do next, two minutes at a time, and remember what each child knows.
 
 **Use it:** [moshthepitt.github.io/early-reader](https://moshthepitt.github.io/early-reader/)
-**Parents, start here:** [A parent's guide to Early Reader](docs/parents-guide.md), then [books to read aloud](docs/books.md). Both are inside the app too.
+**Parents, start here:** [A parent's guide to Early Reader](docs/parents-guide.md), then [how it works](docs/how-it-works.md) and [books to read aloud](docs/books.md). All three are inside the app too.
 
 ## How it works
 

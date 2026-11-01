@@ -56,7 +56,7 @@ function staticServer() {
 // A fresh visitor on a small Android phone and on a desktop screen: count what the
 // first load fetches, check no screen scrolls sideways, then check the app opens offline.
 async function firstLoadAndScreens(browser, base) {
-  const screens = ['today', 'story', 'texts', 'progress', 'print', 'sounds', 'guide', 'kids', 'settings'];
+  const screens = ['today', 'story', 'texts', 'progress', 'print', 'sounds', 'how', 'guide', 'kids', 'settings'];
   for (const [label, viewport] of [['phone', { width: 360, height: 640 }], ['desktop', { width: 1280, height: 800 }]]) {
     const ctx = await browser.newContext({ viewport, deviceScaleFactor: 1 });
     const page = await ctx.newPage();
@@ -213,13 +213,16 @@ async function firstLoadAndScreens(browser, base) {
     await page.reload();
     await runBurst(1, 'cards', '60-ben-s4');
 
-    for (const tab of ['today', 'progress', 'story', 'texts', 'print', 'sounds', 'guide', 'kids', 'settings']) {
+    for (const tab of ['today', 'progress', 'story', 'texts', 'print', 'sounds', 'how', 'guide', 'kids', 'settings']) {
       await page.goto(base + '/index.html#/' + tab);
       await page.waitForFunction((tab) => document.querySelector('nav a.on')?.getAttribute('href') === '#/' + tab, tab);
       check('screen renders: ' + tab, (await page.locator('main').innerText()).trim().length > 0);
       await shot('70-' + tab);
     }
-    // The book list renders from docs/
+    // How it works and the book list render from docs/
+    await page.goto(base + '/index.html#/how');
+    await page.waitForSelector('.how h1');
+    check('how it works renders', (await page.locator('.how h1').innerText()).includes('How Early Reader works'));
     await page.goto(base + '/index.html#/story');
     await page.waitForSelector('.books h1, .books h2');
     check('story time lists books to read aloud', (await page.locator('.books li').count()) >= 6);

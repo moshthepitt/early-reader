@@ -12,6 +12,7 @@ import * as sounds from './views/sounds.js';
 import * as print from './views/print.js';
 import * as settings from './views/settings.js';
 import * as guide from './views/guide.js';
+import * as how from './views/how.js';
 
 const app = document.getElementById('app');
 
@@ -33,12 +34,13 @@ const NAV = [
   ['progress', 'Progress'],
   ['print', 'Print'],
   ['sounds', 'Sounds'],
+  ['how', 'How it works'],
   ['guide', 'Guide'],
   ['kids', 'Kids'],
   ['settings', 'Settings'],
 ];
 
-const screens = { today, burst: burstView, kids, progress, story, texts, sounds, print, settings, guide };
+const screens = { today, burst: burstView, kids, progress, story, texts, sounds, print, settings, guide, how };
 const VIEWS = {
   today: today.viewToday,
   burst: burstView.viewBurst,
@@ -50,6 +52,7 @@ const VIEWS = {
   print: print.viewPrint,
   settings: settings.viewSettings,
   guide: guide.viewGuide,
+  how: how.viewHow,
   about: guide.viewGuide,
 };
 

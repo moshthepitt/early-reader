@@ -20,7 +20,7 @@ test('escapes HTML and drops unsafe links', () => {
 
 test('every parent document renders with all its headings', async () => {
   const fs = await import('node:fs');
-  for (const file of ['parents-guide.md', 'books.md']) {
+  for (const file of ['parents-guide.md', 'how-it-works.md', 'books.md']) {
     const md = fs.readFileSync(new URL(`../docs/${file}`, import.meta.url), 'utf8');
     const html = renderMarkdown(md);
     const headings = md.split('\n').filter((l) => /^#{1,4} /.test(l)).length;
