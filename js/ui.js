@@ -1,0 +1,68 @@
+// Shared live state and UI helpers. Screens never import the app shell.
+import * as C from './data/en-content.js';
+import { buildLexicon } from './decodable.js';
+import * as store from './store.js';
+import * as session from './session.js';
+import { escapeHtml as h, dayKey } from './util.js';
+
+export const content = { C, lexicon: buildLexicon(C.WORDS) };
+export let state = store.load();
+export let burst = null;
+export const ui = { textCheck: null, textPrompt: '', bookPrompt: '', printHtml: '', recording: null, recorded: new Set() };
+
+export function setState(next) { state = next; }
+export function setBurst(next) { burst = next; }
+
+// The shell supplies rendering after all screens have loaded.
+export let render;
+export let rerender;
+export function setRenderers(renderAll, renderScreen) {
+  render = renderAll;
+  rerender = renderScreen;
+}
+
+export function persist() {
+  if (!store.save(state)) {
+    // Another tab saved newer data. Load it rather than overwrite it.
+    setState(store.load());
+    setBurst(null);
+    alert('Early Reader was updated in another tab. Showing the latest data; your last change here was not saved.');
+    render();
+  }
+}
+
+export const findChild = (id) => state.children.find((c) => c.id === id);
+export const today = () => dayKey();
+const sibling = (c) => store.siblingOf(state, c);
+export const siblingName = (c) => sibling(c)?.name || '';
+
+export function stageBadge(c) {
+  const st = session.STAGES[c.stage] || session.STAGES[1];
+  return `<span class="badge s${h(c.stage)}">Stage ${h(c.stage)}: ${h(st.name)}</span>`;
+}
+
+export function childPicker(base, selectedId) {
+  if (state.children.length < 2) return '';
+  return `<div class="picker">${state.children
+    .map((c) => `<a class="pill ${c.id === selectedId ? 'on' : ''}" href="#/${base}/${encodeURIComponent(c.id)}">${h(c.name)}</a>`)
+    .join('')}</div>`;
+}
+
+export function selectedChild(arg) {
+  return (arg && findChild(arg)) || state.children[0] || null;
+}
+
+export function noKids() {
+  return `<section class="card"><h1>Welcome</h1><p>Add your children to start. Everything stays on this device.</p><a class="btn primary" href="#/kids">Add a child</a> <a class="btn" href="#/guide">Read the guide first</a></section>`;
+}
+
+export const actions = {
+  copy: (el) => {
+    const ta = document.querySelector(el.dataset.target);
+    if (!ta) return false;
+    ta.select();
+    (navigator.clipboard ? navigator.clipboard.writeText(ta.value) : Promise.reject()).catch(() => document.execCommand('copy'));
+    el.textContent = 'Copied';
+    return false;
+  },
+};
