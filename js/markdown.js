@@ -1,4 +1,4 @@
-// A small Markdown renderer for the parent guide: headings, paragraphs, lists,
+// A small Markdown renderer for the documents in docs/: headings, paragraphs, lists,
 // bold, italics, inline code and links. Text is escaped before any formatting,
 // so the output is safe to put in innerHTML.
 
@@ -11,7 +11,9 @@ function inline(text, linkFor) {
   s = s.replace(/(^|[\s(])_([^_]+)_(?=[\s).,!?]|$)/g, '$1<i>$2</i>');
   s = s.replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, (m, label, href) => {
     const url = linkFor(href.replace(/&amp;/g, '&'));
-    return url ? `<a href="${h(url)}" target="_blank" rel="noopener">${label}</a>` : label;
+    if (!url) return label;
+    // Links to other screens (#/how) stay in the app; web links open in a new tab.
+    return url.startsWith('#/') ? `<a href="${h(url)}">${label}</a>` : `<a href="${h(url)}" target="_blank" rel="noopener">${label}</a>`;
   });
   return s;
 }

@@ -2,7 +2,7 @@
 //
 // The page loads in four requests: index.html (styles and favicon inlined), app.js
 // (every module bundled and minified), the web manifest and its icon. The service
-// worker and the parent guide load later, then everything works offline.
+// worker and the documents in docs/ load later, then everything works offline.
 //
 // Fails if the first load goes over budget, so the app stays light on mobile data.
 // What a phone downloads is the gzipped size (GitHub Pages compresses text files).
@@ -64,10 +64,11 @@ html = html.replace(/\n\s*/g, '\n').trim() + '\n';
 
 write('index.html', html);
 write('app.js', appJs);
-for (const f of ['manifest.webmanifest', 'icons/icon.svg', 'icons/icon-192.png', 'icons/icon-512.png', 'docs/parents-guide.md']) copy(f);
+const DOCS = ['docs/parents-guide.md', 'docs/books.md'];
+for (const f of ['manifest.webmanifest', 'icons/icon.svg', 'icons/icon-192.png', 'icons/icon-512.png', ...DOCS]) copy(f);
 
 // The service worker caches exactly what was built, under a version tied to its content.
-const offline = ['./', './index.html', './app.js', './manifest.webmanifest', './icons/icon-192.png', './icons/icon-512.png', './docs/parents-guide.md'];
+const offline = ['./', './index.html', './app.js', './manifest.webmanifest', './icons/icon-192.png', './icons/icon-512.png', ...DOCS.map((f) => `./${f}`)];
 const hash = crypto.createHash('sha256');
 for (const f of offline.slice(1)) hash.update(fs.readFileSync(path.join(dist, f)));
 const version = hash.digest('hex').slice(0, 10);

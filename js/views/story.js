@@ -2,6 +2,7 @@ import * as RA from '../readaloud.js';
 import * as store from '../store.js';
 import { escapeHtml as h } from '../util.js';
 import { state, ui, persist, today } from '../ui.js';
+import { docHtml } from '../docs.js';
 
 export function viewStory() {
   const saved = state.books
@@ -15,6 +16,7 @@ export function viewStory() {
       <p>Story time builds vocabulary through talk and stories. It matters as much as letters. Both children can join in.</p>
       <ul>${RA.TIPS.map((t) => `<li>${h(t)}</li>`).join('')}</ul>
     </section>
+    <section class="card prose doc books">${docHtml('books.md', 'Books to read aloud')}</section>
     <section class="card">
       <h2>The question loop (PEER)</h2>
       <ol>${RA.PEER.map((p) => `<li><b>${h(p.step)}:</b> ${h(p.text)}</li>`).join('')}</ol>

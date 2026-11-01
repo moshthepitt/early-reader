@@ -487,23 +487,23 @@ details summary {
 
 /* ---- guide ---- */
 
-.guide h1 {
+.doc h1 {
   font-size: 1.6rem;
 }
-.guide h2 {
+.doc h2 {
   font-size: 1.25rem;
   margin-top: 1.6rem;
 }
-.guide h3 {
+.doc h3 {
   font-size: 1.05rem;
   margin-top: 1.2rem;
 }
-.guide p,
-.guide li {
+.doc p,
+.doc li {
   font-size: 1rem;
   line-height: 1.6;
 }
-.guide li {
+.doc li {
   margin: 0.25rem 0;
 }
 

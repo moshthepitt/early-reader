@@ -5,7 +5,7 @@ Offline web app that coaches a parent teaching their own 3- to 5-year-old to rea
 ## Sources of truth
 
 - Why each teaching choice exists: `docs/research/report.md`. Cite the study in a comment when code rests on one.
-- What parents are told: `docs/parents-guide.md`. It names screens and buttons; keep those labels and the guide in step.
+- What parents are told: `docs/parents-guide.md` (how to use it) and `docs/books.md` (books to read aloud). The app renders both. They name screens and buttons; keep them in step.
 - Sounds, teaching order and tricky words: `js/data/en.js`. Word bank, sentences and stories: `js/data/en-content.js`, guarded by `tests/content.test.js`.
 
 ## Invariants

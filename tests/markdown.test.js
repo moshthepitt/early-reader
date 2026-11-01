@@ -18,10 +18,18 @@ test('escapes HTML and drops unsafe links', () => {
   assert.ok(!html.includes('javascript:'));
 });
 
-test('the real guide renders with every heading', async () => {
+test('every parent document renders with all its headings', async () => {
   const fs = await import('node:fs');
-  const md = fs.readFileSync(new URL('../docs/parents-guide.md', import.meta.url), 'utf8');
-  const html = renderMarkdown(md);
-  const headings = md.split('\n').filter((l) => /^#{1,4} /.test(l)).length;
-  assert.equal((html.match(/<h[1-4]>/g) || []).length, headings);
+  for (const file of ['parents-guide.md', 'books.md']) {
+    const md = fs.readFileSync(new URL(`../docs/${file}`, import.meta.url), 'utf8');
+    const html = renderMarkdown(md);
+    const headings = md.split('\n').filter((l) => /^#{1,4} /.test(l)).length;
+    assert.equal((html.match(/<h[1-4]>/g) || []).length, headings, file);
+  }
+});
+
+test('links to other app screens stay in the app', () => {
+  const html = renderMarkdown('[How it works](how-it-works.md) and [the web](https://example.org)', (href) => (href === 'how-it-works.md' ? '#/how' : href));
+  assert.match(html, /<a href="#\/how">How it works<\/a>/);
+  assert.match(html, /<a href="https:\/\/example.org" target="_blank" rel="noopener">/);
 });

@@ -219,6 +219,10 @@ async function firstLoadAndScreens(browser, base) {
       check('screen renders: ' + tab, (await page.locator('main').innerText()).trim().length > 0);
       await shot('70-' + tab);
     }
+    // The book list renders from docs/
+    await page.goto(base + '/index.html#/story');
+    await page.waitForSelector('.books h1, .books h2');
+    check('story time lists books to read aloud', (await page.locator('.books li').count()) >= 6);
     // The guide renders from docs/parents-guide.md
     await page.goto(base + '/index.html#/guide');
     await page.waitForSelector('.guide h1');
