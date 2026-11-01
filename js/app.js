@@ -139,5 +139,16 @@ if (typeof __PROD__ !== 'undefined' && 'serviceWorker' in navigator && window.is
   window.addEventListener('load', () => navigator.serviceWorker.register('./sw.js').catch(() => {}));
 }
 
+// The reading font loads after the page, so it never counts against the first-load budget.
+// It is Andika Bold (single-storey a and g) cut down to Latin letters. The OFL reserves the
+// name Andika, so the cut-down copy is called ER Letters; see fonts/OFL.txt and scripts/make-font.py.
+window.addEventListener('load', () => {
+  if (!window.FontFace || !document.fonts) return;
+  new FontFace('ER Letters', 'url(fonts/er-letters-bold.woff2)', { weight: '700', display: 'swap' })
+    .load()
+    .then((f) => document.fonts.add(f))
+    .catch(() => {});
+});
+
 // Browser smoke tests use this debug handle.
 window.earlyReader = { get state() { return state; }, S };

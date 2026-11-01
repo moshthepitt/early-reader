@@ -65,10 +65,12 @@ html = html.replace(/\n\s*/g, '\n').trim() + '\n';
 write('index.html', html);
 write('app.js', appJs);
 const DOCS = ['docs/parents-guide.md', 'docs/how-it-works.md', 'docs/books.md'];
-for (const f of ['manifest.webmanifest', 'icons/icon.svg', 'icons/icon-192.png', 'icons/icon-512.png', ...DOCS]) copy(f);
+// The reading font loads after the page (see js/app.js), so it is not part of the first load.
+const FONTS = ['fonts/er-letters-bold.woff2'];
+for (const f of ['manifest.webmanifest', 'icons/icon.svg', 'icons/icon-192.png', 'icons/icon-512.png', 'fonts/OFL.txt', ...DOCS, ...FONTS]) copy(f);
 
 // The service worker caches exactly what was built, under a version tied to its content.
-const offline = ['./', './index.html', './app.js', './manifest.webmanifest', './icons/icon-192.png', './icons/icon-512.png', ...DOCS.map((f) => `./${f}`)];
+const offline = ['./', './index.html', './app.js', './manifest.webmanifest', './icons/icon-192.png', './icons/icon-512.png', ...[...DOCS, ...FONTS].map((f) => `./${f}`)];
 const hash = crypto.createHash('sha256');
 for (const f of offline.slice(1)) hash.update(fs.readFileSync(path.join(dist, f)));
 const version = hash.digest('hex').slice(0, 10);
