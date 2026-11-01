@@ -1,0 +1,23 @@
+{
+  "name": "early-reader",
+  "version": "0.1.0",
+  "description": "Help your 3- or 4-year-old learn to read, a few minutes at a time. An offline web app for parents.",
+  "type": "module",
+  "scripts": {
+    "start": "python3 -m http.server 8080",
+    "test": "node --test tests/*.test.js",
+    "build": "node scripts/build.mjs",
+    "test:browser": "node tests/browser/smoke.cjs dist"
+  },
+  "devDependencies": {
+    "esbuild": "^0.28.2",
+    "playwright-core": "^1.64.1"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/moshthepitt/early-reader.git"
+  },
+  "homepage": "https://moshthepitt.github.io/early-reader/",
+  "private": true
+}
