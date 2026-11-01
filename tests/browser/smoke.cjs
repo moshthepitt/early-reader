@@ -219,6 +219,9 @@ async function firstLoadAndScreens(browser, base) {
       check('screen renders: ' + tab, (await page.locator('main').innerText()).trim().length > 0);
       await shot('70-' + tab);
     }
+    // Emoji survive the build (the bundle is plain UTF-8, so a wrong charset would garble them)
+    await page.goto(base + '/index.html#/sounds');
+    check('letter pictures survive the build', (await page.locator('main').innerText()).includes('\u{1F40D}'));
     // Every screen says where the data lives
     check('footer says data stays on the device', (await page.locator('footer.foot').innerText()).includes('no server'));
     // How it works and the book list render from docs/

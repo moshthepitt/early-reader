@@ -38,6 +38,9 @@ const js = await esbuild.build({
   target: TARGET,
   define: { __PROD__: 'true' },
   legalComments: 'none',
+  // Keep emoji and accented letters as UTF-8 rather than \u escapes, which are about three
+  // times longer. GitHub Pages serves scripts as UTF-8, and the page declares it too.
+  charset: 'utf8',
   write: false,
 });
 const appJs = js.outputFiles[0].contents;
