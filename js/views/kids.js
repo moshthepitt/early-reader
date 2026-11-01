@@ -1,7 +1,7 @@
 import * as store from '../store.js';
 import * as session from '../session.js';
 import { escapeHtml as h } from '../util.js';
-import { state, findChild, persist } from '../ui.js';
+import { state, findChild, persist, notify } from '../ui.js';
 
 export function viewKids() {
   const list = state.children
@@ -38,14 +38,17 @@ export const actions = {
     if (!c || !confirm(`Delete ${c.name} and all of their progress? This cannot be undone.`)) return false;
     state.children = state.children.filter((x) => x.id !== c.id);
     persist();
+    notify(`Deleted ${c.name}.`);
   },
 };
 
 export const forms = {
   'add-child': (f, data) => {
-    if (state.children.length >= 6) return alert('You can add up to 6 children.');
-    state.children.push(store.newChild({ name: data.get('name'), birth: data.get('birth'), stage: Number(data.get('stage')) || 1 }));
+    if (state.children.length >= 6) return notify('You can add up to 6 children.'), false;
+    const child = store.newChild({ name: data.get('name'), birth: data.get('birth'), stage: Number(data.get('stage')) || 1 });
+    state.children.push(child);
     persist();
+    notify(`Added ${child.name}.`);
     location.hash = '#/today';
     return false;
   },
@@ -56,5 +59,6 @@ export const forms = {
     c.stage = Number(data.get('stage')) || c.stage;
     c.paused = data.get('paused') === 'on';
     persist();
+    notify(`Saved ${c.name}.`);
   },
 };

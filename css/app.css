@@ -837,6 +837,38 @@ details.book summary {
   vertical-align: -0.3em;
 }
 
+/* ---- confirmation message ---- */
+
+#toast {
+  position: fixed;
+  left: 50%;
+  bottom: 1rem;
+  bottom: calc(1rem + env(safe-area-inset-bottom, 0px));
+  z-index: 60;
+  max-width: calc(100% - 2rem);
+  padding: 0.8rem 1.1rem 0.95rem;
+  border-radius: 14px;
+  background: var(--ink);
+  color: #fff;
+  font-weight: 600;
+  text-align: center;
+  box-shadow: 0 4px 0 #0003;
+  border-bottom: 4px solid var(--sun);
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, 1rem);
+  transition: opacity 0.2s, transform 0.2s;
+}
+#toast.show {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+@media (prefers-reduced-motion: reduce) {
+  #toast {
+    transition: none;
+  }
+}
+
 /* ---- footer ---- */
 
 .foot {
@@ -1217,7 +1249,8 @@ pre.prompts {
   body {
     background: #fff;
   }
-  #app {
+  #app,
+  #toast {
     display: none;
   }
   #print-area {

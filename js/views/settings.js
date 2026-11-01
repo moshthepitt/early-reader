@@ -1,6 +1,6 @@
 import * as store from '../store.js';
 import * as audio from '../audio.js';
-import { state, setState, ui, today, persist, render } from '../ui.js';
+import { state, setState, ui, today, persist, render, notify } from '../ui.js';
 import { refreshRecorded } from './sounds.js';
 
 export function viewSettings() {
@@ -44,8 +44,8 @@ export async function importBackup(el) {
       // Recordings are optional.
     }
     await refreshRecorded();
-    alert('Backup restored.');
     render();
+    notify('Backup restored.');
   } catch (err) {
     alert(err.message);
   } finally {
@@ -67,6 +67,7 @@ export const actions = {
     a.download = `early-reader-backup-${today()}.json`;
     a.click();
     setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+    notify('Backup file downloaded. Keep it somewhere safe.');
     return false;
   },
   reset: async () => {
@@ -81,6 +82,7 @@ export const actions = {
     }
     ui.recorded = new Set();
     render();
+    notify('Everything on this device was deleted.');
     return false;
   },
   'undo-replace': () => {
@@ -88,6 +90,7 @@ export const actions = {
     if (!prev || !confirm('Go back to the data from before the last import or delete?')) return false;
     setState({ ...prev, rev: state.rev });
     persist();
+    notify('The earlier data is back.');
   },
 };
 
@@ -96,6 +99,6 @@ export const forms = {
     state.settings.newPerWeek = Number(data.get('newPerWeek'));
     state.settings.trickyPerWeek = Number(data.get('trickyPerWeek'));
     persist();
-    alert('Saved.');
+    notify('Settings saved.');
   },
 };

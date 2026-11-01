@@ -219,6 +219,14 @@ async function firstLoadAndScreens(browser, base) {
       check('screen renders: ' + tab, (await page.locator('main').innerText()).trim().length > 0);
       await shot('70-' + tab);
     }
+    // Buttons that change nothing visible still confirm they worked
+    await page.goto(base + '/index.html#/kids');
+    await page.click('form[data-form="edit-child"] button.btn.primary');
+    await page.waitForSelector('#toast.show');
+    check('saving a child shows a confirmation', (await page.locator('#toast').innerText()).startsWith('Saved'));
+    await page.goto(base + '/index.html#/settings');
+    await page.click('form[data-form="settings"] button.btn.primary');
+    check('saving settings shows a confirmation', (await page.locator('#toast').innerText()) === 'Settings saved.');
     // Emoji survive the build (the bundle is plain UTF-8, so a wrong charset would garble them)
     await page.goto(base + '/index.html#/sounds');
     check('letter pictures survive the build', (await page.locator('main').innerText()).includes('\u{1F40D}'));

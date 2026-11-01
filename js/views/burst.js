@@ -2,7 +2,7 @@ import * as G from '../data/en.js';
 import * as session from '../session.js';
 import { escapeHtml as h, makeRng } from '../util.js';
 import { GAMES, FACES } from '../icons.js';
-import { state, burst, setBurst, content, today, siblingName, findChild, noKids, stageBadge, persist } from '../ui.js';
+import { state, burst, setBurst, content, today, siblingName, findChild, noKids, stageBadge, persist, scrollAfterRender } from '../ui.js';
 
 export function viewBurst(id) {
   const c = findChild(id);
@@ -210,11 +210,17 @@ export function recordBurst(interrupted) {
 }
 
 export const actions = {
-  'burst-start': (el) => startBurst(el.dataset.variant),
-  answer: (el) => answer(el.dataset.correct === '1'),
-  next: () => next(),
-  stop: () => stopBurst(),
-  'finish-now': () => finishNow(),
+  // A new step scrolls back to the child's card. After a miss the step stays, so the
+  // parent keeps their place and sees what to show the child.
+  'burst-start': (el) => (startBurst(el.dataset.variant), scrollAfterRender('top')),
+  answer: (el) => {
+    const right = el.dataset.correct === '1';
+    answer(right);
+    if (right) scrollAfterRender('top');
+  },
+  next: () => (next(), scrollAfterRender('top')),
+  stop: () => (stopBurst(), scrollAfterRender('top')),
+  'finish-now': () => (finishNow(), scrollAfterRender('top')),
   'keep-going': () => {
     burst.offerFinish = false;
     burst.misses = 0;

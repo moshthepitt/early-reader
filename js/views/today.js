@@ -1,7 +1,7 @@
 import * as session from '../session.js';
 import * as progress from '../progress.js';
 import { escapeHtml as h, ageText } from '../util.js';
-import { state, today, noKids, stageBadge, findChild, persist } from '../ui.js';
+import { state, today, noKids, stageBadge, findChild, persist, notify } from '../ui.js';
 
 function minutesAgo(ts) {
   return ts ? Math.round((Date.now() - ts) / 60000) : null;
@@ -60,5 +60,6 @@ export const actions = {
   unpause: (el) => {
     findChild(el.dataset.id).paused = false;
     persist();
+    notify('Welcome back. The first bursts will be review.');
   },
 };

@@ -31,6 +31,28 @@ export function persist() {
   }
 }
 
+// A short confirmation at the bottom of the screen, so every button shows it worked.
+// It lives outside #app, so a re-render does not wipe it, and screen readers announce it.
+let toastTimer;
+export function notify(message) {
+  let el = document.getElementById('toast');
+  if (!el) {
+    el = document.createElement('div');
+    el.id = 'toast';
+    el.setAttribute('role', 'status');
+    document.body.appendChild(el);
+  }
+  el.textContent = message;
+  el.className = 'show';
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => (el.className = ''), 2800);
+}
+
+// Ask the next render to bring something into view: a CSS selector, or 'top'.
+export function scrollAfterRender(target) {
+  ui.scrollTo = target;
+}
+
 export const findChild = (id) => state.children.find((c) => c.id === id);
 export const today = () => dayKey();
 const sibling = (c) => store.siblingOf(state, c);

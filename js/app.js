@@ -89,7 +89,11 @@ function rerender() {
   const y = window.scrollY;
   const r = route();
   app.querySelector('main').innerHTML = VIEWS[r.name](r.arg);
-  window.scrollTo(0, y);
+  const target = ui.scrollTo;
+  ui.scrollTo = null;
+  if (target === 'top') window.scrollTo(0, 0);
+  else if (target) document.querySelector(target)?.scrollIntoView({ block: 'center' });
+  else window.scrollTo(0, y);
 }
 
 window.addEventListener('hashchange', render);

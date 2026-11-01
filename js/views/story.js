@@ -1,7 +1,7 @@
 import * as RA from '../readaloud.js';
 import * as store from '../store.js';
 import { escapeHtml as h } from '../util.js';
-import { state, ui, persist, today } from '../ui.js';
+import { state, ui, persist, today, notify, scrollAfterRender } from '../ui.js';
 import { docHtml } from '../docs.js';
 
 export function viewStory() {
@@ -53,16 +53,19 @@ export const actions = {
   'delete-book': (el) => {
     state.books = state.books.filter((b) => b.id !== el.dataset.id);
     persist();
+    notify('Book removed.');
   },
 };
 
 export const forms = {
   'book-prompt': (f, data) => {
     ui.bookPrompt = RA.buildBookPrompt({ title: data.get('title'), author: data.get('author'), pageNotes: data.get('notes'), redact: store.familyNames(state) });
+    scrollAfterRender('[data-form="book-prompt"] .prompt-out');
   },
   'save-book': (f, data) => {
     state.books.unshift({ id: Math.random().toString(36).slice(2), title: String(data.get('title')).slice(0, 140), notes: String(data.get('notes')).slice(0, 8000), created: today() });
     persist();
     f.reset();
+    notify('Saved. It is under "Saved books".');
   },
 };

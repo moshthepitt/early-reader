@@ -1,7 +1,7 @@
 import * as progress from '../progress.js';
 import { escapeHtml as h } from '../util.js';
 import { FACES } from '../icons.js';
-import { today, selectedChild, noKids, childPicker, stageBadge, findChild, persist } from '../ui.js';
+import { today, selectedChild, noKids, childPicker, stageBadge, findChild, persist, notify } from '../ui.js';
 
 export function viewProgress(arg) {
   const c = selectedChild(arg);
@@ -84,5 +84,6 @@ export const actions = {
     const check = progress.stageCheck(c);
     if (check.next) c.stage = check.next;
     persist();
+    notify(`${c.name} moved up to stage ${c.stage}.`);
   },
 };
