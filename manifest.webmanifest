@@ -1,0 +1,14 @@
+{
+  "name": "Early Reader",
+  "short_name": "Early Reader",
+  "description": "Help your 3- or 4-year-old learn to read, a few minutes at a time. Works offline.",
+  "start_url": "./index.html#/today",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f6f3ec",
+  "theme_color": "#2f6f5e",
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ]
+}
