@@ -37,7 +37,13 @@ Everything you enter is saved on your device, in the browser: names, progress, v
 
 ## Small on purpose
 
-The first visit is four requests and about 43 KB over the wire (114 KB unpacked). After that it works offline, so it costs nothing to use on a data bundle. There are no frameworks and no runtime dependencies: plain JavaScript modules, bundled for hosting by [esbuild](https://esbuild.github.io/). The build fails if a change pushes the first load over budget.
+The first visit is four requests and about 43 KB over the wire (120 KB unpacked). The reading font, 12 KB, follows once the page has loaded. After that it works offline, so it costs nothing to use on a data bundle. There are no frameworks and no runtime dependencies: plain JavaScript modules, bundled for hosting by [esbuild](https://esbuild.github.io/). The build fails if a change pushes the first load over budget.
+
+## The look
+
+The colours and the zigzag come from the kiondo, the sisal basket woven in Kikuyu and Kamba homes. The parent's screens are calm: cream, brown and one green. The child's card is the bright page, edged with a woven band, and the sounds under a word are beads on a string - a round bead for each sound, a long one where two letters make one sound.
+
+Letters are set in Andika, SIL's typeface for early readers, which has the single-storey "a" and "g" children learn to write. The app carries a small copy renamed "ER Letters", as the font's licence asks; `scripts/make-font.py` rebuilds it.
 
 ## Working on it
 
@@ -61,6 +67,5 @@ Not done yet:
 
 - A Kiswahili track. The engine doesn't care which language it teaches; the data isn't written.
 - Recordings of each sound by someone who teaches phonics.
-- A font with the single-storey "a" kids learn to write.
 
 MIT licensed. What have I missed?
