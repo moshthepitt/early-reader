@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <!-- Source for icon-192.png and icon-512.png. Full bleed: the phone applies its own mask. -->
+  <rect width="512" height="512" fill="#1e5a47"/>
+  <circle cx="245" cy="262" r="84" fill="none" stroke="#fffcf6" stroke-width="44"/>
+  <path d="M351 160v196" stroke="#fffcf6" stroke-width="44" stroke-linecap="round"/>
+  <defs><pattern id="z" width="48" height="40" patternUnits="userSpaceOnUse"><path d="M-12 30 12 10 36 30 60 10" fill="none" stroke="#b9472a" stroke-width="10"/></pattern></defs>
+  <rect y="404" width="512" height="40" fill="#f2b33d"/>
+  <rect y="404" width="512" height="40" fill="url(#z)"/>
+</svg>
