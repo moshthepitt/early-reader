@@ -485,6 +485,20 @@ details summary {
   margin: 0.25rem 0;
 }
 
+/* ---- footer ---- */
+
+.foot {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 0 0.75rem 2.5rem;
+  color: var(--muted);
+  font-size: 0.85rem;
+  text-align: center;
+}
+.foot a {
+  color: var(--brand);
+}
+
 /* ---- guide ---- */
 
 .doc h1 {

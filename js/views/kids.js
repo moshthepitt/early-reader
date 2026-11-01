@@ -29,7 +29,7 @@ export function viewKids() {
       <p class="muted small">Most 3-year-olds start at stage 1. A 4-year-old who already knows several letter sounds can start at stage 2. Stage 3 is for children who know about 12 letter sounds.</p>
       <button class="btn primary">Add</button>
     </form>
-    <p class="muted small">Names stay on this device. They are never sent anywhere. The app removes them from AI prompts.</p>`;
+    <p class="muted small">What you type here is saved on this device only. Early Reader has no server and no accounts, so your children's names have nowhere to go. The app also leaves them out of the AI prompts it makes.</p>`;
 }
 
 export const actions = {

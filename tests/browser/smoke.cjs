@@ -219,6 +219,8 @@ async function firstLoadAndScreens(browser, base) {
       check('screen renders: ' + tab, (await page.locator('main').innerText()).trim().length > 0);
       await shot('70-' + tab);
     }
+    // Every screen says where the data lives
+    check('footer says data stays on the device', (await page.locator('footer.foot').innerText()).includes('no server'));
     // How it works and the book list render from docs/
     await page.goto(base + '/index.html#/how');
     await page.waitForSelector('.how h1');

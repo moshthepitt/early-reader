@@ -33,7 +33,7 @@ The app never talks to the children. There is no chat, no cartoon companion, no 
 
 There is no speech recognition either. A benchmark from October 2026 found current models get 58-76% of preschoolers' words wrong, so the parent judges every answer.
 
-Nothing leaves the device. Names, progress and voice recordings stay in the browser. Where AI helps (questions for a specific book, new practice stories), the app writes a prompt you paste into whatever AI chat tool you use. Your children's names are swapped for "the child" or a `{NAME}` placeholder, and whatever comes back gets checked word by word against what that child has been taught. AI breaks phonics rules a lot.
+Everything you enter is saved on your device, in the browser: names, progress, voice recordings. There is no Early Reader server, no account and no database, so there is nowhere for any of it to be sent. GitHub Pages hands your browser the app's files, and that's the only contact. Where AI helps (questions for a specific book, new practice stories), the app writes a prompt you paste into whatever AI chat tool you use. Your children's names are swapped for "the child" or a `{NAME}` placeholder, and whatever comes back gets checked word by word against what that child has been taught. AI breaks phonics rules a lot.
 
 ## Small on purpose
 

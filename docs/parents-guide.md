@@ -1,6 +1,6 @@
 # A parent's guide to Early Reader
 
-Early Reader helps you teach your own 3- to 5-year-old to read, a few minutes at a time. I built it for my two. It works in English, on a phone or a laptop, and nothing you put in it leaves your device.
+Early Reader helps you teach your own 3- to 5-year-old to read, a few minutes at a time. I built it for my two. It works in English, on a phone or a laptop. Everything you put in it is saved on your device, and there is no server for it to go to.
 
 You run it. The screen tells you what to say and what to show, and keeps track of what each child knows. Your child works with paper cards, letter tiles and a pencil, and with you.
 
@@ -98,7 +98,9 @@ One firm rule: AI is for you, not your child. Common Sense Media advises no AI c
 
 ## Your data
 
-Everything stays in the browser on your device: names, progress and any voice recordings. Nothing is uploaded. If you clear your browser data, it's gone, so use Settings, "Export backup" now and then. A backup file restores everything, recordings included.
+Everything you put into Early Reader is saved on your device, in your browser: your children's names, their progress and any sounds you record. There is no Early Reader server and no account, so there is nowhere for any of it to be sent. [How it works](how-it-works.md) explains this in full.
+
+The catch: if you clear your browser data or lose the phone, it's gone. Use Settings, "Export backup" now and then. A backup file restores everything, recordings included.
 
 ## What to expect
 

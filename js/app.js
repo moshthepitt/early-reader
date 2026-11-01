@@ -74,7 +74,7 @@ function render() {
     }
   }
   const nav = NAV.map(([k, label]) => `<a href="#/${k}" class="${r.name === k || (r.name === 'burst' && k === 'today') ? 'on' : ''}">${label}</a>`).join('');
-  app.innerHTML = `<header class="top"><a class="brand" href="#/today">Early Reader</a><nav>${nav}</nav></header><main>${VIEWS[r.name](r.arg)}</main>`;
+  app.innerHTML = `<header class="top"><a class="brand" href="#/today">Early Reader</a><nav>${nav}</nav></header><main>${VIEWS[r.name](r.arg)}</main><footer class="foot">Everything you enter is saved on this device. Early Reader has no server, so there is nowhere for it to be sent. <a href="#/how">How it works</a></footer>`;
   window.scrollTo(0, 0);
 }
 

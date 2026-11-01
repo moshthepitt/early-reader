@@ -11,7 +11,7 @@ Offline web app that coaches a parent teaching their own 3- to 5-year-old to rea
 ## Invariants
 
 - **Parent-led.** The screen speaks to the parent; the child works with paper, tiles and pencil. AI features produce prompts the parent copies by hand, with family names passed through `redactNames`.
-- **On-device.** All data stays in localStorage and IndexedDB. Anything loaded or imported passes through `migrate` in `js/store.js` first.
+- **On-device.** There is no server. All data stays in localStorage and IndexedDB, and the only network requests are for the app's own files. Anything loaded or imported passes through `migrate` in `js/store.js` first.
 - **Decodable.** Every text shown for a child to read passes `checkText` against that child's taught sounds and tricky words.
 - **Escaped.** Every value interpolated into HTML goes through `escapeHtml`.
 - **Light.** First load stays within the budget `npm run build` enforces: four requests, 50 KB over the wire. No frameworks or runtime dependencies.

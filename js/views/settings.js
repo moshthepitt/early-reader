@@ -17,7 +17,7 @@ export function viewSettings() {
     </form>
     <section class="card">
       <h2>Your data</h2>
-      <p>Everything stays in this browser on this device. Nothing is uploaded. Clearing your browser data deletes it, so export a backup now and then.</p>
+      <p>Everything you enter is saved on this device, in this browser. There is no Early Reader server and no account, so nothing is ever uploaded. That also means clearing your browser data deletes it, so export a backup now and then.</p>
       <div class="row">
         <button class="btn" data-action="export">Export backup</button>
         <label class="btn">Import backup<input type="file" accept="application/json" data-change="import" hidden></label>
