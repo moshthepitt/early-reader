@@ -144,6 +144,7 @@ async function firstLoadAndScreens(browser, base) {
     await add('Ben', '2022-04', 2);
     await shot('02-today');
 
+    const letterChecks = [];
     const runBurst = async (childIdx, variant, shotPrefix, rightPattern = [1]) => {
       await page.goto(base + '/index.html#/today');
       const links = await page.$$('a.btn.primary.big');
@@ -160,7 +161,12 @@ async function firstLoadAndScreens(browser, base) {
         const ans = await page.$$('[data-action="answer"]');
         if (ans.length) {
           const right = rightPattern[n % rightPattern.length];
+          const isLetter = (await page.textContent('.burst-top b')) === 'What sound?';
+          const pic = () => page.$('.child-card .big-emoji').then(Boolean);
+          const rec = isLetter ? { before: await pic(), after: null } : null;
           await page.click(`[data-action="answer"][data-correct="${right}"]`);
+          if (rec && !right) rec.after = await pic();
+          if (rec) letterChecks.push(rec);
           if (!right && shotPrefix) await shot(`${shotPrefix}-step${String(n).padStart(2, '0')}-model`);
           if (!right) await page.click('[data-action="next"]');
         } else {
@@ -180,8 +186,11 @@ async function firstLoadAndScreens(browser, base) {
     const n1 = await runBurst(0, 'cards', '10-kim');
     const n2 = await runBurst(1, 'cards', '20-ben');
     // A few more bursts for Ben, one with misses
-    await runBurst(1, 'tiles', '30-ben-tiles', [1, 0]);
+    await runBurst(1, 'tiles', '30-ben-tiles', [0, 1]); // opens with a letter check
     for (let i = 0; i < 3; i++) await runBurst(1, i % 2 ? 'tiles' : 'cards', null);
+    const modelled = letterChecks.filter((r) => r.after !== null);
+    check('scored letter checks show the letter alone', letterChecks.length > 0 && letterChecks.every((r) => !r.before), { n: letterChecks.length });
+    check('the model after a miss shows the picture', modelled.length > 0 && modelled.every((r) => r.after), { n: modelled.length });
     // Stop button path
     await page.goto(base + '/index.html#/today');
     await (await page.$$('a.btn.primary.big'))[0].click();

@@ -19,7 +19,7 @@ export function letterCards(graphemes, { withPictures = true } = {}) {
       </div>`;
     })
     .join('');
-  return page(withPictures ? 'Letter cards (with pictures)' : 'Letter cards (without pictures, for letters they know)', `<div class="card-grid">${cards}</div>`);
+  return page(withPictures ? 'Letter cards (with pictures)' : 'Letter cards (without pictures, for checking)', `<div class="card-grid">${cards}</div>`);
 }
 
 export function wordCards(words) {

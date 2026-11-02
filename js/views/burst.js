@@ -94,6 +94,7 @@ function childCard(step) {
   }
   if (c.text) inner += `<div class="big-text">${h(c.text)}</div>`;
   if (c.emoji) inner += `<div class="big-emoji">${h(c.emoji)}</div>`;
+  if (c.hint && burst.phase === 'model') inner += `<div class="big-emoji">${h(c.hint)}</div>`;
   if (c.choices) {
     inner += `<div class="choices">${c.choices
       .map((o) => (o.letter ? `<div class="choice letter">${h(o.letter)}</div>` : `<div class="choice"><span class="ce">${h(o.emoji)}</span><span class="cl">${h(o.label)}</span></div>`))

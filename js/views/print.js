@@ -19,7 +19,7 @@ export function viewPrint(arg) {
       <div class="print-btns">
         ${c ? `<button class="btn" data-action="print" data-what="letters-met" data-child="${h(c.id)}">Letter cards: letters met (${intro.length})</button>` : ''}
         ${c ? `<button class="btn" data-action="print" data-what="letters-next" data-child="${h(c.id)}">Letter cards: next 8 letters</button>` : ''}
-        ${c ? `<button class="btn" data-action="print" data-what="letters-known" data-child="${h(c.id)}">Letter cards without pictures: known letters</button>` : ''}
+        ${c ? `<button class="btn" data-action="print" data-what="letters-plain" data-child="${h(c.id)}">Letter cards without pictures: letters met (${intro.length})</button>` : ''}
         <button class="btn" data-action="print" data-what="letters-all">Letter cards: all</button>
         ${c ? `<button class="btn" data-action="print" data-what="tiles" data-child="${h(c.id)}">Letter tiles: letters met</button>` : ''}
         <button class="btn" data-action="print" data-what="tiles-all">Letter tiles: all single letters</button>
@@ -47,8 +47,8 @@ function makePrint(what, childId) {
       return P.letterCards(order.filter((g) => intro.includes(g)));
     case 'letters-next':
       return P.letterCards(order.filter((g) => !intro.includes(g)).slice(0, 8));
-    case 'letters-known':
-      return P.letterCards(order.filter((g) => session.soundsKnown(c).has(g)), { withPictures: false });
+    case 'letters-plain':
+      return P.letterCards(order.filter((g) => intro.includes(g)), { withPictures: false });
     case 'letters-all':
       return P.letterCards(G.BASE_ORDER);
     case 'tiles':

@@ -21,7 +21,7 @@ From then on it opens like any other app, and it works without data or Wi-Fi.
 
 **1. Add your children.** Open the Kids tab and add each child with their first name and birth month. Most 3-year-olds start at stage 1. A 4-year-old who already knows several letter sounds can start at stage 2. You can change the stage at any time.
 
-**2. Print a few things.** On the Print tab, print the letter cards for the letters your child has met (at the very start, print "next 8 letters") and a sheet of letter tiles. Card lasts longer than paper. Cut along the dotted lines. No printer? Save the page as a PDF from the print screen and take it to a cyber, or copy the letters onto cut-up cereal boxes with a marker.
+**2. Print a few things.** On the Print tab, print the letter cards for the letters your child has met (at the very start, print "next 8 letters") and a sheet of letter tiles. When the app checks a letter, cover the picture on the card with your thumb, or use the cards without pictures. Card lasts longer than paper. Cut along the dotted lines. No printer? Save the page as a PDF from the print screen and take it to a cyber, or copy the letters onto cut-up cereal boxes with a marker.
 
 **3. Learn to say the sounds.** This part is for you, and it matters more than it looks. Letters have names ("em") and sounds ("mmm"). Reading runs on the sounds, said short and clean. Many of us add an "uh" without noticing - "muh" instead of "mmm", "tuh" instead of a quick "t" - and that "uh" makes blending much harder for a child. The Sounds tab shows how to say each one. Record yourself and listen back. It's a bit embarrassing. Do it anyway.
 
@@ -77,7 +77,7 @@ Don't mistake memory for reading. Children are good at memorising favourite book
 
 **Stage 1: sound play** (often age 3). Listening games with no letters: rhyming, clapping the beats in words, spotting which picture starts with a different sound, and "robot talk" ("c-at... what did I say?"). Plus the letters in their own name. Moves on when they can hear first sounds reliably over several days and know the first letter of their name.
 
-**Stage 2: letter sounds** (late 3 to 4). Letter names and sounds together, two to four new letters a week, with a picture to help that fades away as the letter sticks. Moves on at about 12 known letter sounds, including at least two vowels (a, e, i, o, u).
+**Stage 2: letter sounds** (late 3 to 4). Letter names and sounds together, two to four new letters a week. Each is taught with a picture; checks show the letter alone. Moves on at about 12 known letter sounds, including at least two vowels (a, e, i, o, u).
 
 **Stage 3: blending** (around 4, often later). Sounding out short words like "sat", "mat" and "fun", holding each sound into the next: "sssaaat". Building words with tiles. Moves on when they can sound out words they have never seen, most of the time, on several days.
 

@@ -72,13 +72,15 @@ export function introLetterStep(child, g) {
 
 export function letterSoundStep(child, item) {
   const x = GRAPHEME_MAP[item.key];
-  // Hide the picture at review box 2 (de Graaff et al. 2007 supports fading cues).
-  const showPicture = item.box < 2;
+  // Pictures help while teaching (de Graaff et al. 2007), so the introduction and
+  // the model after a miss show one. The scored check shows the letter alone, so a
+  // right answer means they know the letter, not the picture. That split is our
+  // judgement, not a tested rule.
   return {
     type: 'letter-sound',
     title: 'What sound?',
-    child: { big: item.key, emoji: showPicture ? x.emoji : null },
-    script: [`Point to the letter. Ask: "What does this one say?"`, WAIT],
+    child: { big: item.key, hint: x.emoji },
+    script: [`Point to the letter, with any picture covered. Ask: "What does this one say?"`, WAIT],
     answer: x.say,
     model: [`Say: "This says ${x.say}, like ${x.keyword} ${x.emoji}. Say it with me: ${x.say}."`, 'Then ask once more. Only the first try counts.'],
     tip: x.tip,

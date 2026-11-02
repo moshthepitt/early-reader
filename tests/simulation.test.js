@@ -80,7 +80,11 @@ function checkStep(step, child, sounds, ctx) {
     assert.ok(checkText(step.textKey, ctx).ok, `sentence not decodable for child: ${step.textKey}`);
     assert.ok(!/\{NAME/.test(c.text), 'names filled in');
   }
+  if (step.type === 'letter-sound') {
+    assert.ok(!c.emoji && c.hint, 'scored letter checks show the letter alone, with the picture kept for the model');
+  }
   if (step.type === 'intro-letter') {
+    assert.ok(c.emoji, 'new letters are taught with a picture');
     if (child.stage <= 1) assert.ok(session.nameGraphemes(child.name).includes(c.big), `stage 1 only introduces name letters, got ${c.big}`);
   }
 }

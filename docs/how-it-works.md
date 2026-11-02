@@ -27,7 +27,7 @@ Only the first try counts. A slow answer is fine as long as it's their own, so g
 ## Four stages
 
 1. **Sound play.** Listening games without letters, plus the letters in your child's name.
-2. **Letter sounds.** Names and sounds together, two to four new letters a week, each with a picture that fades away as the letter sticks.
+2. **Letter sounds.** Names and sounds together, two to four new letters a week. Each new letter comes with a picture to help it stick. When the app checks a letter, it shows the letter alone, so a right answer means your child knows the letter itself.
 3. **Blending.** Sounding out short words like "sat", starting with sounds you can stretch ("sssaaat").
 4. **First reading.** Tricky words, two-letter sounds like "sh" and "ee", then short sentences and stories.
 
