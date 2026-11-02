@@ -192,14 +192,16 @@ export function buildBurst({ child, content, today, rng = Math.random, variant =
   // waited longest, so letters that keep failing can't hold the rest back.
   // Mixing a likely-easy review in with hard ones also keeps success high, as
   // incremental rehearsal does (Tucker & Burns). The split is our design choice.
-  const takeDue = (kind, n) => {
-    const pool = due.filter((it) => it.kind === kind && !used.has(it.id) && wordReady(it));
+  const takeDue = (kinds, n) => {
+    const pool = due.filter((it) => kinds.includes(it.kind) && !used.has(it.id) && wordReady(it));
     const out = pool.slice(0, n > 1 ? n - 1 : n);
     const waited = pool.filter((it) => !out.includes(it)).sort((a, b) => (a.due < b.due ? -1 : a.due > b.due ? 1 : 0));
     if (n > 1 && waited.length) out.push(waited[0]);
     out.forEach((it) => used.add(it.id));
     return out;
   };
+
+  const pushLetter = (it) => steps.push(it.kind === 'sound' ? letterSoundStep(child, it) : letterNameStep(child, it));
 
   const tryIntroduceSound = (perWeekCap) => {
     const g = nextNewSound(child);
@@ -221,9 +223,9 @@ export function buildBurst({ child, content, today, rng = Math.random, variant =
     const first = rng() < 0.6 ? firstSoundOralStep : pick([oralBlendStep, rhymeStep, syllableStep], rng);
     const second = pick([firstSoundOralStep, oralBlendStep, rhymeStep, syllableStep].filter((f) => f !== first), rng);
     steps.push(first(child, content, rng), second(child, content, rng));
-    const reviews = [...takeDue('sound', 1), ...takeDue('name', 1)];
+    const reviews = [...takeDue(['sound'], 1), ...takeDue(['name'], 1)];
     if (reviews.length) {
-      reviews.forEach((it) => steps.push(it.kind === 'sound' ? letterSoundStep(child, it) : letterNameStep(child, it)));
+      reviews.forEach(pushLetter);
     } else if (!tryIntroduceSound(Math.min(perWeek, 2))) {
       if (child.name) steps.push(nameCardStep(child));
     }
@@ -231,8 +233,8 @@ export function buildBurst({ child, content, today, rng = Math.random, variant =
 
   if (stage === 2) {
     const nReviews = variant === 'cards' ? 3 : 2;
-    takeDue('sound', nReviews).forEach((it) => steps.push(letterSoundStep(child, it)));
-    takeDue('name', 1).forEach((it) => steps.push(letterNameStep(child, it)));
+    takeDue(['sound'], nReviews).forEach(pushLetter);
+    takeDue(['name'], 1).forEach(pushLetter);
     tryIntroduceSound(perWeek);
     if (steps.length < 4) {
       const pickStep = firstSoundPickStep(child, content, rng);
@@ -244,9 +246,11 @@ export function buildBurst({ child, content, today, rng = Math.random, variant =
     }
   }
 
+  // From stage 3, letter names share the letter slots with sounds, so names
+  // learned earlier keep coming back (Piasta, Purpura & Wagner 2010 taught both).
   if (stage === 3) {
-    takeDue('sound', 2).forEach((it) => steps.push(letterSoundStep(child, it)));
-    const dueWords = takeDue('word', 2);
+    takeDue(['sound', 'name'], 2).forEach(pushLetter);
+    const dueWords = takeDue(['word'], 2);
     dueWords.forEach((it) => {
       const w = content.lexicon.get(it.key);
       if (w) steps.push(blendWordStep(child, content, w, it));
@@ -273,10 +277,10 @@ export function buildBurst({ child, content, today, rng = Math.random, variant =
   }
 
   if (stage >= 4) {
-    takeDue('sound', 1).forEach((it) => steps.push(letterSoundStep(child, it)));
+    takeDue(['sound', 'name'], 1).forEach(pushLetter);
     // Remaining letters and the two-letter sounds (sh, ch, th, ck, ee, oo...).
     tryIntroduceSound(perWeek);
-    const dueTricky = takeDue('tricky', 1);
+    const dueTricky = takeDue(['tricky'], 1);
     if (dueTricky.length) {
       steps.push(trickyStep(dueTricky[0]));
     } else {
@@ -285,7 +289,7 @@ export function buildBurst({ child, content, today, rng = Math.random, variant =
       if (t && gate.ok) steps.push(introTrickyStep(t));
       else if (t && gate) notes.push(`No new tricky word this time: ${gate.reason}`);
     }
-    const dueWords = takeDue('word', 1);
+    const dueWords = takeDue(['word'], 1);
     if (dueWords.length) {
       const w = content.lexicon.get(dueWords[0].key);
       if (w) steps.push(blendWordStep(child, content, w, dueWords[0]));

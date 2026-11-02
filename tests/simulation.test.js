@@ -8,7 +8,7 @@ import { buildLexicon, checkText } from '../js/decodable.js';
 import { newChild } from '../js/store.js';
 import * as session from '../js/session.js';
 import * as progress from '../js/progress.js';
-import { addDays, makeRng, weekStart } from '../js/util.js';
+import { addDays, daysBetween, makeRng, weekStart } from '../js/util.js';
 import * as S from '../js/scheduler.js';
 import { buildTextPrompt, checkPasted } from '../js/texts.js';
 import { buildBookPrompt } from '../js/readaloud.js';
@@ -97,6 +97,12 @@ test('a typical child moves through all four stages', () => {
   }
   const known = session.soundsKnown(child);
   assert.ok(known.size >= 12, `knows ${known.size} sounds`);
+  // Letters learned early keep coming back after stage 2: none is left a month overdue.
+  const end = addDays('2026-01-05', 240);
+  for (const kind of ['sound', 'name']) {
+    const late = S.itemsOfKind(child.items, kind).filter((it) => daysBetween(it.due, end) > 30);
+    assert.deepEqual(late.map((it) => `${it.key} due ${it.due}`), [], `${kind} reviews left overdue`);
+  }
 });
 
 test('a child who struggles is held back, not rushed', () => {
