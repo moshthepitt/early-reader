@@ -30,6 +30,20 @@ const copy = (p) => write(p, fs.readFileSync(path.join(root, p)));
 
 fs.rmSync(dist, { recursive: true, force: true });
 
+// The views build HTML in template literals, and the minifier keeps their
+// indentation. Browsers ignore it: the only whitespace-sensitive elements (pre,
+// textarea) are filled from values, never from template text. Data and prompt
+// files are left alone, because their line layout matters.
+const tidyTemplates = {
+  name: 'tidy-templates',
+  setup(build) {
+    build.onLoad({ filter: /[\\/]js[\\/](views[\\/][\w-]+|app|ui|icons|print)\.js$/ }, (args) => ({
+      contents: fs.readFileSync(args.path, 'utf8').replace(/\n[ \t]+/g, '\n'),
+      loader: 'js',
+    }));
+  },
+};
+
 const js = await esbuild.build({
   entryPoints: [path.join(root, 'js/app.js')],
   bundle: true,
@@ -41,6 +55,7 @@ const js = await esbuild.build({
   // Keep emoji and accented letters as UTF-8 rather than \u escapes, which are about three
   // times longer. GitHub Pages serves scripts as UTF-8, and the page declares it too.
   charset: 'utf8',
+  plugins: [tidyTemplates],
   write: false,
 });
 const appJs = js.outputFiles[0].contents;
@@ -53,7 +68,17 @@ const css = await esbuild.build({
 });
 const appCss = css.outputFiles[0].text.trim();
 
-const favicon = `data:image/svg+xml,${encodeURIComponent(read('icons/icon.svg').trim())}`;
+// Escape only what a data URL in a double-quoted attribute needs; this is about
+// half the size of encodeURIComponent.
+const svgDataUrl = (svg) =>
+  'data:image/svg+xml,' +
+  svg
+    .replace(/\s*\n\s*/g, ' ')
+    .replace(/> </g, '><')
+    .trim()
+    .replace(/"/g, "'")
+    .replace(/[%#<>]/g, encodeURIComponent);
+const favicon = svgDataUrl(read('icons/icon.svg'));
 
 let html = read('index.html');
 const swap = (from, to) => {
