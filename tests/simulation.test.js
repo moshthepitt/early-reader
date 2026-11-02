@@ -174,6 +174,16 @@ test('keyword scripts say ends with / in the middle where true', () => {
   assert.doesNotMatch(joined, /"(Duck|Box|Bell|Ring|Dress|Puff|Bee)" starts with/);
 });
 
+test('letters that keep failing do not crowd out an overdue review', () => {
+  const child = newChild({ name: 'Kim', stage: 2 });
+  for (const g of ['b', 'd', 'p']) child.items[S.itemId('sound', g)] = { ...S.newItem('sound', g, '2026-01-01'), lastResult: false, lastSeen: '2026-01-10', lastMissed: '2026-01-10', due: '2026-01-10' };
+  child.items[S.itemId('sound', 'm')] = { ...S.newItem('sound', 'm', '2026-01-01'), box: 6, goodDays: ['a', 'b', 'c', 'd', 'e', 'f'], lastResult: true, due: '2026-01-07' };
+  const plan = session.buildBurst({ child, content, today: '2026-01-10', rng: makeRng(3), variant: 'cards' });
+  const letters = plan.steps.filter((s) => s.type === 'letter-sound').map((s) => s.child.big);
+  assert.equal(letters.length, 3);
+  assert.ok(letters.includes('m'), `overdue m should get a turn, got ${letters}`);
+});
+
 test('easy win skips items missed in this burst', () => {
   const child = newChild({ name: 'Kim', stage: 2 });
   child.items[S.itemId('sound', 's')] = { ...S.newItem('sound', 's', '2026-01-01'), box: 4, goodDays: ['a', 'b', 'c', 'd'], lastResult: true };

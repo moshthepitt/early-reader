@@ -188,8 +188,15 @@ export function buildBurst({ child, content, today, rng = Math.random, variant =
     const w = content.lexicon.get(it.key);
     return !!w && w.gs.every((g) => sounds.has(g));
   };
+  // Weakest first, but with two or more slots the last one goes to whatever has
+  // waited longest, so letters that keep failing can't hold the rest back.
+  // Mixing a likely-easy review in with hard ones also keeps success high, as
+  // incremental rehearsal does (Tucker & Burns). The split is our design choice.
   const takeDue = (kind, n) => {
-    const out = due.filter((it) => it.kind === kind && !used.has(it.id) && wordReady(it)).slice(0, n);
+    const pool = due.filter((it) => it.kind === kind && !used.has(it.id) && wordReady(it));
+    const out = pool.slice(0, n > 1 ? n - 1 : n);
+    const waited = pool.filter((it) => !out.includes(it)).sort((a, b) => (a.due < b.due ? -1 : a.due > b.due ? 1 : 0));
+    if (n > 1 && waited.length) out.push(waited[0]);
     out.forEach((it) => used.add(it.id));
     return out;
   };

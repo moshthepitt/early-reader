@@ -16,7 +16,7 @@ You need both. The [parent guide](parents-guide.md) explains how to run each one
 
 When you start a burst, the app looks at everything your child has met and picks a few things:
 
-- **Reviews that are due.** Every letter, word and tricky word comes back after a gap that grows each time your child gets it right on the first try: later the same day, then after 1, 2, 4, 7, 14 and 30 days. A miss sends it back to the start.
+- **Reviews that are due.** Every letter, word and tricky word comes back after a gap that grows each time your child gets it right on the first try: later the same day, then after 1, 2, 4, 7, 14 and 30 days. A miss sends it back to the start. The shakiest come first, with one review saved for whatever has waited longest, so nothing gets stuck behind a letter your child keeps finding hard.
 - **At most one new thing**, and only if your child is ready for it. The app holds back new letters when recent answers are right less than about three times in four, when three or more letters are still shaky, or when it has already added this week's two to four.
 - **An easy win to finish**, chosen when you reach the end, so it's never something your child just missed.
 
