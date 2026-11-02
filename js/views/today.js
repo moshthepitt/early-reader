@@ -58,8 +58,9 @@ export const actions = {
     persist();
   },
   unpause: (el) => {
-    findChild(el.dataset.id).paused = false;
+    const c = findChild(el.dataset.id);
+    c.paused = false;
     persist();
-    notify('Welcome back. The first bursts will be review.');
+    notify(session.backFromBreak(c, today()) ? 'Welcome back. Today is review only.' : 'Welcome back.');
   },
 };

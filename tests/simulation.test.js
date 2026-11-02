@@ -190,6 +190,20 @@ test('letters that keep failing do not crowd out an overdue review', () => {
   assert.ok(letters.includes('m'), `overdue m should get a turn, got ${letters}`);
 });
 
+test('the first day back after a break is review only', () => {
+  const child = newChild({ name: 'Kim', stage: 2 });
+  for (const g of ['s', 'a', 't', 'p']) child.items[S.itemId('sound', g)] = { ...S.newItem('sound', g, '2026-01-01'), box: 3, goodDays: ['2026-01-01', '2026-01-02'], lastResult: true, due: '2026-01-09' };
+  child.bursts = [{ day: '2026-01-05' }];
+  const build = (day) => session.buildBurst({ child, content, today: day, rng: makeRng(5), variant: 'cards' });
+  const intros = (plan) => plan.steps.filter((s) => s.type === 'intro-letter').length;
+  assert.equal(intros(build('2026-01-25')), 0, 'no new letter on the first day back');
+  assert.equal(session.backFromBreak(child, '2026-01-25'), true);
+  child.bursts.push({ day: '2026-01-25' });
+  assert.equal(intros(build('2026-01-25')), 0, 'still review later that day');
+  assert.equal(intros(build('2026-01-26')), 1, 'new letters again the next day');
+  assert.equal(session.backFromBreak(child, '2026-01-12'), false);
+});
+
 test('easy win skips items missed in this burst', () => {
   const child = newChild({ name: 'Kim', stage: 2 });
   child.items[S.itemId('sound', 's')] = { ...S.newItem('sound', 's', '2026-01-01'), box: 4, goodDays: ['a', 'b', 'c', 'd'], lastResult: true };

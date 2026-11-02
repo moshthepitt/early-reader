@@ -11,8 +11,8 @@
 
 import { GRAPHEME_MAP, VOWELS, TRICKY_WORDS } from './data/en.js';
 import * as S from './scheduler.js';
-import { nameInitial, soundsKnown, teachingOrder } from './session.js';
-import { weekStart, daysBetween } from './util.js';
+import { backFromBreak, nameInitial, soundsKnown, teachingOrder } from './session.js';
+import { weekStart } from './util.js';
 
 export function stageCheck(child) {
   const stage = child.stage || 1;
@@ -129,9 +129,8 @@ export function moodHint(child, today) {
   if (recent.length >= 4 && low >= 3) {
     return 'Several recent bursts ended early or felt hard. Try shorter bursts, a different game, or a break of a few weeks. A break is fine.';
   }
-  const lastDay = recent.length ? recent[recent.length - 1].day : null;
-  if (lastDay && daysBetween(lastDay, today) >= 14) {
-    return 'Welcome back. Start with review only after a break. Letters usually come back quickly.';
+  if (backFromBreak(child, today)) {
+    return 'Welcome back. Today is review only, with no new letters. Letters usually come back quickly.';
   }
   return null;
 }

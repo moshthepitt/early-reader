@@ -13,7 +13,7 @@
 
 import { GRAPHEME_MAP, BASE_ORDER, VOWELS, TRICKY_WORDS, NONWORD_BLOCKLIST } from './data/en.js';
 import * as S from './scheduler.js';
-import { pick } from './util.js';
+import { daysBetween, pick } from './util.js';
 import { makeContext, checkText } from './decodable.js';
 // Steps use the hoisted child helpers below; neither module calls the other at startup.
 import { introLetterStep, letterSoundStep, letterNameStep, rhymeStep, syllableStep, firstSoundOralStep, firstSoundPickStep, oralBlendStep, blendWordStep, blendCheckStep, spellStep, introTrickyStep, trickyStep, readTextStep, nameCardStep, finishStep } from './steps.js';
@@ -168,6 +168,15 @@ function chooseUnseenCheck(child, content, rng, exclude) {
   return real ? { target: real, nonword: false } : null;
 }
 
+// After two weeks or more away, the first day back is review only: no new letters
+// or tricky words. Kindergartners lost letter fluency over a summer break (Hobbs &
+// Overby 2019); the two weeks and the one day are our choice.
+export function backFromBreak(child, today) {
+  const before = (child.bursts || []).map((b) => b.day).filter((d) => d < today);
+  if (!before.length) return false;
+  return daysBetween(before.reduce((a, b) => (a > b ? a : b)), today) >= 14;
+}
+
 // Build a burst for the child's current stage.
 
 function planWords(steps) {
@@ -201,11 +210,16 @@ export function buildBurst({ child, content, today, rng = Math.random, variant =
     return out;
   };
 
+  const welcomeBack = backFromBreak(child, today);
   const pushLetter = (it) => steps.push(it.kind === 'sound' ? letterSoundStep(child, it) : letterNameStep(child, it));
 
   const tryIntroduceSound = (perWeekCap) => {
     const g = nextNewSound(child);
     if (!g) return false;
+    if (welcomeBack) {
+      notes.push('No new letter today. After a break, the first day back is review.');
+      return false;
+    }
     const gate = S.canIntroduce({ items: child.items, log: child.log || [], kind: 'sound', today, perWeek: perWeekCap });
     if (!gate.ok) {
       notes.push(`No new letter this time: ${gate.reason}`);
@@ -284,7 +298,7 @@ export function buildBurst({ child, content, today, rng = Math.random, variant =
     if (dueTricky.length) {
       steps.push(trickyStep(dueTricky[0]));
     } else {
-      const t = nextNewTricky(child);
+      const t = welcomeBack ? null : nextNewTricky(child);
       const gate = t && S.canIntroduce({ items: child.items, log: child.log || [], kind: 'tricky', today, perWeek: trickyPerWeek });
       if (t && gate.ok) steps.push(introTrickyStep(t));
       else if (t && gate) notes.push(`No new tricky word this time: ${gate.reason}`);

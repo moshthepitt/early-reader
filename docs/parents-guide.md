@@ -63,7 +63,7 @@ Keep each child's bursts separate. A younger sibling listening in is fine; they 
 
 Stop when they're upset. Tears, refusal, or two misses in a row mean it's time to finish on something easy. The Stop button does exactly that. Pick it up again later or tomorrow.
 
-A break is fine. Weeks, even months. When you come back, the app starts with review, and letters usually return quickly.
+A break is fine. Weeks, even months. After two weeks or more away, the first day back is review only, with no new letters. Letters usually return quickly.
 
 Aim for about 8 right out of 10. The Progress tab shows this for the week. Much lower than that and the work is too hard: slow down. Always perfect and you can add letters faster (Settings, "new letters per week").
 
