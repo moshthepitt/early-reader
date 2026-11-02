@@ -22,7 +22,7 @@ When you start a burst, the app looks at everything your child has met and picks
 
 A letter counts as "known" once your child gets it right on two different days. One good afternoon isn't enough, and that's on purpose.
 
-Only the first try counts. If your child needs help, you show them, they try again, and the app notes it was hard.
+Only the first try counts. A slow answer is fine as long as it's their own, so give them a moment before you step in. If your child needs help, you show them, they try again, and the app notes it was hard.
 
 ## Four stages
 

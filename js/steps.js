@@ -32,6 +32,12 @@ function sayList(gs) {
 
 // Build the script and display for each step.
 
+// Adults tend to step in within a second (Rowe 1986), which turns a slow but
+// right answer into a miss. Speed itself is not scored: at 4-5, untimed
+// letter-sound knowledge predicted reading and a speed measure did not
+// (Clayton et al. 2020).
+const WAIT = 'Give them a little time to answer before you help.';
+
 function keywordLine(x) {
   const sound = x.say.split(' (')[0];
   const word = capitalize(x.keyword);
@@ -72,7 +78,7 @@ export function letterSoundStep(child, item) {
     type: 'letter-sound',
     title: 'What sound?',
     child: { big: item.key, emoji: showPicture ? x.emoji : null },
-    script: [`Point to the letter. Ask: "What does this one say?"`],
+    script: [`Point to the letter. Ask: "What does this one say?"`, WAIT],
     answer: x.say,
     model: [`Say: "This says ${x.say}, like ${x.keyword} ${x.emoji}. Say it with me: ${x.say}."`, 'Then ask once more. Only the first try counts.'],
     tip: x.tip,
@@ -88,7 +94,7 @@ export function letterNameStep(child, item) {
     type: 'letter-name',
     title: 'What is it called?',
     child: { big: item.key },
-    script: [`Ask: "What is this letter called?"`, `Then ask: "And what does it say?" This part does not count towards the score.`],
+    script: [`Ask: "What is this letter called?"`, WAIT, `Then ask: "And what does it say?" This part does not count towards the score.`],
     answer: `${x.name} (says ${x.say})`,
     model: [`Say: "This is '${x.name}'. It says ${x.say}."`, 'Then ask once more.'],
     praise: 'name',
@@ -283,7 +289,7 @@ export function trickyStep(item) {
     type: 'tricky-word',
     title: 'Tricky word',
     child: { big: item.key },
-    script: ['Ask: "What does this tricky word say?"'],
+    script: ['Ask: "What does this tricky word say?"', WAIT],
     answer: item.key,
     model: [`Say: "This says '${item.key}'. It is tricky because part of it does not sound like its letters." Then ask again.`],
     praise: 'tricky',

@@ -52,7 +52,7 @@ Two to four short bursts a day for each child, two or three minutes each, with g
 On the Today tab, tap "Start a 2-minute burst". Your child picks the card game or the tile game. Then, for each step:
 
 1. Read the script and do what it says.
-2. Tap **Right first try** or **Needed help**. Only the first try counts.
+2. Tap **Right first try** or **Needed help**. Only the first try counts. A pause to think is fine: if their first answer was right and you didn't help, it's right first try.
 3. After a miss, the app shows you what to say. Show them, let them say it with you, and move on.
 
 The app decides what comes up: letters due for review, at most one new thing, and an easy win at the end. A letter counts as known once your child gets it right on two different days.
