@@ -45,6 +45,7 @@ test('import rebuilds every field with strict types', () => {
   assert.equal(kim.items['sound:s'].box, 0);
   assert.deepEqual(kim.items['sound:s'].goodDays, ['2026-01-02']);
   assert.equal(kim.items['sound:s'].lastResult, null);
+  assert.equal(kim.items['sound:s'].lastMissed, null);
   assert.deepEqual(Object.keys(kim.skills), ['first-sound']);
   assert.equal(kim.skills['first-sound'].attempts, 0);
   assert.equal(kim.skills['first-sound'].correct, 0);
@@ -88,4 +89,27 @@ test('family names are removed from typed prompt text', () => {
   const child = store.newChild({ name: 'Kim', stage: 3 });
   const t = buildTextPrompt(child, content, { topic: 'Kim visits Ben at the park', excludeNames: ['Ben'] });
   assert.ok(!/\bkim\b|\bben\b/i.test(t));
+});
+
+test('the date of the last miss survives a backup, and older saves get one', () => {
+  const backup = {
+    app: 'early-reader',
+    state: {
+      children: [
+        {
+          name: 'Kim',
+          items: {
+            a: { kind: 'sound', key: 's', box: 1, lastSeen: '2026-01-04', lastResult: true, lastMissed: '2026-01-04' },
+            b: { kind: 'sound', key: 'a', box: 0, lastSeen: '2026-01-03', lastResult: false },
+            c: { kind: 'sound', key: 't', box: 2, lastSeen: '2026-01-03', lastResult: true, lastMissed: evil },
+          },
+        },
+      ],
+    },
+  };
+  const { state } = store.importJson(JSON.stringify(backup));
+  const items = state.children[0].items;
+  assert.equal(items['sound:s'].lastMissed, '2026-01-04');
+  assert.equal(items['sound:a'].lastMissed, '2026-01-03', 'older saves: a last miss dates from the last day seen');
+  assert.equal(items['sound:t'].lastMissed, null);
 });

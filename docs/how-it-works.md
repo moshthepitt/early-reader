@@ -20,7 +20,7 @@ When you start a burst, the app looks at everything your child has met and picks
 - **At most one new thing**, and only if your child is ready for it. The app holds back new letters when recent answers are right less than about three times in four, when three or more letters are still shaky, or when it has already added this week's two to four.
 - **An easy win to finish**, chosen when you reach the end, so it's never something your child just missed.
 
-A letter counts as "known" once your child gets it right on two different days. One good afternoon isn't enough, and that's on purpose.
+A letter counts as "known" once your child gets it right first try on two different days. One good afternoon isn't enough, and that's on purpose. If they needed help with a letter earlier in the day, getting it right later that day is good practice, but it doesn't count towards known. The app checks it again the next day.
 
 Only the first try counts. A slow answer is fine as long as it's their own, so give them a moment before you step in. If your child needs help, you show them, they try again, and the app notes it was hard.
 

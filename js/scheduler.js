@@ -12,6 +12,9 @@ const INTERVALS = [0, 1, 2, 4, 7, 14, 30];
 const MAX_BOX = INTERVALS.length - 1;
 
 // "Known" = right on the first try on this many different days, and not currently failing.
+// A right answer after a miss the same day does not count: the child was shown the
+// answer that day, and recall soon after a correction is weak evidence of memory
+// (Fritz et al. 2007 tested recall again after a delay). Two days is a design choice.
 const KNOWN_DAYS = 2;
 // "Secure" = right on 3+ different days and spaced out to a week or more.
 const SECURE_DAYS = 3;
@@ -33,31 +36,37 @@ export function newItem(kind, key, today) {
     attempts: 0,
     firstTryCorrect: 0,
     lastResult: null,
+    lastMissed: null,
   };
 }
 
 // Record one first-try result. Returns a new item; does not mutate.
 export function review(item, correct, today) {
   const next = { ...item, goodDays: [...item.goodDays], attempts: item.attempts + 1, lastSeen: today, lastResult: correct };
-  if (correct) {
-    next.firstTryCorrect += 1;
-    const alreadyToday = next.goodDays.includes(today);
-    if (!alreadyToday) {
-      next.goodDays.push(today);
-      next.box = Math.min(item.box + 1, MAX_BOX);
-      next.due = addDays(today, INTERVALS[next.box]);
-    }
-  } else {
+  if (!correct) {
     // Missed: back to the start, try again in a later burst today.
     next.box = 0;
     next.due = today;
+    next.lastMissed = today;
+    return next;
+  }
+  next.firstTryCorrect += 1;
+  if (item.lastMissed === today) {
+    // Right after being shown it earlier today: good practice, not yet a good day.
+    next.box = 1;
+    next.due = addDays(today, INTERVALS[1]);
+  } else if (!next.goodDays.includes(today)) {
+    next.goodDays.push(today);
+    next.box = Math.min(item.box + 1, MAX_BOX);
+    next.due = addDays(today, INTERVALS[next.box]);
   }
   return next;
 }
 
 export function status(item) {
   if (!item) return 'new';
-  if (item.lastResult === false || item.box === 0) return item.goodDays.length ? 'wobbly' : 'learning';
+  const missedLastTime = item.lastResult === false || (!!item.lastMissed && item.lastMissed === item.lastSeen);
+  if (missedLastTime || item.box === 0) return item.goodDays.length ? 'wobbly' : 'learning';
   if (item.goodDays.length >= SECURE_DAYS && item.box >= 4) return 'secure';
   if (item.goodDays.length >= KNOWN_DAYS) return 'known';
   return 'learning';

@@ -121,6 +121,8 @@ function cleanItem(it) {
     attempts: clampInt(it.attempts, 0, 1e6, 0),
     firstTryCorrect: clampInt(it.firstTryCorrect, 0, 1e6, 0),
     lastResult: it.lastResult === true ? true : it.lastResult === false ? false : null,
+    // Older saves lack this; a last result of false means the last day seen was a miss.
+    lastMissed: date(it.lastMissed) || (it.lastResult === false ? date(it.lastSeen) : null),
   };
 }
 

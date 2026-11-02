@@ -41,6 +41,41 @@ test('review: a miss sends the item back for review today', () => {
   assert.equal(S.isKnown(it), false);
 });
 
+test('review: right after a miss the same day is practice, not a good day', () => {
+  let it = S.newItem('sound', 't', '2026-01-01');
+  it = S.review(it, false, '2026-01-01');
+  it = S.review(it, true, '2026-01-01');
+  assert.equal(it.box, 1);
+  assert.equal(it.due, '2026-01-02');
+  assert.deepEqual(it.goodDays, []);
+  it = S.review(it, true, '2026-01-01'); // again the same day: still no credit
+  assert.equal(it.box, 1);
+  assert.deepEqual(it.goodDays, []);
+  assert.equal(S.status(it), 'learning');
+  it = S.review(it, true, '2026-01-02');
+  assert.equal(it.box, 2);
+  assert.deepEqual(it.goodDays, ['2026-01-02']);
+  it = S.review(it, true, '2026-01-04');
+  assert.equal(S.status(it), 'known');
+});
+
+test('review: a known item that slips stays wobbly until a later day', () => {
+  let it = S.newItem('name', 'p', '2026-01-01');
+  it = S.review(it, true, '2026-01-01');
+  it = S.review(it, true, '2026-01-02');
+  assert.equal(S.status(it), 'known');
+  it = S.review(it, true, '2026-01-04'); // a good day...
+  it = S.review(it, false, '2026-01-04'); // ...then a miss
+  it = S.review(it, true, '2026-01-04'); // ...then right again after help
+  assert.equal(it.box, 1);
+  assert.equal(it.due, '2026-01-05');
+  assert.deepEqual(it.goodDays, ['2026-01-01', '2026-01-02', '2026-01-04']);
+  assert.equal(S.status(it), 'wobbly');
+  assert.equal(S.isKnown(it), false);
+  it = S.review(it, true, '2026-01-05');
+  assert.equal(S.status(it), 'known');
+});
+
 test('secure needs several days and a long gap', () => {
   let it = S.newItem('sound', 'a', '2026-01-01');
   const days = ['2026-01-01', '2026-01-02', '2026-01-04', '2026-01-08'];
