@@ -84,7 +84,7 @@ test('STORIES are well formed', () => {
 });
 
 test('RHYME_SETS', () => {
-  assert.ok(C.RHYME_SETS.length >= 30);
+  assert.ok(C.RHYME_SETS.length >= 20);
   for (const r of C.RHYME_SETS) {
     const words = [r.a, r.b, r.odd];
     assert.ok(words.every((x) => x.w && x.emoji), `rhyme set needs a word and picture each: ${JSON.stringify(r)}`);

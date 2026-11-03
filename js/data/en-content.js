@@ -301,14 +301,12 @@ the-three-green-seeds | The Three Seeds | {NAME} has three seeds. | A seed slips
 // picture the child sees. The odd word shares neither the vowel nor the first sound,
 // in British or Kenyan English (where hug and cat share a vowel).
 const RHYME_TEXT = `
-cat=🐱 hat=👒 dog=🐶, bed=🛏️ red=🔴 sun=☀️, hen=🐔 pen=🖊️ fish=🐟, man=👨 van=🚐 dog=🐶,
-pin=📌 tin=🥫 cup=🥤, sock=🧦 clock=🕐 pig=🐷, duck=🦆 truck=🚚 bee=🐝, bell=🔔 shell=🐚 cup=🥤,
-fish=🐟 dish=🍽️ hand=✋, king=🤴 ring=💍 dog=🐶, bee=🐝 tree=🌳 cat=🐱, sheep=🐑 sleep=😴 cat=🐱,
-moon=🌙 spoon=🥄 sock=🧦, boat=⛵ coat=🧥 sun=☀️, goat=🐐 boat=⛵ pig=🐷, cake=🎂 snake=🐍 dog=🐶,
-star=⭐ car=🚗 hen=🐔, mouse=🐭 house=🏠 tree=🌳, train=🚂 rain=🌧️ duck=🦆, blue=🔵 shoe=👟 hat=👒,
-nose=👃 rose=🌹 cup=🥤, light=💡 kite=🪁 dog=🐶, ball=⚽ wall=🧱 fish=🐟, toy=🧸 boy=👦 hat=👒,
-book=📖 look=👀 sun=☀️, dog=🐶 frog=🐸 bee=🐝, hug=🤗 mug=☕ fish=🐟, net=🥅 jet=✈️ sun=☀️,
-bat=🦇 hat=👒 pig=🐷, pen=🖊️ ten=🔟 cup=🥤, feet=🦶 sweet=🍬 bus=🚌
+cat=🐱 hat=👒 dog=🐶, bed=🛏️ red=🔴 sun=☀️, pin=📌 tin=🥫 cup=☕, sock=🧦 clock=🕐 pig=🐷,
+bell=🔔 shell=🐚 cup=☕, king=🤴 ring=💍 dog=🐶, bee=🐝 tree=🌳 cat=🐱, sheep=🐑 sleep=😴 cat=🐱,
+moon=🌙 spoon=🥄 sock=🧦, cake=🎂 snake=🐍 dog=🐶, star=⭐ car=🚗 fish=🐟,
+train=🚂 rain=🌧️ duck=🦆, blue=🔵 shoe=👟 hat=👒, bat=🦇 hat=👒 pig=🐷, pen=🖊️ ten=🔟 cup=☕,
+dog=🐶 frog=🐸 bee=🐝, key=🔑 bee=🐝 sun=☀️, tree=🌳 three=3️⃣ dog=🐶, four=4️⃣ door=🚪 pig=🐷,
+eight=8️⃣ plate=🍽️ sun=☀️, bread=🍞 red=🔴 dog=🐶, leg=🦵 egg=🥚 sun=☀️, rat=🐀 cat=🐱 dog=🐶
 `;
 
 // Words split into spoken beats for the parent to model. These are how the word
