@@ -161,18 +161,25 @@ export function letterNameStep(child, item) {
 
 // Rhyme is played together, not scored: it isn't needed before letters and sounds
 // (Brady 2020). Show one first, then let them try (Letters and Sounds, Phase One).
+// Every word said has its picture on the card: the example pair on top, then the word
+// to rhyme with and the two to choose from.
 export function rhymeStep(child, content, rng) {
-  const [m, r] = shuffle(content.C.RHYME_SETS, rng);
+  const sets = content.C.RHYME_SETS;
+  const r = pick(sets, rng);
+  // An example pair that shares no word with the question, so a word they just heard
+  // rhyme isn't the wrong answer next.
+  const m = pick(sets.filter((x) => x !== r && ![x.a.w, x.b.w].some((w) => [r.a.w, r.b.w, r.odd.w].includes(w))), rng);
   const [first, second] = shuffle([r.b, r.odd], rng);
   return {
     type: 'rhyme',
     title: 'Rhyme time',
-    child: { sub: `${r.a} ... ${first} or ${second}?` },
+    child: { example: [m.a.emoji, m.b.emoji], emoji: r.a.emoji, choices: [first, second].map((o) => ({ emoji: o.emoji })) },
     script: [
-      `Show them first: "${m.a}, ${m.b}. They rhyme. They sound the same at the end."`,
-      `Then ask: "Which one rhymes with ${r.a}: ${first} or ${second}?" (It's ${r.b}.)`,
-      'Say the words slowly. If they aren\'t sure, say the rhyme together. Keep it playful.',
+      `Point to the ${m.a.emoji} and ${m.b.emoji} on top. Say: "${capitalize(m.a.w)}, ${m.b.w}. They rhyme. They sound the same at the end."`,
+      `Point to the ${r.a.emoji}, then the two below. Ask: "Which one rhymes with ${r.a.w}: ${first.w} or ${second.w}?"`,
+      `Not sure? Say it together: "${capitalize(r.a.w)}, ${r.b.w}. They rhyme!"`,
     ],
+    answer: r.b.w,
     scored: false,
   };
 }
@@ -430,7 +437,7 @@ export function finishStep(child, content, rng, exclude = new Set()) {
   // The name card, unless this burst has already shown it.
   if (child.name && !exclude.has('name-card')) return { ...nameCardStep(child), type: 'finish', title: 'Finish on a win' };
   const r = pick(content.C.RHYME_SETS, rng);
-  return { type: 'finish', title: 'Finish on a win', child: { sub: `${r.a}, ${r.b}` }, script: [`Say: "${r.a}, ${r.b}... they rhyme!" Make up a silly rhyme together.`, 'Stop while it is still fun.'], scored: false };
+  return { type: 'finish', title: 'Finish on a win', child: { sub: `${r.a.w}, ${r.b.w}` }, script: [`Say: "${r.a.w}, ${r.b.w}... they rhyme!" Make up a silly rhyme together.`, 'Stop while it is still fun.'], scored: false };
 }
 
 // Choose the easy last step using this burst's results, including when Stop is pressed.

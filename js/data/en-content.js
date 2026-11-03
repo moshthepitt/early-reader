@@ -9,7 +9,7 @@
 //   NAME_TEXT        decodable first names used in sentences and stories
 //   SENTENCE_TEXT    one sentence per line; {NAME} and {NAME2} are filled in on the device
 //   STORY_TEXT       id | title | line | line ...
-//   RHYME_TEXT       word, a word that rhymes with it, a word that does not
+//   RHYME_TEXT       word=emoji, a word that rhymes with it, a word that does not
 //   SYLLABLE_TEXT    word=number of beats=emoji
 //   FIRST_SOUND_TEXT sound, words that start with it / one word that does not
 
@@ -297,14 +297,18 @@ name-and-the-soup | {NAME} and the Spoon | {NAME} has a dish of dip. | The spoon
 the-three-green-seeds | The Three Seeds | {NAME} has three seeds. | A seed slips on the mat. | {NAME2} can see it on the mat. | They set the seeds in three pots. | They keep the mud wet. | Soon three green stems come up.
 `;
 
+// Rhyme sets: a word, a word that rhymes with it, and one that doesn't, each with the
+// picture the child sees. The odd word shares neither the vowel nor the first sound,
+// in British or Kenyan English (where hug and cat share a vowel).
 const RHYME_TEXT = `
-cat hat dog, bed red sun, pig wig cup, hen pen fish, bug rug cat, fox box bee, van pan bed,
-pin tin moon, hop mop hat, cup pup red, sock rock pig, duck truck tree, bell shell boat,
-fish dish hand, ring sing cup, king wing dog, bee tree bus, sheep sleep cat, moon spoon sock,
-boat coat sun, goat float pig, cake snake bed, star car hen, bear chair moon, mouse house tree,
-train rain duck, blue shoe hat, feet sweet bus, nose rose cup, light kite dog, ball wall fish,
-toy boy bed, book look sun, down clown pig, bread head car, cheese peas hat, dog frog bee,
-pear hair boat, day play cup, snow toe cat
+cat=🐱 hat=👒 dog=🐶, bed=🛏️ red=🔴 sun=☀️, hen=🐔 pen=🖊️ fish=🐟, man=👨 van=🚐 dog=🐶,
+pin=📌 tin=🥫 cup=🥤, sock=🧦 clock=🕐 pig=🐷, duck=🦆 truck=🚚 bee=🐝, bell=🔔 shell=🐚 cup=🥤,
+fish=🐟 dish=🍽️ hand=✋, king=🤴 ring=💍 dog=🐶, bee=🐝 tree=🌳 cat=🐱, sheep=🐑 sleep=😴 cat=🐱,
+moon=🌙 spoon=🥄 sock=🧦, boat=⛵ coat=🧥 sun=☀️, goat=🐐 boat=⛵ pig=🐷, cake=🎂 snake=🐍 dog=🐶,
+star=⭐ car=🚗 hen=🐔, mouse=🐭 house=🏠 tree=🌳, train=🚂 rain=🌧️ duck=🦆, blue=🔵 shoe=👟 hat=👒,
+nose=👃 rose=🌹 cup=🥤, light=💡 kite=🪁 dog=🐶, ball=⚽ wall=🧱 fish=🐟, toy=🧸 boy=👦 hat=👒,
+book=📖 look=👀 sun=☀️, dog=🐶 frog=🐸 bee=🐝, hug=🤗 mug=☕ fish=🐟, net=🥅 jet=✈️ sun=☀️,
+bat=🦇 hat=👒 pig=🐷, pen=🖊️ ten=🔟 cup=🥤, feet=🦶 sweet=🍬 bus=🚌
 `;
 
 // Words split into spoken beats for the parent to model. These are how the word
@@ -378,7 +382,7 @@ export const STORIES = lines(STORY_TEXT).map((l) => {
   return { id, title, lines: rest };
 });
 
-export const RHYME_SETS = RHYME_TEXT.split(',').map((t) => tokens(t)).filter((t) => t.length).map(([a, b, odd]) => ({ a, b, odd }));
+export const RHYME_SETS = RHYME_TEXT.split(',').map((t) => tokens(t)).filter((t) => t.length).map(([a, b, odd]) => ({ a: picture(a), b: picture(b), odd: picture(odd) }));
 
 export const SYLLABLE_WORDS = tokens(SYLLABLE_TEXT).map((t) => {
   const [said, emoji] = t.split('=');

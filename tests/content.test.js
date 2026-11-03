@@ -85,9 +85,10 @@ test('STORIES are well formed', () => {
 test('RHYME_SETS', () => {
   assert.ok(C.RHYME_SETS.length >= 30);
   for (const r of C.RHYME_SETS) {
-    assert.ok(r.a && r.b && r.odd, JSON.stringify(r));
-    assert.notEqual(r.a, r.b);
-    assert.notEqual(r.a, r.odd);
+    const words = [r.a, r.b, r.odd];
+    assert.ok(words.every((x) => x.w && x.emoji), `rhyme set needs a word and picture each: ${JSON.stringify(r)}`);
+    assert.equal(new Set(words.map((x) => x.w)).size, 3, JSON.stringify(r));
+    assert.equal(new Set(words.map((x) => x.emoji)).size, 3, `pictures must differ: ${JSON.stringify(r)}`);
   }
 });
 

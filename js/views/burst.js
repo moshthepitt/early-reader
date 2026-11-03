@@ -63,7 +63,8 @@ export function viewBurst(id) {
         <button class="btn warn big" data-action="answer" data-correct="0">✗ Needed help</button>
       </div>`;
   } else {
-    controls = `<button class="btn primary big" data-action="next">${step.type === 'finish' ? 'Finish' : 'Done, next'}</button>`;
+    // Unscored steps can carry an answer too (Rhyme time, the easy finish).
+    controls = `${step.answer ? `<div class="answer">Answer: <b>${h(step.answer)}</b></div>` : ''}<button class="btn primary big" data-action="next">${step.type === 'finish' ? 'Finish' : 'Done, next'}</button>`;
   }
   const praiseLine = burst.lastPraise ? `<p class="praise">Say: "${h(burst.lastPraise)}"</p>` : '';
 
@@ -92,6 +93,8 @@ export function viewBurst(id) {
 function childCard(step) {
   const c = step.child || {};
   let inner = '';
+  // Rhyme time's example pair, shown above the question.
+  if (c.example) inner += `<div class="choices">${c.example.map((e) => `<div class="choice"><span class="ce">${h(e)}</span></div>`).join('')}</div>`;
   if (c.big) inner += `<div class="big-letter${c.big.length > 2 ? ' long' : ''}">${h(c.big)}</div>`;
   if (c.word) {
     inner += `<div class="big-word">${c.word
