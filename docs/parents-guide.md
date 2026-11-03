@@ -69,6 +69,8 @@ Praise the work, not the child. "You said each sound and slid them together" hel
 
 Expect a stall at blending. Going from knowing letter sounds to reading "s-a-t... sat" is the step where most children get stuck, sometimes for months. Many 4-year-olds aren't ready yet. That is normal and not a sign of anything wrong.
 
+Ask a health worker or clinic if you're worried about how your child hears, understands or talks, in any of their languages. For example, they often ask you to say things again or want the TV loud, family find their speech hard to follow, or they struggle with simple instructions. Finding the games hard isn't a sign of a problem on its own, and the app's scores can't tell you either way.
+
 Don't mistake memory for reading. Children are good at memorising favourite books and familiar words. At stage 3 the app slips in made-up "monster names" like "fip" and words they have never seen. Those show whether they're really sounding out. Don't help on those.
 
 ## The four stages
