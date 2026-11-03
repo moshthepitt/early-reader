@@ -136,3 +136,20 @@ test('a browser that refuses storage gets empty data, not a crash', () => {
   const refusing = { getItem() { throw new Error('SecurityError'); } };
   assert.equal(store.hasSnapshot(refusing), false);
 });
+
+test('undo keeps the current data, so it can be swapped back', () => {
+  const mem = new Map();
+  const storage = { getItem: (k) => mem.get(k) ?? null, setItem: (k, v) => mem.set(k, v) };
+  const before = store.load(storage);
+  before.children.push(store.newChild({ name: 'Old' }));
+  store.save(before, storage);
+  store.snapshot(storage);
+  const after = store.load(storage);
+  after.children = [store.newChild({ name: 'New' })];
+  store.save(after, storage);
+  assert.ok(store.snapshotDay(storage));
+  const prev = store.restoreSnapshot(storage);
+  store.snapshot(storage);
+  assert.equal(prev.children[0].name, 'Old');
+  assert.equal(store.restoreSnapshot(storage).children[0].name, 'New');
+});

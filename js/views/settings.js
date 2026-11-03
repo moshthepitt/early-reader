@@ -100,7 +100,10 @@ export const actions = {
   },
   'undo-replace': () => {
     const prev = store.restoreSnapshot();
-    if (!prev || !confirm('Go back to the data from before the last import or delete?')) return false;
+    const day = store.snapshotDay();
+    if (!prev || !confirm(`Go back to the data from before the last import or delete${day ? ` (${day})` : ''}? What is here now is kept, so the same button can swap it back.`)) return false;
+    // Keep what is here now, so undo can't lose anything done since the import.
+    store.snapshot();
     setState({ ...prev, rev: state.rev });
     if (!persist()) return false;
     notify('The earlier data is back.');

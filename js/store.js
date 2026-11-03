@@ -16,6 +16,7 @@ function local() {
   }
 }
 const PREV_KEY = 'early-reader-v1-previous';
+const PREV_DAY_KEY = 'early-reader-v1-previous-day';
 
 export function defaultState() {
   return {
@@ -73,7 +74,18 @@ export function save(state, storage = local()) {
 // Keep one copy of the data before a destructive change (import, reset).
 export function snapshot(storage = local()) {
   const raw = storage?.getItem(KEY);
-  if (raw) storage.setItem(PREV_KEY, raw);
+  if (!raw) return;
+  storage.setItem(PREV_KEY, raw);
+  storage.setItem(PREV_DAY_KEY, dayKey());
+}
+
+// The day the kept copy was made, or null if unknown.
+export function snapshotDay(storage = local()) {
+  try {
+    return date(storage?.getItem(PREV_DAY_KEY));
+  } catch {
+    return null;
+  }
 }
 
 export function hasSnapshot(storage = local()) {
