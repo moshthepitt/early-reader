@@ -18,7 +18,7 @@ Each day has two kinds of time:
 
 Each child moves through four stages at their own pace:
 
-1. **Sound play** - rhyme, clapping syllables, spotting the first sound in a word, "robot talk" (c-a-t... cat!) and the letters in their own name.
+1. **Sound play** - rhyme and clapping the beats in words, played together, spotting the first sound in a word, "robot talk" (mmm ... at... mat!) and the letters in their own name.
 2. **Letter sounds** - letter names and sounds together, two to four new letters a week, with review spread over days.
 3. **Blending** - sounding out short words like "sat" and "mat", with the occasional made-up word to check they are really blending and not remembering.
 4. **First reading** - tricky words like "the" and "was", then short sentences and tiny stories.

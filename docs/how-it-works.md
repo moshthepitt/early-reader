@@ -17,12 +17,12 @@ You need both. The [parent guide](parents-guide.md) explains how to run each one
 When you start a burst, the app looks at everything your child has met and picks a few things:
 
 - **Reviews that are due.** Every letter, word and tricky word comes back after a gap that grows each time your child gets it right on the first try: later the same day, then after 1, 2, 4, 7, 14 and 30 days. A miss sends it back to the start. The shakiest come first, with one review saved for whatever has waited longest, so nothing gets stuck behind a letter your child keeps finding hard.
-- **At most one new thing**, and only if your child is ready for it. The app holds back new letters when recent answers are right less than about three times in four, when three or more letters are still shaky, or when it has already added this week's two to four. After two weeks or more away, the first day back has no new letters at all.
+- **At most one new thing**, and only if your child is ready for it. The app holds back new letters when recent answers are right less than about three times in four, when three or more letters are still shaky, or when it has already added this week's two to four. Rhyme and clapping are played together and not scored, so they never hold anything back. After two weeks or more away, the first day back has no new letters at all.
 - **An easy win to finish**, chosen when you reach the end, so it's never something your child just missed.
 
 A letter counts as "known" once your child gets it right first try on two different days. One good afternoon isn't enough, and that's on purpose. If they needed help with a letter earlier in the day, getting it right later that day is good practice, but it doesn't count towards known. The app checks it again the next day.
 
-Only the first try counts. A slow answer is fine as long as it's their own, so give them a moment before you step in. If your child needs help, you show them, they try again, and the app notes it was hard.
+Only the first try counts. A slow answer is fine as long as it's their own, so give them a moment before you step in. If your child needs help, you show them, they try again, and the app notes it was hard. If you skip a turn, nothing is saved.
 
 ## Four stages
 

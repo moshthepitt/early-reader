@@ -49,6 +49,8 @@ On the Today tab, tap "Start a 2-minute burst". Your child picks the card game o
 2. Tap **Right first try** or **Needed help**. Only the first try counts. A pause to think is fine: if their first answer was right and you didn't help, it's right first try.
 3. After a miss, the app shows you what to say. Show them, let them say it with you, and move on.
 
+Rhyme time and Clap the beats aren't scored. You show them first, then play together, and tap "Done, next". If you're not sure how to run a game, or it doesn't suit today, tap **Skip**. Nothing is saved for that turn.
+
 The app decides what comes up: letters due for review, at most one new thing, and an easy win at the end. A letter counts as known once your child gets it right first try on two different days. On a day they needed help with it, a right answer later that day is practice; the app checks again tomorrow.
 
 Keep each child's bursts separate. A younger sibling listening in is fine; they often pick things up that way.
@@ -69,7 +71,7 @@ Don't mistake memory for reading. Children are good at memorising favourite book
 
 ## The four stages
 
-**Stage 1: sound play** (often age 3). Listening games with no letters: rhyming, clapping the beats in words, spotting which picture starts with a different sound, and "robot talk" ("c-at... what did I say?"). Plus the letters in their own name. Moves on when they can hear first sounds reliably over several days and know the first letter of their name.
+**Stage 1: sound play** (often age 3). Listening games with no letters: rhyming and clapping the beats in words, which you play together, spotting which picture starts with a different sound, and "robot talk" ("Listen to the robot: mmm ... at." "Mat!"). Plus the letters in their own name. Moves on when they can hear first sounds reliably over several days and know the first letter of their name.
 
 **Stage 2: letter sounds** (late 3 to 4). Letter names and sounds together, two to four new letters a week. Each is taught with a picture; checks show the letter alone. Moves on at about 12 known letter sounds, including at least two vowels (a, e, i, o, u).
 
