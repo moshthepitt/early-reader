@@ -1,7 +1,7 @@
 {
   "name": "Early Reader",
   "short_name": "Early Reader",
-  "description": "Help your 3- or 4-year-old learn to read, a few minutes at a time. Works offline.",
+  "description": "First steps in reading for your 3- to 5-year-old, a few minutes at a time. Works offline.",
   "start_url": "./index.html#/today",
   "scope": "./",
   "display": "standalone",

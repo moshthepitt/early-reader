@@ -1,7 +1,7 @@
 {
   "name": "early-reader",
   "version": "0.1.0",
-  "description": "Help your 3- or 4-year-old learn to read, a few minutes at a time. An offline web app for parents.",
+  "description": "First steps in reading for your 3- to 5-year-old, a few minutes at a time. An offline web app for parents.",
   "type": "module",
   "scripts": {
     "start": "python3 -m http.server 8080",
