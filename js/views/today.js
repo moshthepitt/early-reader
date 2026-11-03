@@ -47,7 +47,7 @@ export function viewToday() {
   return `${cards}
     <section class="card">
       <h2>Story time</h2>
-      <p>Read one or two books a day. Both children can join in. Ask questions, point to the words and play with sounds.</p>
+      <p>Read one or two books a day${state.children.length > 1 ? ', with all your children together' : ''}. Ask questions, point to the words and play with sounds.</p>
       <a class="btn" href="#/story">Open story time prompts</a>
     </section>`;
 }

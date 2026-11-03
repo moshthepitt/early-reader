@@ -13,14 +13,14 @@ export function viewStory() {
     .join('');
   return `<section class="card">
       <h1>Story time</h1>
-      <p>Story time builds vocabulary through talk and stories. It matters as much as letters. Both children can join in.</p>
+      <p>Story time builds vocabulary through talk and stories. It matters as much as letters.</p>
       <ul>${RA.TIPS.map((t) => `<li>${h(t)}</li>`).join('')}</ul>
     </section>
     <section class="card prose doc books">${docHtml('books.md', 'Books to read aloud')}</section>
     <section class="card">
-      <h2>The question loop (PEER)</h2>
+      <h2>Ask, add a little, ask again</h2>
       <ol>${RA.PEER.map((p) => `<li><b>${h(p.step)}:</b> ${h(p.text)}</li>`).join('')}</ol>
-      <h3>Question types (CROWD)</h3>
+      <h3>Questions that work</h3>
       <ul>${RA.CROWD.map((q) => `<li><b>${h(q.type)}:</b> ${h(q.example)} <span class="muted small">Best for: ${h(q.best)}</span></li>`).join('')}</ul>
     </section>
     <section class="card">
