@@ -175,9 +175,9 @@ test('keyword scripts say ends with / in the middle where true', () => {
     }
   }
   const joined = lines.join(' ');
-  assert.match(joined, /"Duck" ends with k\./);
-  assert.match(joined, /"Moon" has oo in the middle\./);
-  assert.doesNotMatch(joined, /"(Duck|Box|Bell|Ring|Dress|Puff|Bee)" starts with/);
+  assert.match(joined, /Duck ends with k\./);
+  assert.match(joined, /Moon has oo in the middle\./);
+  assert.doesNotMatch(joined, /(Duck|Box|Bell|Ring|Dress|Puff|Bee) starts with/);
 });
 
 test('letters that keep failing do not crowd out an overdue review', () => {
