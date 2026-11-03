@@ -1,6 +1,6 @@
 # How Early Reader works
 
-Teaching a young child to read is mostly known science. Link letters to sounds. Train the ear to hear the separate sounds inside a word. Blend sounds into words without pauses. And talk a lot about books. Where families struggle is keeping it going for months: lessons run long, children get bored, parents run out of steam.
+What to teach a young child learning to read is fairly settled. Link letters to sounds. Train the ear to hear the separate sounds inside a word. Blend sounds into words without pauses. And talk a lot about books. Where families struggle is keeping it going for months: lessons run long, children get bored, parents run out of steam.
 
 So Early Reader does the remembering and the planning, and you do the teaching. Each time you open it, it tells you the next small thing to do with each child, and what to say while you do it.
 
@@ -8,7 +8,7 @@ So Early Reader does the remembering and the planning, and you do the teaching. 
 
 **Story time** builds language: vocabulary, understanding, and the habit of talking about stories. Pointing out the words and playing with sounds as you read can build early reading skills too. Children still need help linking letters to sounds, and that's what the bursts are for.
 
-**Practice bursts** build the code: letter sounds, hearing sounds in words, and blending. Each burst lasts two or three minutes. Short goes spread over the day and over different days stick better than one long lesson, so the app asks for two to four bursts a day rather than one sitting.
+**Practice bursts** build the code: letter sounds, hearing sounds in words, and blending. Each burst lasts two or three minutes. Short goes spread over the day and over different days seem to stick better than one long lesson, so the app asks for two to four bursts a day rather than one sitting.
 
 You need both. The [parent guide](parents-guide.md) explains how to run each one.
 
@@ -55,16 +55,16 @@ The app asks your browser not to clear your saved data when the phone runs low o
 
 No chat with your child, no cartoon characters, no streaks or rewards to chase, no ads.
 
-No speech recognition. Today's systems get most of a preschooler's words wrong, so you are the judge of every answer.
+No speech recognition. Even the best systems still get many of a preschooler's words wrong, so you are the judge of every answer.
 
 ## AI, if you want it
 
 You don't need AI to use Early Reader. Two features can use it: questions for a book you're reading, and new practice stories. In both, the app writes a prompt for you to copy into whatever AI chat tool you use. It removes your children's names first. Whatever comes back, you read before using, and practice stories go through the word check.
 
-AI never talks to your child here. That's a firm line, and the research behind it is in the report below.
+AI never talks to your child here. That's a firm line, and the research behind it is in the [research report](research/report.md).
 
 ## Where the ideas come from
 
-Every choice above comes from research on how young children learn to read, what parents have tried at home, and what AI can and can't do at this age. The [research report](research/report.md) has the details and the sources.
+The [research report](research/report.md) has the studies behind these choices, with sources.
 
-Some parts are my own judgment calls built on that research: the order of the letters, the length of a burst, the review gaps and the checks for moving up a stage. Nobody has tested an app like this with a parent teaching their own 3-year-old. If you use it, I'd like to hear how it goes - open an issue on [GitHub](https://github.com/moshthepitt/early-reader/issues).
+Some parts are my own judgement calls built on that research: the order of the letters, the length of a burst, the review gaps and the checks for moving up a stage. Nobody has tested an app like this with a parent teaching their own 3-year-old. If you use it, I'd like to hear how it goes - open an issue on [GitHub](https://github.com/moshthepitt/early-reader/issues).
