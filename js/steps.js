@@ -376,32 +376,35 @@ export function spellStep(child, content, wordEntry) {
 }
 
 // The part of each tricky word that doesn't do what its letters usually do: what to
-// point to, and what to say about it.
+// point to, and what to say about it. Where pronunciation varies across Kenya (the, a,
+// was, of, her, said, and the s in is, has, his, as), the line uses the word in a short
+// phrase so each parent says it their own way, rather than a respelling like "thuh".
+const TRICKY_TIP = "Say the word as you normally say it in a sentence. Your child's usual pronunciation counts too. Point to the letters and help them remember the spelling.";
 const TRICKY_PARTS = {
-  the: ['e', 'This e says uh: thuh.'],
+  the: ['e', "This is 'the', as in 'the cup'. Listen to the end as I say it."],
   I: ['I', 'On its own, this letter is a word. It says its name: I.'],
-  a: ['a', 'On its own, this letter is a word. It says uh.'],
-  is: ['s', 'This s says zzz: izzz.'],
+  a: ['a', "This letter is a word too: 'a', as in 'a cup'."],
+  is: ['s', "This is 'is', as in 'It is hot'. Listen to the s as I say it."],
   to: ['o', 'This o says oo: too.'],
   no: ['o', 'This o says its name: oh.'],
   go: ['o', 'This o says its name: oh.'],
-  has: ['s', 'This s says zzz: hazzz.'],
-  his: ['s', 'This s says zzz: hizzz.'],
-  as: ['s', 'This s says zzz: azzz.'],
+  has: ['s', "This is 'has', as in 'Dad has a cup'. Listen to the s as I say it."],
+  his: ['s', "This is 'his', as in 'his bag'. Listen to the s as I say it."],
+  as: ['s', "This is 'as', as in 'as big as a bus'. Listen to the s as I say it."],
   he: ['e', 'This e says its name: ee.'],
   she: ['e', 'This e says its name: ee.'],
   we: ['e', 'This e says its name: ee.'],
   me: ['e', 'This e says its name: ee.'],
   be: ['e', 'This e says its name: ee.'],
-  was: ['a and the s', 'These say o and zzz: wozzz.'],
+  was: ['a and the s', "This is 'was', as in 'It was hot'. Look at these letters as I say it."],
   my: ['y', 'This y says eye.'],
   you: ['o and u', 'These two say oo.'],
-  of: ['f', 'This f says vvv: ovvv.'],
-  said: ['a and i', 'These two say e, like in bed: sed.'],
+  of: ['f', "This is 'of', as in 'a cup of milk'. Listen to the last sound."],
+  said: ['a and i', "This is 'said', as in 'Mum said yes'. Look at these two letters as I say it."],
   are: ['whole word', 'It says ar.'],
   they: ['e and y', 'These two say ay.'],
-  all: ['a', 'This a says aw.'],
-  her: ['e and r', 'These two say ur.'],
+  all: ['a', "This is 'all', as in 'all of us'. Look at this a as I say it."],
+  her: ['e and r', "This is 'her', as in 'her bag'. Listen to the end."],
   into: ['o', 'This o says oo: in-too.'],
   so: ['o', 'This o says its name: oh.'],
   do: ['o', 'This o says oo.'],
@@ -421,6 +424,8 @@ export function introTrickyStep(word) {
       `Point to the ${part}. Say: "${note}"`,
       `Say it together three times: "${word}, ${word}, ${word}."`,
     ],
+    tipTitle: 'Your accent',
+    tip: TRICKY_TIP,
     scored: false,
     create: [{ kind: 'tricky', key: word }],
   };
@@ -434,7 +439,10 @@ export function trickyStep(item) {
     child: { big: item.key },
     script: ['Ask: "What does this tricky word say?"', WAIT],
     answer: item.key,
-    model: [`Say: "This says '${item.key}'. ${note}" Then ask again.`],
+    // Lines that already name the word ("This is 'the', as in ...") don't need "This says" too.
+    model: [`Say: "${note.startsWith('This is ') ? note : `This says '${item.key}'. ${note}`}" Then ask again.`],
+    tipTitle: 'Your accent',
+    tip: TRICKY_TIP,
     praise: 'tricky',
     scored: true,
     itemId: item.id,
