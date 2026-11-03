@@ -252,3 +252,20 @@ test('the name card only claims a first sound the name really starts with', () =
   const kelvin = steps.nameCardStep(newChild({ name: 'Kelvin', stage: 1 })).script.join(' ');
   assert.match(kelvin, /K-k-Kelvin\. Kelvin starts with k\./);
 });
+
+test('every picture a game script points to is on the child card', () => {
+  // A script may only name what the child can see ("You can't have unrelated things").
+  const pictures = /\p{Extended_Pictographic}|[0-9]⃣/gu;
+  const bare = (x) => x.replace(/️/g, '');
+  for (const fn of [steps.firstSoundOralStep, steps.rhymeStep, steps.syllableStep, steps.oralBlendStep]) {
+    for (const stage of [1, 2]) {
+      for (let seed = 1; seed <= 300; seed++) {
+        const s = fn(newChild({ name: 'Kim', stage }), content, makeRng(seed));
+        const card = bare(JSON.stringify(s.child));
+        for (const line of [...s.script, ...(s.model || [])]) {
+          for (const p of line.match(pictures) || []) if (p !== '👏') assert.ok(card.includes(bare(p)), `${s.type}: ${p} isn't on the card in "${line}"`);
+        }
+      }
+    }
+  }
+});
