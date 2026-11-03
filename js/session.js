@@ -1,7 +1,9 @@
 // Builds one 2-3 minute practice burst for one child.
 //
 // Burst structure from docs/research/report.md (design choices):
-// - two or three reviews of known items plus at most one new item
+// - reviews of known items plus at most one new letter; from stage 3 a word to sound
+//   out with taught letters, and from stage 4 at most one new tricky word. No study
+//   shows one new thing beats two in a short session, so each has its own limit.
 // - ends on an easy success
 // - the parent can stop at any time; the stop also ends on an easy success
 //

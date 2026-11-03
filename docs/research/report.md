@@ -256,7 +256,7 @@ The practical difficulty is keeping teaching manageable over months. Parents nee
 
 Language work would consist of one or two shared readings daily, using any good book and including all the children. AI would prepare three to five dialogic prompts per page spread, plus two or three pointers to print. Some days would include Tender Shoots-style sound prompts: "*Pig* and *pan* start the same. Can you hear it?" Language goals and records would remain separate from the code work.
 
-For each child, code work would use two to four bursts of two to three minutes across the day, roughly 10 minutes in total, on four or five days a week. On that schedule, each stage would reach the NRP's 5-18-hour range within three to six months. Each burst would include two or three known items for review and one new item. It would finish on a success, or stop earlier at the first sign of fatigue.
+For each child, code work would use two to four bursts of two to three minutes across the day, roughly 10 minutes in total, on four or five days a week. On that schedule, each stage would reach the NRP's 5-18-hour range within three to six months. Each burst would include two or three known items for review and at most one new letter. Words to sound out use letters already taught, and from stage 4 a burst may also bring one new tricky word. No study found here compares one new item per short session with two. It would finish on a success, or stop earlier at the first sign of fatigue.
 
 Those durations are extrapolations from Seabrook, Phillips and the NRP. They are not established optimums for home teaching. The stages and checks below are also design choices.
 
