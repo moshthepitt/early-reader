@@ -64,7 +64,7 @@ export function viewTexts(arg) {
     }
     <form class="card" data-form="text-prompt" data-child="${h(c.id)}">
       <h2>Make a new text with AI</h2>
-      <p>This makes a prompt for any AI chat tool. It lists the only words allowed. The app removes your children's names, including from the topic. The story uses {NAME}, which the app fills in on this device. Do not type other personal details into the topic.</p>
+      <p>This makes a prompt for any AI chat tool. It lists the only words allowed. The app removes your children's names, including from the topic. Where the story needs your child's name, the AI writes {NAME} and the app puts the name in on this device. Do not type other personal details into the topic.</p>
       <label>Type <select name="kind"><option value="story">Tiny story</option><option value="sentences">Separate sentences</option></select></label>
       <label>Topic (optional) <input name="topic" maxlength="120" placeholder="e.g. a dog at the park"></label>
       <button class="btn primary">Make prompt</button>
