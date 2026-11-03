@@ -36,8 +36,15 @@ export async function importBackup(el) {
     const { state: incoming, recordings } = store.importJson(await file.text());
     if (!confirm(`Replace the data on this device with this backup (${incoming.children.length} ${incoming.children.length === 1 ? 'child' : 'children'})?`)) return;
     store.snapshot();
+    const before = state;
     setState({ ...incoming, rev: state.rev });
-    persist();
+    try {
+      persist();
+    } catch (err) {
+      // Not saved (the phone may be full): keep showing what is really saved.
+      setState(before);
+      throw err;
+    }
     let recordingsSaved = true;
     try {
       await audio.importRecordings(recordings);
