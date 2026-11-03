@@ -78,6 +78,7 @@ export function viewBurst(id) {
       ${controls}
     </div>
     <div class="row end">
+      ${step.scored && burst.phase === 'step' && step.type !== 'blend-check' ? '<button class="btn ghost small" data-action="skip">Skip (nothing saved)</button>' : ''}
       ${step.type === 'finish' ? '' : '<button class="btn ghost small" data-action="stop">Stop (tired or upset)</button>'}
     </div>
   </section>`;
@@ -158,6 +159,15 @@ function next() {
   advance();
 }
 
+// A turn the parent isn't sure how to run, or that doesn't suit today: no result is
+// saved, and the item is left out of the easy finish.
+function skip() {
+  const step = burst.plan.steps[burst.index];
+  if (step.itemId) burst.failed.add(step.itemId);
+  burst.lastPraise = '';
+  advance();
+}
+
 function easyWin() {
   const c = findChild(burst.childId);
   return { ...session.stopStep(c, content, makeRng(Date.now()), burst.failed), n: burst.index };
@@ -223,6 +233,7 @@ export const actions = {
     if (right) scrollAfterRender('top');
   },
   next: () => (next(), scrollAfterRender('top')),
+  skip: () => (skip(), scrollAfterRender('top')),
   stop: () => (stopBurst(), scrollAfterRender('top')),
   'finish-now': () => (finishNow(), scrollAfterRender('top')),
   'keep-going': () => {
