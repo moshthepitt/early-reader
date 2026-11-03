@@ -50,7 +50,7 @@ Tim sits on a mat.
 Nat is in a tent.
 Pam pats a pet.
 Pip naps on a lap.
-Sam is a man.
+Sam is on a mat.
 A man lifts a net.
 The tin is on top.
 The lid fits the tin.
@@ -80,7 +80,7 @@ Pam met Nat.
 Nat lets Pip nap.
 Dad lets Sam sit.
 Sam is not sad.
-Tim is not mad.
+Tim is not sad.
 I sit on a mat.
 I nap in a tent.
 I pat the pet.
@@ -177,9 +177,9 @@ The plum is in my hand.
 The slug is on a reed.
 The stem has a bud.
 Do not slip on the step.
-The sled can skid.
+The bus can skid.
 The duck is on the pond.
-The tram can stop.
+The van can stop.
 The pram is next to Mum.
 We can clap with them.
 The flag can flap.
@@ -188,7 +188,7 @@ She has a big grin.
 The flat rock is wet.
 The pup is snug in bed.
 The plant is in a pot.
-A skunk is on the stump.
+A frog is on the stump.
 The trunk is thick.
 The plank is long.
 We can stomp in mud.
@@ -237,7 +237,7 @@ No, the cup is not hot.
 Go into the shop with me.
 He is wet, so get a rag.
 {NAME} has a pet dog.
-{NAME} can sit with Sam.
+{NAME} can sit with Mum.
 {NAME} has a big red hat.
 {NAME} can tap the drum.
 {NAME} can pat the cat.
@@ -245,7 +245,7 @@ He is wet, so get a rag.
 {NAME} can help me mop.
 {NAME} can get the milk.
 {NAME} has a pink shell.
-{NAME} can hop with Kim.
+{NAME} can hop with Dad.
 {NAME} can plant a seed.
 {NAME} can ring the bell.
 {NAME} can feed the sheep.
@@ -271,7 +271,7 @@ meg-and-the-cat | Meg and the Cat | Meg has a pet cat. | The cat is not on the m
 ben-and-the-pig | Ben and the Pig | Ben has a pet pig. | The pig is in mud. | Ben has a big tub. | The pig can get in it. | Ben can get the pig wet. | The pig is wet and snug.
 kim-and-the-cup | Kim and the Cup | Kim has a cup of milk. | The cup tips on the mat. | The mat is wet. | Kim gets a rag. | Kim and Mum mop it up.
 max-and-the-cap | Max and the Cap | Max has a red cap. | A gust lifts the cap. | The cap lands on a log. | Dad can get the cap. | Max has his cap on.
-tom-and-the-bus | Tom and the Bus | Tom is at the bus stop. | A big red bus can stop. | Tom has no bag! | His bag is next to Dad. | Dad hands Tom the bag. | Tom and Dad go on the bus.
+tom-and-the-bus | Tom and the Bus | Tom is at the bus stop. | A big red bus stops. | Tom has no bag! | His bag is next to Dad. | Dad hands Tom the bag. | Tom and Dad go on the bus.
 dan-and-the-ram | Dan and the Ram | Dan can see a ram. | The ram has a tag. | The tag is in a web. | Dan gets Dad to help. | Dad lifts the web off the tag. | The ram can run with his tag.
 the-pink-gift | The Pink Gift | Pam has a pink gift. | Meg lifts the lid. | A red hat is in it! | Meg has the hat on. | Pam and Meg grin.
 the-lost-drum | The Lost Drum | Nat can tap a drum. | The drum is not on the desk. | Nat can see it in a box. | A cat naps next to it. | Nat lets the cat nap. | Nat taps the drum in the shed.
@@ -284,8 +284,8 @@ the-duck-and-the-chick | The Duck and the Chick | A duck is in the pond. | A chi
 a-shell-for-meg | Meg and a Shell | Meg and Ben sit on sand. | Ben can see a shell. | The shell has sand in it. | Ben tips the sand on his hand. | Meg has a shell on her shelf.
 the-ship-in-the-tub | The Ship in the Tub | Tom has a ship in the tub. | A big drip lands on the deck. | The ship tips! | Tom lifts the ship. | He tips the drips into the tub. | The ship is in the tub.
 the-song-for-the-king | The King and the Song | Max is a king in a red hat. | The king has no song. | Pam can hum a song. | Max can sing with Pam. | The king has a song to sing!
-the-seed-in-the-pot | The Seed in the Pot | Ted has a seed. | He plants it in a pot. | The mud is not wet. | Ted gets a drink in a cup. | He tips some in the pot. | Soon he can see a green bud.
-the-sheep-and-the-gift | The Sheep and the Gift | A sheep is next to the pen. | It has a red bell. | The bell is in a net. | Ben can help his sheep. | He lifts the bell with his hand. | The sheep can go into the pen.
+the-seed-in-the-pot | The Seed in the Pot | Ted has a seed. | He plants it in a pot. | The pot is not damp. | Ted fills a cup at the tap. | He tips some in the pot. | Soon he can see a green bud.
+the-sheep-and-the-gift | The Sheep and the Bell | A sheep is next to the pen. | It has a red bell. | The bell is in a net. | Ben can help his sheep. | He lifts the bell with his hand. | The sheep can go into the pen.
 a-boot-in-the-room | A Boot in the Room | A boot is in the room. | Sam needs his sock too. | The sock is not in the boot. | Sam lifts the sheet. | His sock is on the bed! | Sam can get his boots on.
 the-moon-and-the-cloud | The Moon | The moon is up. | Pip is in his tent. | Pip can see no moon. | Dad lifts the tent flap. | Pip can see the moon! | Pip can sleep in his tent.
 name-and-the-net | {NAME} and the Net | {NAME} has a net. | A red cap is in the pond. | {NAME2} gets a long stick. | The net fits on the stick. | They can get the cap. | They set the wet cap in the sun.
