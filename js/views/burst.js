@@ -170,7 +170,9 @@ function skip() {
 
 function easyWin() {
   const c = findChild(burst.childId);
-  return { ...session.stopStep(c, content, makeRng(Date.now()), burst.failed), n: burst.index };
+  const exclude = new Set(burst.failed);
+  if (burst.plan.steps.slice(0, burst.index).some((s) => s.type === 'name-card')) exclude.add('name-card');
+  return { ...session.stopStep(c, content, makeRng(Date.now()), exclude), n: burst.index };
 }
 
 function advance() {

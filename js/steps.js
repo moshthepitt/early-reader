@@ -366,7 +366,8 @@ export function finishStep(child, content, rng, exclude = new Set()) {
     const w = content.lexicon.get(best.key);
     if (w) return { type: 'finish', title: 'Finish on a win', child: { word: w.gs, reveal: w.emoji || null }, script: ['A word they know well. Let them read it.', 'Celebrate, then stop while it is still fun.'], answer: w.w, scored: false };
   }
-  if (child.name) return { ...nameCardStep(child), type: 'finish', title: 'Finish on a win' };
+  // The name card, unless this burst has already shown it.
+  if (child.name && !exclude.has('name-card')) return { ...nameCardStep(child), type: 'finish', title: 'Finish on a win' };
   const r = pick(content.C.RHYME_SETS, rng);
   return { type: 'finish', title: 'Finish on a win', child: { sub: `${r.a}, ${r.b}` }, script: [`Say: "${r.a}, ${r.b}... they rhyme!" Make up a silly rhyme together.`, 'Stop while it is still fun.'], scored: false };
 }

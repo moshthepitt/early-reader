@@ -342,7 +342,7 @@ export function buildBurst({ child, content, today, rng = Math.random, variant =
   }
 
   steps.splice(5);
-  steps.push(finishStep(child, content, rng));
+  steps.push(finishStep(child, content, rng, new Set(steps.some((s) => s.type === 'name-card') ? ['name-card'] : [])));
   return { steps: steps.map((s, i) => ({ ...s, n: i })), notes, stage, variant };
 }
 

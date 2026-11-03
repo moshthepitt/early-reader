@@ -231,3 +231,14 @@ test('a burst never asks the same letter twice, once for its sound and once for 
   const letters = plan.steps.filter((s) => s.type === 'letter-sound' || s.type === 'letter-name').map((s) => `${s.type}:${s.child.big}`);
   assert.deepEqual(letters, ['letter-sound:p', 'letter-sound:m']);
 });
+
+test('a burst that showed the name card finishes on something else', () => {
+  const child = newChild({ name: 'Kim', stage: 1 });
+  // k came in today and isn't due yet, so there is nothing to review or add: the burst shows the name card.
+  child.items[S.itemId('sound', 'k')] = { ...S.newItem('sound', 'k', '2026-02-01'), due: '2026-02-02' };
+  for (let seed = 1; seed < 200; seed++) {
+    const plan = session.buildBurst({ child, content, today: '2026-02-01', rng: makeRng(seed), variant: 'cards' });
+    const names = plan.steps.filter((s) => s.child && s.child.text === 'Kim').length;
+    assert.equal(names, 1, `name card count with seed ${seed}`);
+  }
+});
