@@ -17,7 +17,9 @@ You run it. The screen tells you what to say and what to show, and keeps track o
 
 **2. Print a few things.** On the Print tab, print the letter cards for the letters your child has met (at the very start, print "next 8 letters") and a sheet of letter tiles. When the app checks a letter, cover the picture on the card with your thumb, or use the cards without pictures. Card lasts longer than paper. Cut along the dotted lines. No printer? Save the page as a PDF from the print screen and take it to a cyber, or copy the letters onto cut-up cereal boxes with a marker.
 
-**3. Learn to say the sounds.** This part is for you, and it matters more than it looks. Letters have names ("em") and sounds ("mmm"). Reading runs on the sounds, said short and clean. Many of us add an "uh" without noticing - "muh" instead of "mmm", "tuh" instead of a quick "t" - and that "uh" makes blending much harder for a child. The Sounds tab shows how to say each one. Record yourself and listen back. It's a bit embarrassing. Do it anyway.
+**3. Learn to say the sounds.** This part is for you, and it matters more than it looks. Letters have names ("em") and sounds ("mmm"). Reading runs on the sounds, said short and clean. Many of us add an "uh" without noticing - "muh" instead of "mmm", "tuh" instead of a quick "t" - and that "uh" makes blending much harder for a child. The Sounds tab shows how to say each one. They can feel strange at first. Try a few, record yourself and listen back.
+
+Accents differ, and that's fine. Say the sounds in the English you speak, short and clean. If two words in a game sound the same to you, tap Skip and move on. When you talk about books, use whichever language your family knows best.
 
 ## Every day: two kinds of time
 
