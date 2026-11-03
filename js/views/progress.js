@@ -34,7 +34,7 @@ export function viewProgress(arg) {
       ${
         check.progress.length
           ? `<h3>Ready for stage ${check.next}?</h3><ul class="checks">${check.progress
-              .map((p) => `<li class="${p.have >= p.need ? 'met' : ''}">${h(p.label)}: <b>${p.have}</b> / ${p.need}</li>`)
+              .map((p) => `<li class="${p.have >= p.need ? 'met' : ''}">${h(p.label)}: <b>${p.have}</b> (needs ${p.need})</li>`)
               .join('')}</ul>${check.ready ? `<button class="btn" data-action="stage-up" data-id="${h(c.id)}">Move to stage ${check.next}</button>` : ''}`
           : '<p>This is the final stage. Keep practising sentences and stories, and reading aloud to them.</p>'
       }
