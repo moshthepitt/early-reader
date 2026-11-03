@@ -6,7 +6,8 @@ import { state, burst, setBurst, content, today, siblingName, findChild, noKids,
 
 export function viewBurst(id) {
   const c = findChild(id);
-  if (!c) return noKids();
+  // An old link to a child who has since been deleted or replaced by an import.
+  if (!c) return state.children.length ? '<section class="card"><p>That child is no longer on this device.</p><a class="btn primary" href="#/today">Go to Today</a></section>' : noKids();
   if (!burst || burst.childId !== c.id) setBurst({ childId: c.id, phase: 'choose' });
 
   if (burst.phase === 'choose') {
