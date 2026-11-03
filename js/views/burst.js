@@ -54,7 +54,7 @@ export function viewBurst(id) {
 
   let controls;
   if (burst.phase === 'model') {
-    controls = `<div class="model"><b>Show them:</b><ul>${(step.model || []).map((l) => `<li>${h(l)}</li>`).join('')}</ul><p class="muted small">${h(session.praise('effort'))}</p></div>
+    controls = `<div class="model"><b>Show them:</b><ul>${(step.model || []).map((l) => `<li>${h(l)}</li>`).join('')}</ul><p class="muted small">Say: "${h(session.praise('effort'))}"</p></div>
       <button class="btn primary big" data-action="next">Next</button>`;
   } else if (step.scored) {
     controls = `<div class="answer">Answer: <b>${h(step.answer)}</b></div>
