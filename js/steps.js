@@ -148,20 +148,23 @@ function findFirstSoundSet(content, g) {
   return content.C.FIRST_SOUND_SETS.find((x) => x.sound === key);
 }
 
-// Ask which word starts differently, using speech only
+// Ask which word starts differently, using speech only, after showing one word
+// that starts with the sound
 // (Sound Foundations, Byrne et al. 2000, discussed in docs/research/report.md).
 export function firstSoundOralStep(child, content, rng) {
   const easy = ['s', 'm', 'f', 'l', 'n', 'z', 'v', 'r'];
   const pool = content.C.FIRST_SOUND_SETS.filter((x) => (child.stage <= 1 ? easy.includes(x.sound) : true));
   const set = pick(pool.length ? pool : content.C.FIRST_SOUND_SETS, rng);
   const x = GRAPHEME_MAP[set.sound];
-  const two = shuffle(set.words, rng).slice(0, 2);
+  const [ex, ...rest] = shuffle(set.words, rng);
+  const two = rest.slice(0, 2);
   const options = shuffle([...two, set.odd], rng);
   return {
     type: 'first-sound-oral',
     title: 'Odd one out',
     child: { choices: options.map((o) => ({ emoji: o.emoji, label: o.w })) },
     script: [
+      `Show one first: "${ex.w}... ${x.say.split(' (')[0]}-${ex.w}. ${capitalize(ex.w)} starts with ${x.say.split(' (')[0]}."`,
       `Name each picture, stretching the first sound: ${options.map((o) => `"${o.w}"`).join(', ')}.`,
       `Ask: "Which one does not start with ${x.say.split(' (')[0]}?"`,
     ],
