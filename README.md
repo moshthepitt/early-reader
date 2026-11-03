@@ -37,7 +37,7 @@ Everything you enter is saved on your device, in the browser: names, progress, v
 
 ## Small on purpose
 
-The first visit is four requests and about 46 KB over the wire (127 KB unpacked). The reading font, 12 KB, follows once the page has loaded. After that it works offline and uses almost no data. There are no frameworks and no runtime dependencies: plain JavaScript modules, bundled for hosting by [esbuild](https://esbuild.github.io/). The build fails if a change pushes the first load over budget.
+The first visit is four requests and about 46 KB over the wire (126 KB unpacked). The reading font, 12 KB, follows once the page has loaded. After that it works offline and uses almost no data. There are no frameworks and no runtime dependencies: plain JavaScript modules, bundled for hosting by [esbuild](https://esbuild.github.io/). The build fails if a change pushes the first load over budget.
 
 ## The look
 
