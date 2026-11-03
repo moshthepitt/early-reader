@@ -200,6 +200,24 @@ async function firstLoadAndScreens(browser, base) {
     await page.click('[data-action="next"]');
     await page.waitForSelector('[data-action="mood"]');
     await page.click('[data-action="mood"][data-mood="low"]');
+    // Skip path: moves on and saves no result
+    await page.goto(base + '/index.html#/today');
+    await (await page.$$('a.btn.primary.big'))[0].click();
+    await page.click('[data-action="burst-start"][data-variant="cards"]');
+    for (let i = 0; i < 6 && !(await page.$('[data-action="skip"]')); i++) await page.click('[data-action="next"]');
+    const results = () => page.evaluate(() => window.earlyReader.state.children.reduce((n, c) => n + (c.log || []).length, 0));
+    const logBefore = await results();
+    const stepBefore = await page.locator('.burst-top span').first().innerText();
+    await page.click('[data-action="skip"]');
+    const logAfter = await results();
+    const stepAfter = (await page.$('[data-action="mood"]')) ? 'done' : await page.locator('.burst-top span').first().innerText();
+    check('skip moves on without saving a result', logAfter === logBefore && stepAfter !== stepBefore, { logBefore, logAfter, stepBefore, stepAfter });
+    if (stepAfter !== 'done') {
+      await page.click('[data-action="stop"]');
+      await page.click('[data-action="next"]');
+    }
+    await page.waitForSelector('[data-action="mood"]');
+    await page.click('[data-action="mood"][data-mood="ok"]');
 
     // Fast-forward Ben's data to stage 3 and 4 via the debug handle to see later stages
     await page.evaluate(() => {
