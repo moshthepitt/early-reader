@@ -18,13 +18,13 @@ import { VOWELS } from './en.js';
 
 const WORD_TEXT = `
 am an at in it on if up us mat man=👨 tin=🥫 map=🗺️ pan pin=📌 pit pot=🍲 top tot lot lap
-lip=👄 lid men net=🥅 pen=🖊️ pet den fin fan pad dad mum=👩 cat=🐱 dog=🐶 pig=🐷 hen=🐔
-ram rat=🐀 bat=🦇 fox sun=☀️ bed=🛏️ hat=👒 cap=🧢 web=🕸️ leg=🦵 mug cup=☕ van=🚐
-bus=🚌 jet=✈️ nut=🥜 yam bag=👜 tag tap=🚰 cab=🚕 ran him but fog kid=🧒 pup rug rag
-peg log=🪵 fig wig bib rib tub jug bug=🐛 bud bun cob cod cot cub cut dip dot gap gum hem hip
+lip lid men net pen=🖊️ pet den fin fan pad dad mum=👩 cat=🐱 dog=🐶 pig=🐷 hen
+ram rat=🐀 bat=🦇 fox sun=☀️ bed=🛏️ hat=👒 cap web leg=🦵 mug cup=☕ van
+bus=🚌 jet nut=🥜 yam bag=👜 tag tap=🚰 cab ran him but fog kid pup rug rag
+peg log fig wig bib rib tub jug bug bud bun cob cod cot cub cut dip dot gap gum hem hip
 hub hut jam kit lab mud pod pop rim rod sap sip sum vet zip sat sit pat nap tip mop nod did
-let led met fed fit get dig hop hum jog rub run=🏃 sob hug=🤗 mix fix tug wag win=🏆 tan dim
-mad sad=😢 set red=🔴 wet=💦 hot=🥵 big bad fun not ten=🔟 six=6️⃣ yet yes=👍 yum=😋 can had got
+let led met fed fit get dig hop hum jog rub run=🏃 sob hug mix fix tug wag win tan dim
+mad sad=😢 set red=🔴 wet hot big bad fun not ten=🔟 six=6️⃣ yet yes yum can had got
 sand lamp tent mint nest list mist pond hand band land milk silk desk tusk belt felt gift loft
 lift bank tank bunk gulp lump bump jump camp pant dent bell=🔔 doll hill mill well mess fuss
 kiss puff=💨 cuff huff send mend bend lend help hunt melt rest test dust dunk sink wink limp
@@ -34,9 +34,9 @@ stop plot pram spin slip snap skip clap flap flip flop grab plop drip drag trot 
 glum stamp stand plant stump trunk skunk plank clamp crisp blend print crust dress=👗 spring
 string stomp blink smell spill spell grand text quiz duck=🦆 sock=🧦 rock lock neck sack pack
 rack deck chick=🐤 chip chin chat chop shed shell=🐚 ship=🚢 shop fish=🐟 dish wish mesh moth
-cloth thing thud ring=💍 king=🤴 wing song gong bee=🐝 seed=🌱 leek reed tree=🌳 sheep=🐑 cheek
-teeth=🦷 queen=👸 sheet feet=🦶 moon=🌙 spoon=🥄 broom=🧹 room roof boot=🥾 hoop pool=🏊
-tool=🔧 zoo stool quack quit kick lick pick peck tuck check shut rush mash dash hush thank think
+cloth thing thud ring=💍 king=🤴 wing song gong bee=🐝 seed leek reed tree=🌳 sheep=🐑 cheek
+teeth queen=👸 sheet feet moon=🌙 spoon=🥄 broom=🧹 room roof boot hoop pool
+tool zoo stool quack quit kick lick pick peck tuck check shut rush mash dash hush thank think
 sing hang bang swing sting bring cling feed need see feel seem keep beep sleep=😴 sweep meet
 zoom quick thick thin rich long strong green=🟢 sweet deep keen then them this that with much
 such soon too three box=📦 wax hid sag gust shelf wind off lost still drink dock stick rip
