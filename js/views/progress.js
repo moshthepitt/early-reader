@@ -13,7 +13,6 @@ export function viewProgress(arg) {
   const words = progress.wordStats(c);
   const skillNames = {
     'first-sound': 'Hears first sounds',
-    syllables: 'Claps the beats in words',
     'oral-blend': 'Blends spoken sounds',
     'blend-unseen': 'Sounds out new words',
     spelling: 'Builds words with tiles',

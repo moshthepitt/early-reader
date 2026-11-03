@@ -93,8 +93,11 @@ test('RHYME_SETS', () => {
 
 test('SYLLABLE_WORDS', () => {
   assert.ok(C.SYLLABLE_WORDS.length >= 40);
+  assert.ok(C.SYLLABLE_WORDS.filter((s) => s.n <= 2).length >= 25, 'enough short words to start with');
   for (const s of C.SYLLABLE_WORDS) {
     assert.ok(s.w && Number.isInteger(s.n) && s.n >= 1 && s.n <= 5, JSON.stringify(s));
+    assert.equal(s.parts.length, s.n);
+    assert.equal(s.parts.join(''), s.w);
     assert.ok(s.emoji, `syllable word ${s.w} needs an emoji`);
   }
 });

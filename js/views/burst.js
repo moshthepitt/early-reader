@@ -74,7 +74,7 @@ export function viewBurst(id) {
     ${childCard(step)}
     <div class="parent">
       <ol class="script">${step.script.map((l) => `<li>${h(l)}</li>`).join('')}</ol>
-      ${step.tip ? `<details><summary>How to say the sound</summary><p>${h(step.tip)}</p></details>` : ''}
+      ${step.tip ? `<details><summary>${h(step.tipTitle || 'How to say the sound')}</summary><p>${h(step.tip)}</p></details>` : ''}
       ${controls}
     </div>
     <div class="row end">

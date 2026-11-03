@@ -102,9 +102,9 @@ function introducedToday(items, kind, today) {
 }
 
 // Share of first-try successes over the last n scored attempts in the log.
-// Rhyme is played together now. Results saved while it was scored don't count, so
-// a child still learning to hear rhymes isn't held back.
-const counts = (e) => e.scored && e.type !== 'rhyme';
+// Rhyme and clapping are played together now. Results saved while they were scored
+// don't count, so a child who couldn't hear rhymes or clap beats yet isn't held back.
+const counts = (e) => e.scored && e.type !== 'rhyme' && e.type !== 'syllables';
 
 function recentAccuracy(log, n = 12) {
   const recent = log.filter(counts).slice(-n);

@@ -123,18 +123,23 @@ export function rhymeStep(child, content, rng) {
   };
 }
 
+// Clapping is played together too. Clapping and then counting tests copying more
+// than hearing, so the script shows where the beats fall and nothing is scored.
 export function syllableStep(child, content, rng) {
-  const s = pick(content.C.SYLLABLE_WORDS, rng);
+  const words = content.C.SYLLABLE_WORDS;
+  // Mostly one and two beats; longer words now and then.
+  const s = pick(rng() < 0.75 ? words.filter((x) => x.n <= 2) : words, rng);
   return {
     type: 'syllables',
     title: 'Clap the beats',
-    child: { emoji: s.emoji, sub: s.w },
-    script: [`Say "${s.w}" and clap once for each beat together.`, `Ask: "How many claps?"`],
-    answer: `${s.n}`,
-    model: [`Clap it together slowly, counting each clap: ${s.n} ${s.n === 1 ? 'clap' : 'claps'}.`],
-    praise: 'listen',
-    scored: true,
-    skill: 'syllables',
+    child: { emoji: s.emoji },
+    script: [
+      `Say "${s.w}". Then say it slowly in beats, clapping on each one: "${s.parts.join('\u00a0·\u00a0')}"\u00a0${'👏'.repeat(s.n)}`,
+      'Do it together, then let them try on their own. Counting the claps is optional.',
+    ],
+    tipTitle: 'How to find the beats',
+    tip: 'Put the back of your hand under your chin and say the word slowly. Each time your chin drops is a beat. Tapping knees or stamping feet works as well as clapping.',
+    scored: false,
   };
 }
 

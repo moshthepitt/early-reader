@@ -307,14 +307,16 @@ toy boy bed, book look sun, down clown pig, bread head car, cheese peas hat, dog
 pear hair boat, day play cup, snow toe cat
 `;
 
+// Words split into spoken beats for the parent to model. These are how the word
+// sounds when said slowly, not a lesson in splitting written words.
 const SYLLABLE_TEXT = `
-dog=1=🐶 cat=1=🐱 sun=1=☀️ moon=1=🌙 fish=1=🐟 duck=1=🦆 pig=1=🐷 bed=1=🛏️ hat=1=🎩 bus=1=🚌
-bee=1=🐝 frog=1=🐸 cake=1=🎂 tree=1=🌳 apple=2=🍎 pizza=2=🍕 rabbit=2=🐰 tiger=2=🐯 lion=2=🦁
-monkey=2=🐒 chicken=2=🐔 cookie=2=🍪 rainbow=2=🌈 robot=2=🤖 carrot=2=🥕 turtle=2=🐢 zebra=2=🦓
-panda=2=🐼 pumpkin=2=🎃 donut=2=🍩 tractor=2=🚜 penguin=2=🐧 banana=3=🍌 elephant=3=🐘
-butterfly=3=🦋 tomato=3=🍅 potato=3=🥔 dinosaur=3=🦕 kangaroo=3=🦘 octopus=3=🐙 umbrella=3=☂️
-telephone=3=☎️ bicycle=3=🚲 ladybug=3=🐞 caterpillar=4=🐛 watermelon=4=🍉 helicopter=4=🚁
-alligator=4=🐊 avocado=4=🥑 locomotive=4=🚂
+dog=🐶 cat=🐱 sun=☀️ moon=🌙 fish=🐟 duck=🦆 pig=🐷 bed=🛏️ hat=🎩 bus=🚌
+bee=🐝 frog=🐸 cake=🎂 tree=🌳 ap-ple=🍎 piz-za=🍕 rab-bit=🐰 ti-ger=🐯 li-on=🦁
+mon-key=🐒 chick-en=🐔 cook-ie=🍪 rain-bow=🌈 ro-bot=🤖 car-rot=🥕 tur-tle=🐢 ze-bra=🦓
+pan-da=🐼 pump-kin=🎃 do-nut=🍩 trac-tor=🚜 pen-guin=🐧 ba-na-na=🍌 el-e-phant=🐘
+but-ter-fly=🦋 to-ma-to=🍅 po-ta-to=🥔 di-no-saur=🦕 kan-ga-roo=🦘 oc-to-pus=🐙 um-brel-la=☂️
+tel-e-phone=☎️ bi-cy-cle=🚲 la-dy-bug=🐞 cat-er-pil-lar=🐛 wa-ter-mel-on=🍉 hel-i-cop-ter=🚁
+al-li-ga-tor=🐊 av-o-ca-do=🥑 lo-co-mo-tive=🚂
 `;
 
 const FIRST_SOUND_TEXT = `
@@ -379,8 +381,9 @@ export const STORIES = lines(STORY_TEXT).map((l) => {
 export const RHYME_SETS = RHYME_TEXT.split(',').map((t) => tokens(t)).filter((t) => t.length).map(([a, b, odd]) => ({ a, b, odd }));
 
 export const SYLLABLE_WORDS = tokens(SYLLABLE_TEXT).map((t) => {
-  const [w, n, emoji] = t.split('=');
-  return { w, n: Number(n), emoji };
+  const [said, emoji] = t.split('=');
+  const parts = said.split('-');
+  return { w: parts.join(''), parts, n: parts.length, emoji };
 });
 
 export const FIRST_SOUND_SETS = lines(FIRST_SOUND_TEXT).map((l) => {
