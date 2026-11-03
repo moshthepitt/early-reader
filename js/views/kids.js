@@ -46,6 +46,7 @@ export const forms = {
   'add-child': (f, data) => {
     if (state.children.length >= 6) return notify('You can add up to 6 children.'), false;
     const child = store.newChild({ name: data.get('name'), birth: data.get('birth'), stage: Number(data.get('stage')) || 1 });
+    if (!child.name) return notify('Type their first name.'), false;
     state.children.push(child);
     if (!persist()) return false;
     keepData();
