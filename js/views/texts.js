@@ -7,7 +7,7 @@ import { state, ui, content, selectedChild, noKids, childPicker, stageBadge, sib
 import { printHtml } from './print.js';
 
 function statusClass(s) {
-  return { decodable: 'ok', tricky: 'ok tricky', name: 'ok name', 'tricky-untaught': 'bad', needs: 'bad', unlisted: 'maybe', unknown: 'bad' }[s] || '';
+  return { decodable: 'ok', tricky: 'ok tricky', name: 'ok name', 'tricky-untaught': 'bad', needs: 'bad', unlisted: 'maybe', unknown: 'bad', unsupported: 'bad' }[s] || '';
 }
 
 export function viewTexts(arg) {
@@ -40,8 +40,8 @@ export function viewTexts(arg) {
             }`,
         )
         .join('')}
-        <p class="muted small">Green: can sound out · blue: tricky word or name they know · yellow: not in the word list, check it · red: not ready yet.</p>
-        ${check.lines.every((l) => l.result.ok) ? `<button class="btn" data-action="print-checked" data-child="${h(c.id)}">Print as booklet</button>` : '<p>Swap or remove the red words, then check again.</p>'}
+        <p class="muted small">Green: can sound out · blue: tricky word or name they know · yellow: not in the app's word list, so it can't be checked · red: not ready yet.</p>
+        ${check.lines.every((l) => l.result.ok) ? `<button class="btn" data-action="print-checked" data-child="${h(c.id)}">Print as booklet</button>` : '<p>Swap or remove the red and yellow words, then check again.</p>'}
       </div>`
     : '';
   return `${childPicker('texts', c.id)}
