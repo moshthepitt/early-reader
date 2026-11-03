@@ -95,7 +95,7 @@ function childCard(step) {
   const c = step.child || {};
   let inner = '';
   // Rhyme time's example pair, shown above the question.
-  if (c.example) inner += `<div class="choices">${c.example.map((e) => `<div class="choice"><span class="ce">${h(e)}</span></div>`).join('')}</div>`;
+  if (c.example) inner += `<div class="choices example">${c.example.map((e) => `<div class="choice"><span class="ce">${h(e)}</span></div>`).join('')}</div>`;
   if (c.big) inner += `<div class="big-letter${c.big.length > 2 ? ' long' : ''}">${h(c.big)}</div>`;
   if (c.word) {
     inner += `<div class="big-word">${c.word

@@ -614,7 +614,8 @@ details.book summary {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 1.75rem 1rem 1.9rem;
+  /* Room at the bottom for the "tap for full screen" hint, clear of the pictures. */
+  padding: 1.75rem 1rem 2.75rem;
   text-align: center;
   font-family: var(--child-font);
   color: var(--ink);
@@ -776,6 +777,20 @@ details.book summary {
 .choice .ce {
   font-size: 3.4rem;
   line-height: 1.15;
+}
+/* Rhyme time's example pair: smaller and dashed, so it doesn't read as two more choices. */
+.choices.example {
+  margin: 0 0 0.6rem;
+}
+.choices.example .choice {
+  min-width: 4rem;
+  padding: 0.3rem 0.4rem;
+  background: transparent;
+  border-style: dashed;
+  box-shadow: none;
+}
+.choices.example .ce {
+  font-size: 2.3rem;
 }
 .choice .cl {
   font-size: 1rem;
