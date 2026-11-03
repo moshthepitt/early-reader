@@ -205,25 +205,31 @@ function findFirstSoundSet(content, g) {
 // Ask which word starts differently, using speech only, after showing one word
 // that starts with the sound
 // (Sound Foundations, Byrne et al. 2000, discussed in docs/research/report.md).
+// The word shown first sits on top, apart from the three to choose from. The pictures
+// have no labels: the game is by ear, and a child who knows some letters could match
+// the labels by sight.
 export function firstSoundOralStep(child, content, rng) {
   const easy = ['s', 'm', 'f', 'l', 'n', 'z', 'v', 'r'];
   const pool = content.C.FIRST_SOUND_SETS.filter((x) => (child.stage <= 1 ? easy.includes(x.sound) : true));
   const set = pick(pool.length ? pool : content.C.FIRST_SOUND_SETS, rng);
-  const x = GRAPHEME_MAP[set.sound];
   const [ex, ...rest] = shuffle(set.words, rng);
   const two = rest.slice(0, 2);
-  const options = shuffle([...two, set.odd], rng);
+  const odd = set.odd;
+  const options = shuffle([...two, odd], rng);
   return {
     type: 'first-sound-oral',
     title: 'Odd one out',
-    child: { choices: options.map((o) => ({ emoji: o.emoji, label: o.w })) },
+    child: { emoji: ex.emoji, choices: options.map((o) => ({ emoji: o.emoji })) },
     script: [
-      `Show one first: "${ex.w}... ${x.say.split(' (')[0]}-${ex.w}. ${capitalize(ex.w)} starts with ${x.say.split(' (')[0]}."`,
-      `Name each picture, stretching the first sound: ${options.map((o) => `"${o.w}"`).join(', ')}.`,
-      `Ask: "Which one does not start with ${x.say.split(' (')[0]}?"`,
+      `Point to the ${ex.emoji} on top. Say: "${capitalize(sayFirst(ex.w))}. Hear how ${ex.w} starts?"`,
+      `Point to each picture below and say it the same way: ${options.map((o) => `${o.emoji} "${sayFirst(o.w)}"`).join(', ')}.`,
+      `Ask: "Which one doesn't start like ${ex.w}?"`,
     ],
-    answer: set.odd.w,
-    model: [`Say: "${two[0].w} and ${two[1].w} both start with ${x.say.split(' (')[0]}. ${set.odd.w} starts differently."`],
+    answer: `${odd.w} ${odd.emoji}`,
+    model: [
+      `Point to the ${two[0].emoji} and the ${two[1].emoji}. Say: "${capitalize(sayFirst(two[0].w))}, ${sayFirst(two[1].w)}. They start like ${ex.w}."`,
+      `Point to the ${odd.emoji}. Say: "${capitalize(sayFirst(odd.w))}. ${capitalize(odd.w)} starts differently."`,
+    ],
     praise: 'listen',
     scored: true,
     skill: 'first-sound',
