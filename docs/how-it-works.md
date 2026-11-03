@@ -16,8 +16,8 @@ You need both. The [parent guide](parents-guide.md) explains how to run each one
 
 When you start a burst, the app looks at everything your child has met and picks a few things:
 
-- **Reviews that are due.** Every letter, word and tricky word comes back after a gap that grows each time your child gets it right on the first try: later the same day, then after 1, 2, 4, 7, 14 and 30 days. A miss sends it back to the start. The shakiest come first, with one review saved for whatever has waited longest, so nothing gets stuck behind a letter your child keeps finding hard.
-- **At most one new thing**, and only if your child is ready for it. The app holds back new letters when recent answers are right less than about three times in four, when three or more letters are still shaky, or when it has already added this week's two to four. Rhyme and clapping are played together and not scored, so they never hold anything back. After two weeks or more away, the first day back has no new letters at all.
+- **Reviews that are due.** A new letter, word or tricky word comes back later the same day. Each day your child gets it right first try, the gap grows: 1, 2, 4, 7, 14, then 30 days. A miss brings it back later the same day and starts the gaps again. The shakiest come first. Where a burst has room for two reviews, one goes to whatever has waited longest, so nothing gets stuck behind a letter your child keeps finding hard.
+- **At most one new letter**, and only if your child is ready for it. From stage 3 a burst can also bring a new word to sound out, and from stage 4 a new tricky word. The app holds back new letters when recent answers are right less than about three times in four, when three letters are still being learned, when it has added one today, or when it has already added this week's two to four. Rhyme and clapping are played together and not scored, so they never hold anything back. After two weeks or more away, the first day back has no new letters or tricky words.
 - **An easy win to finish**, chosen when you reach the end, so it's never something your child just missed.
 
 A letter counts as "known" once your child gets it right first try on two different days. One good afternoon isn't enough, and that's on purpose. If they needed help with a letter earlier in the day, getting it right later that day is good practice, but it doesn't count towards known. The app checks it again the next day.
@@ -28,16 +28,16 @@ Only the first try counts. A slow answer is fine as long as it's their own, so g
 
 1. **Sound play.** Listening games without letters, plus the letters in your child's name.
 2. **Letter sounds.** Names and sounds together, two to four new letters a week. Each new letter comes with a picture to help it stick. When the app checks a letter, it shows the letter alone, so a right answer means your child knows the letter itself.
-3. **Blending.** Sounding out short words like "sat", starting with sounds you can stretch ("sssaaat").
+3. **Blending.** Sounding out short words like "sat", mostly ones that start with a sound you can stretch ("sssaaat").
 4. **First reading.** Tricky words, two-letter sounds like "sh" and "ee", then short sentences and stories.
 
-The app watches for signs that a child is ready to move on - picking out first sounds reliably over several days, knowing about 12 letter sounds, sounding out new words most of the time - and suggests it. You decide.
+The app watches for signs that a child is ready to move on, and suggests it. The Progress tab shows each check and how close your child is. You decide.
 
 ## Every word is checked
 
-Anything the app asks your child to read is checked word by word first. A word passes only if every sound in it has been taught to that child, or if it's a tricky word they've learned, or it's their name. Small details count: in "dogs" the s sounds like a "z", so plurals like that wait until your child has met "is", where s says "z" for the first time.
+Anything the app asks your child to read is checked word by word first. A word passes only if every sound in it has been taught to that child, or if it's a tricky word they've learned, or it's their name or a brother's or sister's. Small details count: in "dogs" the s sounds like a "z", so plurals like that wait until your child has met "is", where s says "z" for the first time.
 
-The same check runs on any text you paste in, including stories from an AI tool. Words that aren't ready show up in red.
+The same check runs on any text you paste in, including stories from an AI tool. Words that aren't ready show up in red, and words the app doesn't know show up in yellow. Swap out both before you print.
 
 ## Made-up words
 
@@ -47,9 +47,9 @@ Children are good at memorising. A child can "read" a favourite book without dec
 
 Everything you type into Early Reader is saved on your device, in this browser: your children's names, their progress, your settings and any sounds you record.
 
-There is no Early Reader server. There are no accounts, no sign-in and no database somewhere holding your family's details. The app is a set of files your browser downloads once from GitHub Pages, the same way it would download any website, and after that it runs on your phone or computer even without internet. The website host sees that the files were downloaded. It never sees anything you type, because nothing you type is ever sent anywhere.
+There is no Early Reader server. There are no accounts, no sign-in and no database somewhere holding your family's details. The app is a set of files your browser downloads from GitHub Pages, the same way it would download any website. It keeps a copy, so it runs on your phone or computer even without internet, and checks for updates when you're online. The website host sees that the files were downloaded. It never sees anything you type, because nothing you type is ever sent anywhere.
 
-The app asks your browser not to clear it when the phone runs low on space, though the browser can say no. And if you clear your browser data or lose your phone, the progress goes with it. Settings has "Export backup", which saves everything to a file you keep.
+The app asks your browser not to clear your saved data when the phone runs low on space, though the browser can say no. And if you clear your browser data or lose your phone, the progress goes with it. Settings has "Export backup", which saves everything to a file you keep.
 
 ## What it leaves out
 
