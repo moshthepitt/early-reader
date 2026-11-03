@@ -6,16 +6,10 @@ You run it. The screen tells you what to say and what to show, and keeps track o
 
 ## What you need
 
-- A phone, tablet or laptop with a modern browser.
+- A phone, tablet or laptop with a modern browser. Open [moshthepitt.github.io/early-reader](https://moshthepitt.github.io/early-reader/) once while you have data or Wi-Fi. After that it works without either.
 - A printer, or a cyber café that can print a few pages for you. Paper and a thick marker work too, if you would rather draw the cards yourself.
 - A pile of picture books. Library books are fine.
 - About 10 minutes a day per child, in short pieces, four or five days a week.
-
-## Putting it on your phone
-
-Open [moshthepitt.github.io/early-reader](https://moshthepitt.github.io/early-reader/) in Chrome. The first visit downloads less than 50 KB. Then open the browser menu (the three dots) and tap "Add to Home screen" or "Install app". On an iPhone, use Share, then "Add to Home Screen".
-
-From then on it opens like any other app, and it works without data or Wi-Fi.
 
 ## Getting started
 
