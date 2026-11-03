@@ -105,8 +105,8 @@ test('SYLLABLE_WORDS', () => {
 });
 
 test('FIRST_SOUND_SETS cover the single-letter sounds', () => {
-  // No set for i, o, e, u or z: no three pictures a young Kenyan child would name with those sounds.
-  const need = ['s', 'a', 't', 'm', 'n', 'p', 'd', 'f', 'l', 'g', 'k', 'r', 'h', 'b', 'j', 'v', 'w', 'y'];
+  // No set for i, o, e, u, v, y or z: no three pictures a young Kenyan child would name with those sounds.
+  const need = ['s', 'a', 't', 'm', 'n', 'p', 'd', 'f', 'l', 'g', 'k', 'r', 'h', 'b', 'j', 'w'];
   for (const g of need) {
     const set = C.FIRST_SOUND_SETS.find((x) => x.sound === g);
     assert.ok(set, `missing first-sound set for ${g}`);

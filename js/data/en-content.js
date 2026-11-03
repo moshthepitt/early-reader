@@ -325,21 +325,19 @@ const FIRST_SOUND_TEXT = `
 s sun=☀️ snake=🐍 sock=🧦 snail=🐌 / dog=🐶
 a apple=🍎 ant=🐜 ambulance=🚑 avocado=🥑 / fish=🐟
 t tiger=🐯 tortoise=🐢 tomato=🍅 train=🚂 / moon=🌙
-m mouse=🐭 moon=🌙 monkey=🐒 mango=🥭 / sun=☀️
+m moon=🌙 monkey=🐒 mango=🥭 / sun=☀️
 n nose=👃 nut=🥜 nine=9️⃣ / bee=🐝
 p pig=🐷 pizza=🍕 pineapple=🍍 pencil=✏️ / dog=🐶
 d dog=🐶 duck=🦆 drum=🥁 dinosaur=🦕 / sun=☀️
 f fish=🐟 frog=🐸 fire=🔥 flower=🌻 / pig=🐷
-l lion=🦁 lemon=🍋 leaf=🍃 leg=🦵 / cat=🐱
+l lion=🦁 lemon=🍋 leaf=🍃 leg=🦵 / dog=🐶
 g goat=🐐 girl=👧 grapes=🍇 guitar=🎸 / fish=🐟
 k cat=🐱 cake=🎂 key=🔑 kite=🪁 / sun=☀️
 r rabbit=🐰 rainbow=🌈 robot=🤖 rocket=🚀 / bed=🛏️
 h hat=👒 hand=✋ house=🏠 helicopter=🚁 / pig=🐷
 b ball=⚽ bus=🚌 banana=🍌 butterfly=🦋 / cat=🐱
 j juice=🧃 jacket=🧥 jeans=👖 / moon=🌙
-v van=🚐 vest=🎽 volcano=🌋 violin=🎻 / dog=🐶
-w watermelon=🍉 watch=⌚ wool=🧶 web=🕸️ / fish=🐟
-y yo-yo=🪀 yawn=🥱 yellow=🟡 / hat=👒
+w watermelon=🍉 watch=⌚ wool=🧶 / fish=🐟
 `;
 
 const DIGRAPHS = new Set(['sh', 'ch', 'th', 'ng', 'ee', 'oo', 'qu', 'ck']);
