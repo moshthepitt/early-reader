@@ -31,6 +31,14 @@ export function persist() {
   }
 }
 
+// Ask the browser not to clear saved data when the phone runs low on space. Called
+// after a real save. Best effort: the browser may say no, and it doesn't stop
+// someone clearing browser data by hand (web.dev, "Persistent storage").
+export function keepData() {
+  const s = navigator.storage;
+  if (s && s.persisted && s.persist) s.persisted().then((yes) => yes || s.persist()).catch(() => {});
+}
+
 // A short confirmation at the bottom of the screen, so every button shows it worked.
 // It lives outside #app, so a re-render does not wipe it, and screen readers announce it.
 let toastTimer;

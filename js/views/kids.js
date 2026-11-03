@@ -1,7 +1,7 @@
 import * as store from '../store.js';
 import * as session from '../session.js';
 import { escapeHtml as h } from '../util.js';
-import { state, findChild, persist, notify } from '../ui.js';
+import { state, findChild, persist, keepData, notify } from '../ui.js';
 
 export function viewKids() {
   const list = state.children
@@ -48,6 +48,7 @@ export const forms = {
     const child = store.newChild({ name: data.get('name'), birth: data.get('birth'), stage: Number(data.get('stage')) || 1 });
     state.children.push(child);
     persist();
+    if (findChild(child.id)) keepData();
     notify(`Added ${child.name}.`);
     location.hash = '#/today';
     return false;

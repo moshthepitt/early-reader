@@ -49,7 +49,7 @@ Everything you type into Early Reader is saved on your device, in this browser: 
 
 There is no Early Reader server. There are no accounts, no sign-in and no database somewhere holding your family's details. The app is a set of files your browser downloads once from GitHub Pages, the same way it would download any website, and after that it runs on your phone or computer even without internet. The website host sees that the files were downloaded. It never sees anything you type, because nothing you type is ever sent anywhere.
 
-That has one downside: if you clear your browser data or lose your phone, the progress goes with it. Settings has "Export backup", which saves everything to a file you keep.
+The app asks your browser not to clear it when the phone runs low on space, though the browser can say no. And if you clear your browser data or lose your phone, the progress goes with it. Settings has "Export backup", which saves everything to a file you keep.
 
 ## What it leaves out
 

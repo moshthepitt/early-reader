@@ -2,7 +2,7 @@ import * as G from '../data/en.js';
 import * as session from '../session.js';
 import { escapeHtml as h, makeRng } from '../util.js';
 import { GAMES, FACES } from '../icons.js';
-import { state, burst, setBurst, content, today, siblingName, findChild, noKids, stageBadge, persist, scrollAfterRender } from '../ui.js';
+import { state, burst, setBurst, content, today, siblingName, findChild, noKids, stageBadge, persist, keepData, scrollAfterRender } from '../ui.js';
 
 export function viewBurst(id) {
   const c = findChild(id);
@@ -197,6 +197,7 @@ function stopBurst() {
 
 function finishBurst() {
   burst.record = recordBurst(false);
+  if (burst.record) keepData();
   burst.phase = 'done';
 }
 
