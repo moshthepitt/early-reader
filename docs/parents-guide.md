@@ -2,7 +2,7 @@
 
 Early Reader helps you teach your own 3- to 5-year-old to read, a few minutes at a time. I built it for my two. It works in English, on a phone or a laptop. Everything you put in it is saved on your device, and there is no server for it to go to.
 
-You run it. The screen tells you what to say and what to show, and keeps track of what each child knows. Your child works with paper cards, letter tiles and a pencil, and with you.
+You run it. The screen tells you what to say and what to show, and keeps track of what each child knows. In a burst, the bright card at the top is for your child to look at; tap it to fill the screen. The rest is paper cards, letter tiles, a pencil and you.
 
 ## What you need
 
@@ -15,11 +15,11 @@ You run it. The screen tells you what to say and what to show, and keeps track o
 
 **1. Add your children.** Open the Kids tab and add each child with their first name and birth month. Most 3-year-olds start at stage 1. A 4-year-old who already knows several letter sounds can start at stage 2. You can change the stage at any time.
 
-**2. Print a few things.** On the Print tab, print the letter cards for the letters your child has met (at the very start, print "next 8 letters") and a sheet of letter tiles. When the app checks a letter, cover the picture on the card with your thumb, or use the cards without pictures. Card lasts longer than paper. Cut along the dotted lines. No printer? Save the page as a PDF from the print screen and take it to a cyber, or copy the letters onto cut-up cereal boxes with a marker.
+**2. Print a few things.** On the Print tab, print letter cards for the letters your child has met. At the very start, print "Letter cards: next 8 letters" and "Letter tiles: all single letters". When the app checks a letter, cover the picture on the card with your thumb, or use the cards without pictures. Card lasts longer than paper. Cut along the dashed lines. No printer? Save the page as a PDF from the print screen and take it to a cyber, or copy the letters onto cut-up cereal boxes with a marker.
 
 **3. Learn to say the sounds.** This part is for you, and it matters more than it looks. Letters have names ("em") and sounds ("mmm"). Reading runs on the sounds, said short and clean. Many of us add an "uh" without noticing - "muh" instead of "mmm", "tuh" instead of a quick "t" - and that "uh" makes blending much harder for a child. The Sounds tab shows how to say each one. They can feel strange at first. Try a few, record yourself and listen back.
 
-Accents differ, and that's fine. Say the sounds in the English you speak, short and clean. If two words in a game sound the same to you, tap Skip and move on. When you talk about books, use whichever language your family knows best.
+Accents differ, and that's fine. Say the sounds in the English you speak, short and clean. If two words in a game sound the same to you, move on: tap "Skip (nothing saved)", or "Done, next" in a game that isn't scored. When you talk about books, use whichever language your family knows best.
 
 ## Every day: two kinds of time
 
@@ -51,19 +51,19 @@ On the Today tab, tap "Start a 2-minute burst". Your child picks the card game o
 2. Tap **Right first try** or **Needed help**. Only the first try counts. A pause to think is fine: if their first answer was right and you didn't help, it's right first try.
 3. After a miss, the app shows you what to say. Show them, let them say it with you, and move on.
 
-Rhyme time and Clap the beats aren't scored. You show them first, then play together, and tap "Done, next". If you're not sure how to run a game, or it doesn't suit today, tap **Skip**. Nothing is saved for that turn.
+Rhyme time and Clap the beats aren't scored: you show them first, play together, then tap "Done, next". On a scored game you're not sure how to run, or that doesn't suit today, tap "Skip (nothing saved)". The checks with new words and monster names have no Skip.
 
-The app decides what comes up: letters due for review, at most one new thing, and an easy win at the end. A letter counts as known once your child gets it right first try on two different days. On a day they needed help with it, a right answer later that day is practice; the app checks again tomorrow.
+The app decides what comes up: reviews that are due, at most one new letter, and an easy win at the end. From stage 3 a burst can also bring a new word to sound out, and from stage 4 a new tricky word. A letter counts as known once your child gets it right first try on two different days. On a day they needed help with it, a right answer later that day is practice; the app checks again tomorrow.
 
 Keep each child's bursts separate. A younger sibling listening in is fine; they often pick things up that way.
 
 ## When it gets hard
 
-Stop when they're upset. Tears, refusal, or two misses in a row mean it's time to finish on something easy. The Stop button does exactly that. Pick it up again later or tomorrow.
+Stop when they're upset. Tears, refusal, or two misses in a row mean it's time to finish on something easy. After two misses the app offers "Finish now", and "Stop (tired or upset)" does the same at any time. Pick it up again later or tomorrow.
 
-A break is fine. Weeks, even months. If the games aren't working yet, pause the bursts (Kids, "Paused") and keep story time going: talk about the book, run your finger under a line, and point out a letter from their name. Then try an easy game again in a few weeks. After two weeks or more away, the first day back is review only, with no new letters. Letters usually return quickly.
+A break is fine. Weeks, even months. If the games aren't working yet, pause the bursts (on the Kids tab, tick "Paused (taking a break)" and save) and keep story time going: talk about the book, run your finger under a line, and point out a letter from their name. Then try an easy game again in a few weeks. After two weeks or more away, the first day back has no new letters or tricky words. Letters usually return quickly.
 
-Aim for about 8 right out of 10. The Progress tab shows this for the week. Much lower than that and the work is too hard: slow down. Always perfect and you can add letters faster (Settings, "new letters per week").
+Aim for about 8 right out of 10. The Progress tab shows this for the week. Much lower than that and the work is too hard: slow down. Always perfect and you can add letters faster (Settings, "New letters per week").
 
 Praise the work, not the child. "You said each sound and slid them together" helps more than "You're so clever". The scripts suggest lines like this after each right answer.
 
@@ -75,13 +75,13 @@ Don't mistake memory for reading. Children are good at memorising favourite book
 
 ## The four stages
 
-**Stage 1: sound play** (often age 3). Listening games with no letters: rhyming and clapping the beats in words, which you play together, spotting which picture starts with a different sound, and "robot talk" ("Listen to the robot: mmm ... at." "Mat!"). Plus the letters in their own name. Moves on when they can hear first sounds reliably over several days and know the first letter of their name.
+**Stage 1: sound play** (often age 3). Listening games with no letters: rhyming and clapping the beats in words, which you play together, spotting which picture starts with a different sound, and "robot talk" ("Listen to the robot: mmm ... at." "Mat!"). Plus the letters in their own name. Moves on when they pick out first sounds right 6 times in their last 8 tries, on at least 3 days, and know the sound of the first letter of their name.
 
-**Stage 2: letter sounds** (late 3 to 4). Letter names and sounds together, two to four new letters a week. Each is taught with a picture; checks show the letter alone. Moves on at about 12 known letter sounds, including at least two vowels (a, e, i, o, u).
+**Stage 2: letter sounds** (late 3 to 4). Letter names and sounds together, two to four new letters a week. Each is taught with a picture; checks show the letter alone. Moves on at 12 known letter sounds, including at least two vowels (a, e, i, o, u).
 
-**Stage 3: blending** (around 4, often later). Sounding out short words like "sat", "mat" and "fun", holding each sound into the next: "sssaaat". Building words with tiles. Moves on when they can sound out words they have never seen, most of the time, on several days.
+**Stage 3: blending** (around 4, often later). Sounding out short words like "sat", "mat" and "fun", holding each sound into the next: "sssaaat". Building words with tiles. Moves on when they get 5 of their last 6 new-word checks right, on at least 3 different days.
 
-**Stage 4: first reading.** Tricky words that don't sound like their letters ("the", "was", "said"), two-letter sounds (sh, ch, th, ee, oo) and short sentences and stories. The Texts tab lists the ones your child can read right now, and the Print tab turns them into little booklets they can illustrate.
+**Stage 4: first reading.** Tricky words that don't sound like their letters ("the", "was", "said"), two-letter sounds (sh, ch, th, ee, oo) and short sentences and stories. The Texts tab lists the ones your child can read right now. Tap "Print booklet" under a story to make a little booklet they can illustrate.
 
 The app suggests when a child looks ready to move up. You decide.
 
@@ -90,7 +90,7 @@ The app suggests when a child looks ready to move up. You decide.
 You don't need AI to use Early Reader. Two features use it, and in both you stay in charge:
 
 - **Questions for a book.** On the Story time tab, type a book's title (and, if you like, a note on what happens on each page). The app writes a prompt you copy into whatever AI chat tool you use. Read what comes back before using it - AI sometimes invents details about books it doesn't know.
-- **New practice stories.** On the Texts tab, the app writes a prompt that lists the only words your child can read. Paste the story you get back into "Check a text". Every word is checked against what your child has been taught, and AI breaks these rules often, so swap out anything marked red.
+- **New practice stories.** On the Texts tab, the app writes a prompt that lists the only words your child can read. Paste the story you get back into "Check a text". Every word is checked against what your child has been taught, and AI breaks these rules often. Swap out anything marked red (not ready yet) or yellow (not in the app's word list, so it can't be checked).
 
 The app removes your children's names from these prompts. Don't type other personal details into them.
 
@@ -100,7 +100,7 @@ One firm rule: AI is for you, not your child. Common Sense Media advises no AI c
 
 Everything you put into Early Reader is saved on your device, in your browser: your children's names, their progress and any sounds you record. There is no Early Reader server and no account, so there is nowhere for any of it to be sent. [How it works](how-it-works.md) explains this in full.
 
-The catch: if you clear your browser data or lose the phone, it's gone. Use Settings, "Export backup" now and then. A backup file restores everything, recordings included.
+The catch: if you clear your browser data or lose the phone, it's gone. Use Settings, "Export backup" now and then. A backup file restores everything, recordings included. If the recordings can't be read or saved, the app tells you.
 
 ## What to expect
 
