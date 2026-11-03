@@ -40,7 +40,8 @@ export function printHtml(html) {
 
 function makePrint(what, childId) {
   const c = childId ? findChild(childId) : null;
-  const order = c ? session.teachingOrder(c) : G.BASE_ORDER;
+  // At stage 1 the app teaches the letters in the child's name first, so "next 8" starts there too.
+  const order = !c ? G.BASE_ORDER : c.stage <= 1 ? [...new Set([...session.nameGraphemes(c.name), ...session.teachingOrder(c)])] : session.teachingOrder(c);
   const intro = c ? [...session.soundsIntroduced(c)] : [];
   switch (what) {
     case 'letters-met':
