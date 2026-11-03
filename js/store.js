@@ -3,6 +3,7 @@
 // unless the parent exports a backup file themselves.
 
 import { uid, dayKey } from './util.js';
+import { GRAPHEME_MAP } from './data/en.js';
 
 const KEY = 'early-reader-v1';
 const PREV_KEY = 'early-reader-v1-previous';
@@ -109,6 +110,8 @@ function dates(v, max = 400) {
 
 function cleanItem(it) {
   if (!it || typeof it !== 'object' || !ITEM_KINDS.has(it.kind) || typeof it.key !== 'string' || !KEY_RE.test(it.key)) return null;
+  // Letters must be ones the app teaches, or building a burst fails on them later.
+  if ((it.kind === 'sound' || it.kind === 'name') && !Object.prototype.hasOwnProperty.call(GRAPHEME_MAP, it.key)) return null;
   return {
     id: `${it.kind}:${it.key}`,
     kind: it.kind,

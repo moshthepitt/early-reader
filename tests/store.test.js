@@ -113,3 +113,13 @@ test('the date of the last miss survives a backup, and older saves get one', () 
   assert.equal(items['sound:a'].lastMissed, '2026-01-03', 'older saves: a last miss dates from the last day seen');
   assert.equal(items['sound:t'].lastMissed, null);
 });
+
+test('import drops letters the app does not teach, which would break a burst', () => {
+  const child = store.newChild({ name: 'Kim', stage: 4 });
+  child.items['sound:s'] = { kind: 'sound', key: 's' };
+  child.items['name:banana'] = { kind: 'name', key: 'banana' };
+  child.items['sound:constructor'] = { kind: 'sound', key: 'constructor' };
+  const items = store.importJson(JSON.stringify({ children: [child] })).state.children[0].items;
+  assert.deepEqual(Object.keys(items), ['sound:s']);
+});
+
