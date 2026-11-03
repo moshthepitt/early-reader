@@ -54,7 +54,7 @@ export const actions = {
         ui.recorded.add(g);
       }
     } catch (err) {
-      alert('Could not record. Check that your browser has permission to use the microphone.');
+      alert(err && err.name === 'NotFoundError' ? 'Could not record: this device has no microphone the browser can use.' : 'Could not record. Check that your browser has permission to use the microphone.');
     }
     ui.recording = null;
     rerender();
