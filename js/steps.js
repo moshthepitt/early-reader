@@ -451,6 +451,22 @@ export function readTextStep(child, sentence, siblingName) {
   };
 }
 
+// A name's first letter often says something other than the sound we teach for it:
+// vowels (Imani, Ian, Ivy, Eunice, Amos, Owen), c, g, x and y (Cynthia, George, Xavier,
+// Yvonne), and a letter followed by h (Chebet, Shiro, Philip). Then the card names the
+// letter and the parent says the name the way they always do.
+function nameSoundIsTaught(name, g) {
+  if (!g || VOWELS.includes(g) || ['c', 'g', 'x', 'y'].includes(g)) return false;
+  const plain = name.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/^[^\p{L}]+/u, '');
+  return plain[g.length] !== 'h';
+}
+
+// "Ch-ch-Chebet", "I-i-Imani": the start of a name, bounced, for the parent to say their way.
+function bounceName(name) {
+  const start = /^(ch|sh|th|ph|wh)/i.test(name) ? name.slice(0, 2) : name[0];
+  return `${start}-${start.toLowerCase()}-${name}`;
+}
+
 export function nameCardStep(child) {
   const g = nameInitial(child.name);
   const x = g ? GRAPHEME_MAP[g] : null;
@@ -459,9 +475,14 @@ export function nameCardStep(child) {
     title: 'My name',
     child: { text: child.name },
     script: [
-      `Show their name. Say: "This says ${child.name}! Your name."`,
-      x ? `Point to the first letter: "This is '${x.name}'. It says ${x.say}."` : 'Point to the first letter and name it.',
-      'Let them point to it and say it too.',
+      `Point to their name. Say: "This says ${child.name}. Your name!"`,
+      x ? `Point to the first letter. Say: "This is '${x.name}'. It's the first letter of ${child.name}."` : 'Point to the first letter and say its name.',
+      ...(!x
+        ? []
+        : nameSoundIsTaught(child.name, g)
+          ? [`Say: "${sayFirst(child.name)}. ${child.name} starts with ${sound(x)}."`]
+          : [`Say their name slowly, the way you always say it: "${bounceName(child.name)}."`]),
+      'Let them point to the first letter and say it too.',
     ],
     scored: false,
   };

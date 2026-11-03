@@ -7,6 +7,7 @@ import * as C from '../js/data/en-content.js';
 import { buildLexicon, checkText } from '../js/decodable.js';
 import { newChild } from '../js/store.js';
 import * as session from '../js/session.js';
+import * as steps from '../js/steps.js';
 import * as progress from '../js/progress.js';
 import { addDays, daysBetween, makeRng, weekStart } from '../js/util.js';
 import * as S from '../js/scheduler.js';
@@ -241,4 +242,13 @@ test('a burst that showed the name card finishes on something else', () => {
     const names = plan.steps.filter((s) => s.child && s.child.text === 'Kim').length;
     assert.equal(names, 1, `name card count with seed ${seed}`);
   }
+});
+
+test('the name card only claims a first sound the name really starts with', () => {
+  for (const name of ['Chebet', 'Shiro', 'George', 'Imani', 'Cynthia', 'Philip']) {
+    const card = steps.nameCardStep(newChild({ name, stage: 1 })).script.join(' ');
+    assert.doesNotMatch(card, /starts with/, `${name}: ${card}`);
+  }
+  const kelvin = steps.nameCardStep(newChild({ name: 'Kelvin', stage: 1 })).script.join(' ');
+  assert.match(kelvin, /K-k-Kelvin\. Kelvin starts with k\./);
 });
