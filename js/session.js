@@ -291,9 +291,17 @@ export function buildBurst({ child, content, today, rng = Math.random, variant =
   }
 
   if (stage >= 4) {
-    takeDue(['sound', 'name'], 1).forEach(pushLetter);
+    // Two letter slots, as in stage 3: the weakest due letter and the one that has
+    // waited longest. With one slot, letters learned long ago could wait months behind
+    // newer ones. A burst with a new letter keeps one slot, so it stays short.
+    const letters = takeDue(['sound', 'name'], 2);
+    if (letters[0]) pushLetter(letters[0]);
     // Remaining letters and the two-letter sounds (sh, ch, th, ck, ee, oo...).
-    tryIntroduceSound(perWeek);
+    const introduced = tryIntroduceSound(perWeek);
+    if (letters[1]) {
+      if (introduced) used.delete(letters[1].id);
+      else pushLetter(letters[1]);
+    }
     const dueTricky = takeDue(['tricky'], 1);
     if (dueTricky.length) {
       steps.push(trickyStep(dueTricky[0]));

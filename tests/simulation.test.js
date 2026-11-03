@@ -190,6 +190,16 @@ test('letters that keep failing do not crowd out an overdue review', () => {
   assert.ok(letters.includes('m'), `overdue m should get a turn, got ${letters}`);
 });
 
+test('at stage 4 a letter that keeps failing does not crowd out an overdue one', () => {
+  const child = newChild({ name: 'Kim', stage: 4 });
+  for (const g of G.BASE_ORDER) child.items[S.itemId('sound', g)] = { ...S.newItem('sound', g, '2026-01-01'), box: 5, goodDays: ['a', 'b', 'c'], lastResult: true, due: '2026-03-01' };
+  child.items[S.itemId('sound', 'b')] = { ...child.items[S.itemId('sound', 'b')], box: 0, lastResult: false, lastSeen: '2026-02-01', lastMissed: '2026-02-01', due: '2026-02-01' };
+  child.items[S.itemId('sound', 'm')] = { ...child.items[S.itemId('sound', 'm')], box: 6, due: '2026-01-07' };
+  const plan = session.buildBurst({ child, content, today: '2026-02-01', rng: makeRng(3), variant: 'cards' });
+  const letters = plan.steps.filter((s) => s.type === 'letter-sound').map((s) => s.child.big);
+  assert.deepEqual(letters.sort(), ['b', 'm']);
+});
+
 test('the first day back after a break is review only', () => {
   const child = newChild({ name: 'Kim', stage: 2 });
   for (const g of ['s', 'a', 't', 'p']) child.items[S.itemId('sound', g)] = { ...S.newItem('sound', g, '2026-01-01'), box: 3, goodDays: ['2026-01-01', '2026-01-02'], lastResult: true, due: '2026-01-09' };
