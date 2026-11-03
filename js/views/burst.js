@@ -100,7 +100,10 @@ function childCard(step) {
       .map((o) => (o.letter ? `<div class="choice letter">${h(o.letter)}</div>` : `<div class="choice"><span class="ce">${h(o.emoji)}</span><span class="cl">${h(o.label)}</span></div>`))
       .join('')}</div>`;
   }
-  if (c.reveal) {
+  // After a miss: pictures to point to, an easier way in.
+  if (c.pair && burst.phase === 'model') {
+    inner += `<div class="choices">${c.pair.map((e) => `<div class="choice"><span class="ce">${h(e)}</span></div>`).join('')}</div>`;
+  } else if (c.reveal) {
     inner += burst.revealed ? `<div class="big-emoji reveal">${h(c.reveal)}</div>` : `<button class="reveal-btn" data-action="reveal">Show picture</button>`;
   }
   if (c.sub) inner += `<div class="sub">${h(c.sub)}</div>`;

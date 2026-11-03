@@ -38,7 +38,7 @@ export const SOUND_PROMPTS = [
   'Pick two things on the page that start with the same sound: "sun... sock... sss!"',
   'Say a word from the page slowly, stretching the first sound: "mmmoon". Ask: "What sound does it start with?"',
   'Find a rhyme in the book and pause before it so they say it.',
-  'Robot talk a word from the picture: "d-o-g". "What did I say?"',
+  'Say "Listen to the robot", then say a word from the picture in parts: "d-o-g".',
   'Clap the beats of a character\'s name together.',
 ];
 
