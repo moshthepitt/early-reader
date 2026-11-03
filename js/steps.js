@@ -105,19 +105,21 @@ export function letterNameStep(child, item) {
   };
 }
 
+// Rhyme is played together, not scored: it isn't needed before letters and sounds
+// (Brady 2020). Show one first, then let them try (Letters and Sounds, Phase One).
 export function rhymeStep(child, content, rng) {
-  const r = pick(content.C.RHYME_SETS, rng);
+  const [m, r] = shuffle(content.C.RHYME_SETS, rng);
   const [first, second] = shuffle([r.b, r.odd], rng);
   return {
     type: 'rhyme',
     title: 'Rhyme time',
     child: { sub: `${r.a} ... ${first} or ${second}?` },
-    script: [`Say: "Which one rhymes with ${r.a}: ${first} or ${second}?"`, `Say the words slowly. Keep it playful.`],
-    answer: r.b,
-    model: [`Say: "${r.a}, ${r.b}. They sound the same at the end. They rhyme!"`, `Then: "${r.a}, ${r.odd}. Not the same."`],
-    praise: 'listen',
-    scored: true,
-    skill: 'rhyme',
+    script: [
+      `Show them first: "${m.a}, ${m.b}. They rhyme. They sound the same at the end."`,
+      `Then ask: "Which one rhymes with ${r.a}: ${first} or ${second}?" (It's ${r.b}.)`,
+      'Say the words slowly. If they aren\'t sure, say the rhyme together. Keep it playful.',
+    ],
+    scored: false,
   };
 }
 

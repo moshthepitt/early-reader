@@ -102,8 +102,12 @@ function introducedToday(items, kind, today) {
 }
 
 // Share of first-try successes over the last n scored attempts in the log.
+// Rhyme is played together now. Results saved while it was scored don't count, so
+// a child still learning to hear rhymes isn't held back.
+const counts = (e) => e.scored && e.type !== 'rhyme';
+
 function recentAccuracy(log, n = 12) {
-  const recent = log.filter((e) => e.scored).slice(-n);
+  const recent = log.filter(counts).slice(-n);
   if (!recent.length) return null;
   return recent.filter((e) => e.correct).length / recent.length;
 }
@@ -118,7 +122,7 @@ export function canIntroduce({ items, log, kind, today, perWeek, maxShaky = 3, m
   const shaky = itemsOfKind(items, kind).filter((it) => !isKnown(it)).length;
   if (shaky >= maxShaky) return { ok: false, reason: `${shaky} still being learned. Review first.` };
   const acc = recentAccuracy(log);
-  const scoredCount = log.filter((e) => e.scored).length;
+  const scoredCount = log.filter(counts).length;
   if (acc !== null && scoredCount >= 5 && acc < minAccuracy) {
     return { ok: false, reason: `Recent success ${Math.round(acc * 100)}%. Aim for about 80% before adding more.` };
   }
