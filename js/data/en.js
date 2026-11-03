@@ -10,27 +10,28 @@ export const LANGUAGE = 'en';
 
 // continuous: the sound can be held ("mmm") which makes blending easier.
 // nameHasSound: the letter name contains the sound ("em" has /m/).
-// say: how the parent should say the sound. Short and clean, never with an added "uh".
+// say: the sound itself, as the parent says it inside a script line. Short and clean,
+// never with an added "uh". How to make it goes in the tip, never in say.
 // kpos: where the sound is in the keyword (default 'start'): "duck" ends with ck.
 export const GRAPHEMES = [
   { g: 's', sound: '/s/', say: 'sss', name: 'ess', nameHasSound: true, continuous: true, keyword: 'snake', emoji: '🐍', tip: 'Hiss like a snake: "sssss". Teeth together. Not "suh".' },
-  { g: 'a', sound: '/a/', say: 'a (as in apple)', name: 'ay', nameHasSound: false, continuous: true, keyword: 'apple', emoji: '🍎', tip: 'Short "a" as in "at" and "apple". Not the letter name "ay".' },
+  { g: 'a', sound: '/a/', say: 'a', name: 'ay', nameHasSound: false, continuous: true, keyword: 'apple', emoji: '🍎', tip: 'Short "a" as in "at" and "apple". Not the letter name "ay".' },
   { g: 't', sound: '/t/', say: 't', name: 'tee', nameHasSound: true, continuous: false, keyword: 'tiger', emoji: '🐯', tip: 'Quick, whispered "t" from the tip of the tongue. Not "tuh".' },
   { g: 'm', sound: '/m/', say: 'mmm', name: 'em', nameHasSound: true, continuous: true, keyword: 'mouse', emoji: '🐭', tip: 'Lips together and hum: "mmmm". Not "muh".' },
-  { g: 'i', sound: '/i/', say: 'i (as in insect)', name: 'eye', nameHasSound: false, continuous: true, keyword: 'insect', emoji: '🐞', tip: 'Short "i" as in "it" and "insect". Not the letter name "eye".' },
+  { g: 'i', sound: '/i/', say: 'i', name: 'eye', nameHasSound: false, continuous: true, keyword: 'insect', emoji: '🐞', tip: 'Short "i" as in "it" and "insect". Not the letter name "eye".' },
   { g: 'n', sound: '/n/', say: 'nnn', name: 'en', nameHasSound: true, continuous: true, keyword: 'nose', emoji: '👃', tip: 'Tongue behind top teeth and hum through the nose: "nnnn". Not "nuh".' },
   { g: 'p', sound: '/p/', say: 'p', name: 'pee', nameHasSound: true, continuous: false, keyword: 'pig', emoji: '🐷', tip: 'Small puff of air from the lips. Hold a hand in front of the mouth to feel it. Not "puh".' },
-  { g: 'o', sound: '/o/', say: 'o (as in octopus)', name: 'oh', nameHasSound: false, continuous: true, keyword: 'octopus', emoji: '🐙', tip: 'Short "o" as in "on" and "octopus". Not the letter name "oh".' },
+  { g: 'o', sound: '/o/', say: 'o', name: 'oh', nameHasSound: false, continuous: true, keyword: 'octopus', emoji: '🐙', tip: 'Short "o" as in "on" and "octopus". Not the letter name "oh".' },
   { g: 'd', sound: '/d/', say: 'd', name: 'dee', nameHasSound: true, continuous: false, keyword: 'dog', emoji: '🐶', tip: 'Quick "d" from the tip of the tongue. Keep it short. Not "duh".' },
   { g: 'f', sound: '/f/', say: 'fff', name: 'ef', nameHasSound: true, continuous: true, keyword: 'fish', emoji: '🐟', tip: 'Top teeth on bottom lip and blow: "ffff". Not "fuh".' },
   { g: 'l', sound: '/l/', say: 'lll', name: 'el', nameHasSound: true, continuous: true, keyword: 'lion', emoji: '🦁', tip: 'Tongue tip up behind the top teeth: "llll". Not "luh".' },
-  { g: 'e', sound: '/e/', say: 'e (as in egg)', name: 'ee', nameHasSound: false, continuous: true, keyword: 'egg', emoji: '🥚', tip: 'Short "e" as in "egg" and "bed". Not the letter name "ee".' },
+  { g: 'e', sound: '/e/', say: 'e', name: 'ee', nameHasSound: false, continuous: true, keyword: 'egg', emoji: '🥚', tip: 'Short "e" as in "egg" and "bed". Not the letter name "ee".' },
   { g: 'g', sound: '/g/', say: 'g', name: 'jee', nameHasSound: false, continuous: false, keyword: 'goat', emoji: '🐐', tip: 'Hard "g" from the back of the throat, as in "goat". Short. Not "guh". The name "jee" does not help here.' },
-  { g: 'c', sound: '/k/', say: 'k (as in cat)', name: 'see', nameHasSound: false, continuous: false, keyword: 'cat', emoji: '🐱', tip: 'Same sound as k: a short click from the back of the throat. Not "kuh". The name "see" does not help here.' },
+  { g: 'c', sound: '/k/', say: 'k', name: 'see', nameHasSound: false, continuous: false, keyword: 'cat', emoji: '🐱', tip: 'Same sound as k: a short click from the back of the throat. Not "kuh". The name "see" does not help here.' },
   { g: 'k', sound: '/k/', say: 'k', name: 'kay', nameHasSound: true, continuous: false, keyword: 'key', emoji: '🔑', tip: 'Short click from the back of the throat, same as c. Not "kuh".' },
   { g: 'r', sound: '/r/', say: 'rrr', name: 'ar', nameHasSound: false, continuous: true, keyword: 'rabbit', emoji: '🐰', tip: 'Growl gently like a dog: "rrrr". Not "ruh".' },
   { g: 'h', sound: '/h/', say: 'h', name: 'aitch', nameHasSound: false, continuous: false, keyword: 'hat', emoji: '🎩', tip: 'A quick breath out, like fogging a mirror. Not "huh".' },
-  { g: 'u', sound: '/u/', say: 'u (as in up)', name: 'you', nameHasSound: false, continuous: true, keyword: 'umbrella', emoji: '☂️', tip: 'Short "u" as in "up" and "umbrella". Not the letter name "you".' },
+  { g: 'u', sound: '/u/', say: 'u', name: 'you', nameHasSound: false, continuous: true, keyword: 'umbrella', emoji: '☂️', tip: 'Short "u" as in "up" and "umbrella". Not the letter name "you".' },
   { g: 'b', sound: '/b/', say: 'b', name: 'bee', nameHasSound: true, continuous: false, keyword: 'ball', emoji: '⚽', tip: 'Lips together, then a quick pop. Short. Not "buh".' },
   { g: 'j', sound: '/j/', say: 'j', name: 'jay', nameHasSound: true, continuous: false, keyword: 'juice', emoji: '🧃', tip: 'Short "j" as in "jam". Not "juh".' },
   { g: 'v', sound: '/v/', say: 'vvv', name: 'vee', nameHasSound: true, continuous: true, keyword: 'van', emoji: '🚐', tip: 'Top teeth on bottom lip and buzz: "vvvv". Not "vuh".' },
