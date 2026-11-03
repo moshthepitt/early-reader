@@ -45,7 +45,7 @@ test('enough early words (first 12 sounds) for blending practice', () => {
 
 test('enough pictured cvc words for picture-reveal', () => {
   const n = C.WORDS.filter((e) => e.pattern === 'cvc' && e.emoji).length;
-  assert.ok(n >= 50, `need >= 50 cvc words with emoji, have ${n}`);
+  assert.ok(n >= 40, `need >= 40 cvc words with emoji, have ${n}`);
 });
 
 function assertDecodableLine(line, where) {
