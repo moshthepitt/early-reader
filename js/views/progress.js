@@ -15,7 +15,7 @@ export function viewProgress(arg) {
     'first-sound': 'Hears first sounds',
     'oral-blend': 'Blends spoken sounds',
     'blend-unseen': 'Sounds out new words',
-    spelling: 'Builds words with tiles',
+    build: 'Builds words by sound',
     text: 'Reads sentences',
   };
   const skills = Object.entries(skillNames)

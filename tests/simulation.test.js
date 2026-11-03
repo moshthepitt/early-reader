@@ -293,3 +293,13 @@ test('a word built with tiles never comes back as a new-word check', () => {
     for (const s of plan.steps.filter((x) => x.type === 'blend-check')) assert.notEqual(s.seenWord, 'mat', `seed ${seed}`);
   }
 });
+
+test('spare tiles never sound or look like a letter in the word', () => {
+  const child = newChild({ name: 'Kim', stage: 3 });
+  for (const g of ['s', 'a', 't', 'p', 'i', 'n', 'm', 'd', 'c', 'k', 'u', 'b']) child.items[S.itemId('sound', g)] = S.newItem('sound', g, '2026-01-01');
+  for (let seed = 1; seed <= 50; seed++) {
+    const tiles = steps.spellStep(child, content, content.lexicon.get('cat'), makeRng(seed)).script[0].replace(/^.*mixed up: |\.$/g, '').split(', ');
+    assert.deepEqual(tiles.filter((t) => ['k', 'u'].includes(t)), [], `cat with ${tiles}`);
+    assert.equal(tiles.length, 5);
+  }
+});

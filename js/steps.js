@@ -356,22 +356,45 @@ export function blendCheckStep(child, content, target, isNonword) {
   };
 }
 
-export function spellStep(child, content, wordEntry) {
+// Spare tiles never sound or look like a letter in the word, or the choice is unfair:
+// c and k say the same, a and u sound alike in many Kenyan voices, and b d p q, n u and
+// m w are easy to turn into each other.
+const TILE_PARTNERS = [['c', 'k'], ['a', 'u'], ['b', 'd', 'p', 'q'], ['n', 'u'], ['m', 'w']];
+
+// Build it with tiles: the word's tiles plus up to two others the child has met. It is
+// right first try when the tiles, read back with the family's own sounds, say the word
+// ("kat" for "cat" counts), as researchers score early spelling (Hofslundsengen et al.
+// 2016; Treiman & Wolter 2020). The book spelling is shown afterwards either way, as in
+// the invented-spelling trials (Ouellette & Senechal 2008). Two spares is our judgement.
+export function spellStep(child, content, wordEntry, rng = Math.random) {
+  const inWord = new Set(wordEntry.gs);
+  const clash = (g) => [...inWord].some((x) => x === g || TILE_PARTNERS.some((p) => p.includes(x) && p.includes(g)));
+  const met = shuffle([...soundsIntroduced(child)].filter((g) => g.length === 1 && !clash(g)), rng);
+  const spares = [met.find((g) => VOWELS.includes(g)), met.find((g) => !VOWELS.includes(g))].filter(Boolean);
+  const tiles = shuffle([...wordEntry.gs, ...spares], rng);
+  const w = wordEntry.w;
+  const other = w.replace(/[ck]/, (m) => (m === 'c' ? 'k' : 'c'));
   return {
     type: 'spell-word',
     title: 'Build it with tiles',
     child: { emoji: wordEntry.emoji || '👂' },
     script: [
-      `Say: "Can you make ${wordEntry.w} with your tiles? Say it slowly first."`,
-      'Let them pick a tile for each sound. Then show the right spelling and praise the sounds they got.',
+      `Put out these tiles, mixed up: ${tiles.join(', ')}.`,
+      `Say: "Can you make ${w} with your tiles? Say it slowly first."`,
+      'Let them pick a tile for each sound. Saying the word again is fine; saying its sounds for them counts as help.',
+      `When they're done, point under each tile and say its sound your way. If that says "${w}", it's right first try. Then show how it's spelt.`,
     ],
-    answer: wordEntry.w,
-    model: [`Say ${wordEntry.w} slowly together: "${sayList(wordEntry.gs)}".`, 'Find each tile with them, then point and read it back.'],
+    answer: other !== w ? `${w} (${other} counts too)` : w,
+    model: [
+      'Praise a sound they got right.',
+      `Keep the right tiles. Say ${w} slowly together, "${sayList(wordEntry.gs)}", and find the missing or wrong one.`,
+      'Point under each tile and read it back together.',
+    ],
     praise: 'spell',
     scored: true,
-    skill: 'spelling',
+    skill: 'build',
     // Once built with tiles, the word isn't new any more, so it can't come back as a new-word check.
-    seenWord: wordEntry.w,
+    seenWord: w,
   };
 }
 

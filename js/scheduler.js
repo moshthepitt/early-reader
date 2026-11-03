@@ -104,7 +104,9 @@ function introducedToday(items, kind, today) {
 // Share of first-try successes over the last n scored attempts in the log.
 // Rhyme and clapping are played together now. Results saved while they were scored
 // don't count, so a child who couldn't hear rhymes or clap beats yet isn't held back.
-const counts = (e) => e.scored && e.type !== 'rhyme' && e.type !== 'syllables';
+// Building words with tiles doesn't count either: spelling lags reading at this age
+// (Puranik & Lonigan 2011), so a missed build says little about readiness for a letter.
+const counts = (e) => e.scored && e.type !== 'rhyme' && e.type !== 'syllables' && e.type !== 'spell-word';
 
 function recentAccuracy(log, n = 12) {
   const recent = log.filter(counts).slice(-n);

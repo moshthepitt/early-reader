@@ -53,6 +53,8 @@ On the Today tab, tap "Start a 2-minute burst". Your child picks the card game o
 
 Rhyme time and Clap the beats aren't scored: you show them first, play together, then tap "Done, next". On a scored game you're not sure how to run, or that doesn't suit today, tap "Skip (nothing saved)". The checks with new words and monster names have no Skip.
 
+In "Build it with tiles", the screen lists the tiles to put out: the word's letters and two others. When your child is done, point under each tile and say its sound your way. If that says the word, it's right first try, even with a different letter for the same sound ("kat" for "cat"). Then show how the word is spelt. These builds don't hold back new letters.
+
 The app decides what comes up: reviews that are due, at most one new letter, and an easy win at the end. From stage 3 a burst can also bring a new word to sound out, and from stage 4 a new tricky word. A letter counts as known once your child gets it right first try on two different days. On a day they needed help with it, a right answer later that day is practice; the app checks again tomorrow.
 
 Keep each child's bursts separate. A younger sibling listening in is fine; some pick things up that way.

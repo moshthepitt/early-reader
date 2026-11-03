@@ -110,7 +110,7 @@ const DATE = /^\d{4}-\d{2}-\d{2}$/;
 const DATE_MONTH = /^\d{4}-(0[1-9]|1[0-2])$/;
 const KEY_RE = /^[A-Za-z' -]{1,24}$/;
 const ITEM_KINDS = new Set(['sound', 'name', 'word', 'tricky']);
-const SKILLS = new Set(['first-sound', 'rhyme', 'syllables', 'oral-blend', 'blend-unseen', 'spelling', 'text']);
+const SKILLS = new Set(['first-sound', 'rhyme', 'syllables', 'oral-blend', 'blend-unseen', 'spelling', 'build', 'text']);
 const MOODS = new Set(['keen', 'ok', 'low']);
 
 function clampInt(v, min, max, fallback) {
