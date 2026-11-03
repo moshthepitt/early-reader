@@ -278,27 +278,33 @@ export function firstSoundPickStep(child, content, rng) {
 // Say what to listen for before the sounds, so nothing comes between the sounds and
 // the answer (Letters and Sounds, Phase One). If it is too hard, programmes show the
 // answer, give two pictures to point to and use bigger parts (Phillips et al. 2008).
+// The picture stays hidden until they have answered, so it can't give the word away
+// and the two pictures after a miss are still a real choice.
 export function oralBlendStep(child, content, rng) {
   const words = content.C.WORDS.filter((w) => w.pattern === 'cvc' && w.emoji);
   const easyStart = words.filter((w) => GRAPHEME_MAP[w.gs[0]]?.continuous);
-  const [w, ex] = shuffle(easyStart.length > 1 ? easyStart : words, rng);
+  const w = pick(easyStart.length ? easyStart : words, rng);
   const chunks = child.stage <= 1;
-  const split = (x) => `${GRAPHEME_MAP[x.gs[0]].say.split(' (')[0]} ... ${x.w.slice(x.gs[0].length)}`;
-  const said = chunks ? split(w) : sayList(w.gs);
+  const onset = (x) => sound(GRAPHEME_MAP[x.gs[0]]);
+  const rime = (x) => x.w.slice(x.gs[0].length);
+  const split = `${onset(w)} ... ${rime(w)}`; // "mmm ... an"
+  const said = chunks ? split : sayList(w.gs);
   const other = pick(words.filter((x) => x.gs[0] !== w.gs[0] && x.emoji !== w.emoji), rng);
-  const big = pick(content.C.SYLLABLE_WORDS.filter((x) => x.n === 2), rng);
   return {
     type: 'oral-blend',
     title: 'Robot talk',
     child: { reveal: w.emoji, sub: 'Listen...', pair: shuffle([w.emoji, other.emoji], rng) },
-    script: [`Say: "Listen to the robot. What's the word?"`, `Then talk like a robot: "${said}".`, `${WAIT} Then tap the card to show the picture.`],
+    script: [
+      `Say: "Listen to the robot. What's the word?"`,
+      `Then talk like a robot: "${said}".`,
+      `Wait for their answer. If they get it, tap "Show picture" to check together.`,
+    ],
     tipTitle: 'How robot talk works',
-    tip: `Try one yourself first: "${chunks ? split(ex) : sayList(ex.gs)}" ... "${ex.w}". Hold sounds like mmm and sss, and keep the parts close together. Don't add "uh". If they get stuck, say it again closer together until it is the word.`,
+    tip: 'Hold sounds like mmm and sss, and keep the parts close together. Don\'t add "uh" between them. Try the robot voice quietly to yourself before you start.',
     answer: w.w,
     model: [
-      `Point to the two pictures. Say "${split(w)}" and let them point to the one the robot said.`,
-      `Then say it together, closer each time, until it is the word: "${w.w}!"`,
-      `Still hard? Try bigger parts another time, like "${big.parts.join(' ... ')}" ... "${big.w}".`,
+      `Point to the two pictures. Say: "${split}. Which one is it?"`,
+      `Then say it together, closer each time: "${split}", "${onset(w)}${rime(w)}", "${w.w}!"`,
     ],
     praise: 'listen',
     scored: true,
