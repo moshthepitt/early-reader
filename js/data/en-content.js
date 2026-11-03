@@ -314,13 +314,13 @@ bat=🦇 hat=👒 pig=🐷, pen=🖊️ ten=🔟 cup=🥤, feet=🦶 sweet=🍬 
 // Words split into spoken beats for the parent to model. These are how the word
 // sounds when said slowly, not a lesson in splitting written words.
 const SYLLABLE_TEXT = `
-dog=🐶 cat=🐱 sun=☀️ moon=🌙 fish=🐟 duck=🦆 pig=🐷 bed=🛏️ hat=🎩 bus=🚌
+dog=🐶 cat=🐱 sun=☀️ moon=🌙 fish=🐟 duck=🦆 pig=🐷 bed=🛏️ hat=👒 bus=🚌
 bee=🐝 frog=🐸 cake=🎂 tree=🌳 ap-ple=🍎 piz-za=🍕 rab-bit=🐰 ti-ger=🐯 li-on=🦁
-mon-key=🐒 chick-en=🐔 cook-ie=🍪 rain-bow=🌈 ro-bot=🤖 car-rot=🥕 tur-tle=🐢 ze-bra=🦓
-pan-da=🐼 pump-kin=🎃 do-nut=🍩 trac-tor=🚜 pen-guin=🐧 ba-na-na=🍌 el-e-phant=🐘
-but-ter-fly=🦋 to-ma-to=🍅 po-ta-to=🥔 di-no-saur=🦕 kan-ga-roo=🦘 oc-to-pus=🐙 um-brel-la=☂️
-tel-e-phone=☎️ bi-cy-cle=🚲 la-dy-bug=🐞 cat-er-pil-lar=🐛 wa-ter-mel-on=🍉 hel-i-cop-ter=🚁
-al-li-ga-tor=🐊 av-o-ca-do=🥑 lo-co-mo-tive=🚂
+mon-key=🐒 chick-en=🐔 bis-cuit=🍪 rain-bow=🌈 ro-bot=🤖 car-rot=🥕 tor-toise=🐢 ze-bra=🦓
+pan-da=🐼 man-go=🥭 dough-nut=🍩 trac-tor=🚜 pen-guin=🐧 ba-na-na=🍌 el-e-phant=🐘
+but-ter-fly=🦋 to-ma-to=🍅 po-ta-to=🥔 di-no-saur=🦕 co-co-nut=🥥 oc-to-pus=🐙 um-brel-la=☂️
+pine-ap-ple=🍍 bi-cy-cle=🚲 la-dy-bird=🐞 cat-er-pil-lar=🐛 wa-ter-mel-on=🍉 hel-i-cop-ter=🚁
+croc-o-dile=🐊 av-o-ca-do=🥑 mo-tor-cy-cle=🏍️
 `;
 
 const FIRST_SOUND_TEXT = `
