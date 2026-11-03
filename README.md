@@ -13,7 +13,7 @@ The screen is for the parent, apart from a bright card at the top of each step t
 
 Each day has two kinds of time:
 
-- **Story time** - one or two books, both kids together. The app gives you questions to ask, places to point at the words and sound games to play with the book. This builds vocabulary, and it matters as much as the letters.
+- **Story time** - one or two books, all the kids together. The app gives you questions to ask, places to point at the words and sound games to play with the book. This builds vocabulary, and it matters as much as the letters.
 - **Practice bursts** - two to four a day for each child, two or three minutes each, spread out. A burst mixes review with at most one new letter; from stage 3 it can also bring a new word to sound out. You read the script, the child answers, you tap "Right first try" or "Needed help". After a miss the app shows you what to model. Every burst ends on something easy, usually something the child knows well, and the Stop button ends early on an easy win.
 
 Each child moves through four stages at their own pace:
