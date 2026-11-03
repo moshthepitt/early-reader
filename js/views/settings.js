@@ -38,14 +38,16 @@ export async function importBackup(el) {
     store.snapshot();
     setState({ ...incoming, rev: state.rev });
     persist();
+    let recordingsSaved = true;
     try {
       await audio.importRecordings(recordings);
     } catch {
-      // Recordings are optional.
+      recordingsSaved = false;
     }
     await refreshRecorded();
     render();
-    notify('Backup restored.');
+    if (recordingsSaved) notify('Backup restored.');
+    else alert("Backup restored, but the voice recordings in it couldn't be saved on this device. You can record them again on the Sounds tab.");
   } catch (err) {
     alert(err.message);
   } finally {
@@ -56,10 +58,12 @@ export async function importBackup(el) {
 export const actions = {
   export: async () => {
     let recordings = {};
+    let recordingsMissing = false;
     try {
       recordings = await audio.exportRecordings();
     } catch {
-      recordings = {};
+      // Without IndexedDB nothing was ever recorded here, so nothing is missing.
+      recordingsMissing = typeof indexedDB !== 'undefined';
     }
     const blob = new Blob([store.exportJson(state, recordings)], { type: 'application/json' });
     const a = document.createElement('a');
@@ -67,7 +71,8 @@ export const actions = {
     a.download = `early-reader-backup-${today()}.json`;
     a.click();
     setTimeout(() => URL.revokeObjectURL(a.href), 1000);
-    notify('Backup file downloaded. Keep it somewhere safe.');
+    if (recordingsMissing) alert("Backup file downloaded, but without your voice recordings: they couldn't be read. Everything else is in it. Keep it somewhere safe.");
+    else notify('Backup file downloaded. Keep it somewhere safe.');
     return false;
   },
   reset: async () => {
