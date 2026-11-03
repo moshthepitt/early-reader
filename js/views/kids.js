@@ -37,7 +37,7 @@ export const actions = {
     const c = findChild(el.dataset.id);
     if (!c || !confirm(`Delete ${c.name} and all of their progress? This cannot be undone.`)) return false;
     state.children = state.children.filter((x) => x.id !== c.id);
-    persist();
+    if (!persist()) return false;
     notify(`Deleted ${c.name}.`);
   },
 };
@@ -47,8 +47,8 @@ export const forms = {
     if (state.children.length >= 6) return notify('You can add up to 6 children.'), false;
     const child = store.newChild({ name: data.get('name'), birth: data.get('birth'), stage: Number(data.get('stage')) || 1 });
     state.children.push(child);
-    persist();
-    if (findChild(child.id)) keepData();
+    if (!persist()) return false;
+    keepData();
     notify(`Added ${child.name}.`);
     location.hash = '#/today';
     return false;
@@ -59,7 +59,7 @@ export const forms = {
     c.birth = data.get('birth');
     c.stage = Number(data.get('stage')) || c.stage;
     c.paused = data.get('paused') === 'on';
-    persist();
+    if (!persist()) return false;
     notify(`Saved ${c.name}.`);
   },
 };

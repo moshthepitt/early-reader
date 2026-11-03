@@ -129,12 +129,12 @@ function applyStep(correct) {
   const c = findChild(burst.childId);
   const step = burst.plan.steps[burst.index];
   session.applyResult(c, step, correct, today());
-  persist();
+  return persist();
 }
 
 function answer(correct) {
   const step = burst.plan.steps[burst.index];
-  applyStep(correct);
+  if (!applyStep(correct)) return;
   burst.scored += 1;
   if (correct) {
     burst.correct += 1;
@@ -152,7 +152,7 @@ function answer(correct) {
 function next() {
   const step = burst.plan.steps[burst.index];
   if (burst.phase !== 'model' && !step.scored) {
-    applyStep(null);
+    if (!applyStep(null)) return;
     burst.lastPraise = '';
   }
   burst.phase = 'step';
@@ -198,8 +198,10 @@ function stopBurst() {
 }
 
 function finishBurst() {
-  burst.record = recordBurst(false);
-  if (burst.record) keepData();
+  const record = recordBurst(false);
+  if (!burst) return; // another tab's newer save replaced this burst
+  burst.record = record;
+  if (record) keepData();
   burst.phase = 'done';
 }
 
@@ -222,8 +224,7 @@ export function recordBurst(interrupted) {
     mood: null,
   };
   c.bursts = [...(c.bursts || []), record].slice(-500);
-  persist();
-  return record;
+  return persist() ? record : null;
 }
 
 export const actions = {

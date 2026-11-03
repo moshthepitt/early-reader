@@ -21,14 +21,15 @@ export function setRenderers(renderAll, renderScreen) {
   rerender = renderScreen;
 }
 
+// Returns false when another tab saved newer data first. Then this tab loads that
+// data instead, any burst in progress ends, and the caller should stop.
 export function persist() {
-  if (!store.save(state)) {
-    // Another tab saved newer data. Load it rather than overwrite it.
-    setState(store.load());
-    setBurst(null);
-    alert('Early Reader was updated in another tab. Showing the latest data; your last change here was not saved.');
-    render();
-  }
+  if (store.save(state)) return true;
+  setState(store.load());
+  setBurst(null);
+  alert('Early Reader was updated in another tab. Showing the latest data; your last change here was not saved.');
+  render();
+  return false;
 }
 
 // Ask the browser not to clear saved data when the phone runs low on space. Called

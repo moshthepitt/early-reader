@@ -39,7 +39,7 @@ export async function importBackup(el) {
     const before = state;
     setState({ ...incoming, rev: state.rev });
     try {
-      persist();
+      if (!persist()) return;
     } catch (err) {
       // Not saved (the phone may be full): keep showing what is really saved.
       setState(before);
@@ -86,7 +86,7 @@ export const actions = {
     if (!confirm('Delete all children, progress, settings and voice recordings from this device? If you are unsure, export a backup first.')) return false;
     store.snapshot();
     setState({ ...store.defaultState(), rev: state.rev });
-    persist();
+    if (!persist()) return false;
     try {
       await audio.clearRecordings();
     } catch {
@@ -101,7 +101,7 @@ export const actions = {
     const prev = store.restoreSnapshot();
     if (!prev || !confirm('Go back to the data from before the last import or delete?')) return false;
     setState({ ...prev, rev: state.rev });
-    persist();
+    if (!persist()) return false;
     notify('The earlier data is back.');
   },
 };
@@ -110,7 +110,7 @@ export const forms = {
   settings: (f, data) => {
     state.settings.newPerWeek = Number(data.get('newPerWeek'));
     state.settings.trickyPerWeek = Number(data.get('trickyPerWeek'));
-    persist();
+    if (!persist()) return false;
     notify('Settings saved.');
   },
 };
