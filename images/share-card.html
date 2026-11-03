@@ -1,0 +1,194 @@
+<!doctype html>
+<!-- The link preview shown by WhatsApp, X, Facebook and others.
+     Render it to share-card.png with: node scripts/render-share-card.cjs -->
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <style>
+      @font-face {
+        font-family: 'ER Letters';
+        font-weight: 700;
+        src: url('../fonts/er-letters-bold.woff2') format('woff2');
+      }
+      :root {
+        --bg: #faf3e6;
+        --card: #fffcf6;
+        --ink: #2b201a;
+        --muted: #66574b;
+        --line: #eadcc6;
+        --line-2: #dccab0;
+        --brand: #1e5a47;
+        --sun: #f2b33d;
+        --clay: #b9472a;
+        /* The woven zigzag from the app, at twice the size. */
+        --weave: conic-gradient(from -45deg at 50% 100%, var(--clay) 90deg, #0000 0) 0 0/24px 12px repeat-x,
+          conic-gradient(from 135deg at 50% 0, var(--clay) 90deg, #0000 0) 12px 12px/24px 12px repeat-x, var(--sun);
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+      }
+      .card {
+        position: relative;
+        overflow: hidden;
+        width: 1200px;
+        height: 630px;
+        background: var(--bg);
+        color: var(--ink);
+        font-family: 'ER Letters', sans-serif;
+        font-weight: 700;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding-top: 54px;
+      }
+      .card::before,
+      .card::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        right: 0;
+        height: 24px;
+        background: var(--weave);
+      }
+      .card::before {
+        top: 0;
+      }
+      .card::after {
+        bottom: 0;
+      }
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 18px;
+        font-size: 68px;
+        line-height: 1;
+        color: var(--brand);
+      }
+      .brand svg {
+        width: 72px;
+        height: 72px;
+      }
+      .page {
+        position: relative;
+        overflow: hidden;
+        margin-top: 34px;
+        width: 480px;
+        height: 270px;
+        background: var(--card);
+        border: 3px solid var(--line);
+        border-radius: 40px;
+        box-shadow: 0 7px 0 var(--line);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding-bottom: 26px;
+      }
+      .page::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        height: 20px;
+        background: var(--weave);
+      }
+      /* Sound buttons as beads on a string, as on the child's card in the app. */
+      .word {
+        position: relative;
+        display: flex;
+        gap: 0.15em;
+        font-size: 168px;
+        line-height: 1.1;
+      }
+      .word::after {
+        content: '';
+        position: absolute;
+        left: 0.1em;
+        right: 0.1em;
+        bottom: 0.095em;
+        height: 5px;
+        border-radius: 3px;
+        background: var(--line-2);
+      }
+      .word span {
+        position: relative;
+        z-index: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .word .v {
+        color: var(--clay);
+      }
+      .word i {
+        width: 0.22em;
+        height: 0.22em;
+        margin-top: 0.14em;
+        border-radius: 50%;
+        background: radial-gradient(circle at 32% 30%, #ffffff8c 0 14%, #0000 17%) currentColor;
+      }
+      h1 {
+        margin: 40px 0 0;
+        font-size: 46px;
+        line-height: 1.1;
+      }
+      p {
+        margin: 16px 0 0;
+        font-size: 29px;
+        color: var(--muted);
+        word-spacing: 2px;
+      }
+      p b {
+        color: var(--clay);
+        margin: 0 10px;
+      }
+      /* Letter tiles, like the printed ones the child holds. */
+      .tile {
+        position: absolute;
+        display: grid;
+        place-items: center;
+        width: 104px;
+        height: 104px;
+        padding-bottom: 8px;
+        background: var(--card);
+        border: 3px solid var(--line-2);
+        border-radius: 22px;
+        box-shadow: 0 6px 0 var(--line);
+        font-size: 72px;
+        line-height: 1;
+      }
+      .tile.v {
+        color: var(--clay);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <div class="tile" style="left: 92px; top: 92px; transform: rotate(-9deg)">m</div>
+      <div class="tile v" style="left: 210px; top: 232px; transform: rotate(7deg)">i</div>
+      <div class="tile" style="left: 70px; top: 360px; transform: rotate(-4deg)">n</div>
+      <div class="tile" style="right: 88px; top: 96px; transform: rotate(8deg)">p</div>
+      <div class="tile v" style="right: 214px; top: 236px; transform: rotate(-6deg)">o</div>
+      <div class="tile" style="right: 74px; top: 364px; transform: rotate(5deg)">d</div>
+
+      <div class="brand">
+        <svg viewBox="0 0 512 512" aria-hidden="true">
+          <rect width="512" height="512" rx="96" fill="#1e5a47" />
+          <circle cx="245" cy="256" r="84" fill="none" stroke="#fffcf6" stroke-width="44" />
+          <path d="M351 154v196" stroke="#fffcf6" stroke-width="44" stroke-linecap="round" />
+        </svg>
+        Early Reader
+      </div>
+
+      <div class="page">
+        <div class="word"><span>s<i></i></span><span class="v">a<i></i></span><span>t<i></i></span></div>
+      </div>
+
+      <h1>Help your 3- or 4-year-old learn to read</h1>
+      <p>A few minutes a day<b>·</b>Free<b>·</b>Works offline<b>·</b>No sign-up</p>
+    </div>
+  </body>
+</html>

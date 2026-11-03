@@ -45,6 +45,8 @@ The colours and the zigzag come from the kiondo, the sisal basket woven in Kikuy
 
 Letters are set in Andika, SIL's typeface for early readers, which has the single-storey "a" and "g" children learn to write. The app carries a small copy renamed "ER Letters", as the font's licence asks; `scripts/make-font.py` rebuilds it.
 
+The preview WhatsApp and other apps show for a link to the app is drawn in the same style, in `images/share-card.html`. `node scripts/render-share-card.cjs` turns it into the image.
+
 ## Working on it
 
 ```sh
