@@ -3,6 +3,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { GRAPHEME_MAP, BASE_ORDER, TRICKY_WORDS, NONWORD_BLOCKLIST, VOWELS } from '../js/data/en.js';
 import * as C from '../js/data/en-content.js';
+import { introTrickyStep } from '../js/steps.js';
 import { buildLexicon, checkText, makeContext } from '../js/decodable.js';
 
 const POS = new Set(['word', 'name']);
@@ -110,5 +111,12 @@ test('FIRST_SOUND_SETS cover the single-letter sounds', () => {
     assert.ok(set, `missing first-sound set for ${g}`);
     assert.ok(set.words.length >= 3, `first-sound set ${g} needs >= 3 words`);
     for (const w of [...set.words, set.odd]) assert.ok(w.w && w.emoji, `first-sound ${g}: ${JSON.stringify(w)}`);
+  }
+});
+
+test('every tricky word says which part is tricky and what it says', () => {
+  for (const t of TRICKY_WORDS) {
+    const lines = introTrickyStep(t).script.join(' ');
+    assert.doesNotMatch(lines, /tricky part|does not sound like its letters/, `no explanation for "${t}"`);
   }
 });

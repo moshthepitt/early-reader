@@ -368,15 +368,51 @@ export function spellStep(child, content, wordEntry) {
   };
 }
 
+// The part of each tricky word that doesn't do what its letters usually do: what to
+// point to, and what to say about it.
+const TRICKY_PARTS = {
+  the: ['e', 'This e says uh: thuh.'],
+  I: ['I', 'On its own, this letter is a word. It says its name: I.'],
+  a: ['a', 'On its own, this letter is a word. It says uh.'],
+  is: ['s', 'This s says zzz: izzz.'],
+  to: ['o', 'This o says oo: too.'],
+  no: ['o', 'This o says its name: oh.'],
+  go: ['o', 'This o says its name: oh.'],
+  has: ['s', 'This s says zzz: hazzz.'],
+  his: ['s', 'This s says zzz: hizzz.'],
+  as: ['s', 'This s says zzz: azzz.'],
+  he: ['e', 'This e says its name: ee.'],
+  she: ['e', 'This e says its name: ee.'],
+  we: ['e', 'This e says its name: ee.'],
+  me: ['e', 'This e says its name: ee.'],
+  be: ['e', 'This e says its name: ee.'],
+  was: ['a and the s', 'These say o and zzz: wozzz.'],
+  my: ['y', 'This y says eye.'],
+  you: ['o and u', 'These two say oo.'],
+  of: ['f', 'This f says vvv: ovvv.'],
+  said: ['a and i', 'These two say e, like in bed: sed.'],
+  are: ['whole word', 'It says ar.'],
+  they: ['e and y', 'These two say ay.'],
+  all: ['a', 'This a says aw.'],
+  her: ['e and r', 'These two say ur.'],
+  into: ['o', 'This o says oo: in-too.'],
+  so: ['o', 'This o says its name: oh.'],
+  do: ['o', 'This o says oo.'],
+  like: ['i and the e', 'This i says its name, eye. The e is quiet.'],
+  come: ['o and the e', 'This o says u, like in up. The e is quiet.'],
+  some: ['o and the e', 'This o says u, like in up. The e is quiet.'],
+};
+
 export function introTrickyStep(word) {
+  const [part, note] = TRICKY_PARTS[word] || ['tricky part', 'This part does not sound like its letters.'];
   return {
     type: 'intro-tricky',
     title: `New tricky word: ${word}`,
     child: { big: word },
     script: [
-      `Say: "This is a tricky word. It says '${word}'. Part of it does not sound like its letters."`,
-      `Sound out the letters that do work, then point to the tricky part.`,
-      `Point to the word and say it together three times.`,
+      `Point to the word. Say: "This is a tricky word. It says '${word}'."`,
+      `Point to the ${part}. Say: "${note}"`,
+      `Say it together three times: "${word}, ${word}, ${word}."`,
     ],
     scored: false,
     create: [{ kind: 'tricky', key: word }],
@@ -384,13 +420,14 @@ export function introTrickyStep(word) {
 }
 
 export function trickyStep(item) {
+  const [, note] = TRICKY_PARTS[item.key] || [null, 'Part of it does not sound like its letters.'];
   return {
     type: 'tricky-word',
     title: 'Tricky word',
     child: { big: item.key },
     script: ['Ask: "What does this tricky word say?"', WAIT],
     answer: item.key,
-    model: [`Say: "This says '${item.key}'. It is tricky because part of it does not sound like its letters." Then ask again.`],
+    model: [`Say: "This says '${item.key}'. ${note}" Then ask again.`],
     praise: 'tricky',
     scored: true,
     itemId: item.id,
