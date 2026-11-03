@@ -61,41 +61,45 @@ export function viewBurst(id) {
         <div class="row"><button class="btn" data-action="finish-now">Finish now</button><button class="btn ghost" data-action="keep-going">Keep going</button></div></div>`
     : '';
 
-  let controls;
+  // Each button carries the step and phase it belongs to, so a quick second tap can't
+  // land on the next step's buttons and score it.
+  const at = `data-step="${burst.index}" data-phase="${burst.phase}"`;
+  const answerLine = step.answer ? `<div class="answer">Answer: <b>${h(step.answer)}</b></div>` : '';
+  let body;
+  let actions;
   if (burst.phase === 'model') {
-    controls = `<div class="model"><b>Show them:</b><ul>${(step.model || []).map((l) => `<li>${h(l)}</li>`).join('')}</ul><p class="muted small">Say: "${h(session.praise('effort'))}"</p></div>
-      <button class="btn primary big" data-action="next">Next</button>`;
-  } else if (step.scored) {
-    controls = `<div class="answer">Answer: <b>${h(step.answer)}</b></div>
-      <div class="row">
-        <button class="btn good big" data-action="answer" data-correct="1">✓ Right first try</button>
-        <button class="btn warn big" data-action="answer" data-correct="0">✗ Needed help</button>
-      </div>`;
+    // After a miss, what to show comes straight under the child card, so both fit on a small phone.
+    body = `<div class="model"><b>Show them:</b><ul>${(step.model || []).map((l) => `<li>${h(l)}</li>`).join('')}</ul><p class="muted small">Say: "${h(session.praise('effort'))}"</p></div>`;
+    actions = `<button class="btn primary big" data-action="next" ${at}>Next</button>`;
   } else {
-    // Unscored steps can carry an answer too (Rhyme time, the easy finish).
-    controls = `${step.answer ? `<div class="answer">Answer: <b>${h(step.answer)}</b></div>` : ''}<button class="btn primary big" data-action="next">${step.type === 'finish' ? 'Finish' : 'Done, next'}</button>`;
+    body = `<ol class="script">${step.script.map((l) => `<li>${h(l)}</li>`).join('')}</ol>
+      ${step.tip ? `<details><summary>${h(step.tipTitle || 'How to say the sound')}</summary><p>${h(step.tip)}</p></details>` : ''}
+      ${step.scored && step.type !== 'blend-check' ? `<div class="row end"><button class="btn ghost small" data-action="skip" ${at}>Skip (nothing saved)</button></div>` : ''}`;
+    actions = step.scored
+      ? `${answerLine}<div class="row">
+        <button class="btn good big" data-action="answer" data-correct="1" ${at}>✓ Right first try</button>
+        <button class="btn warn big" data-action="answer" data-correct="0" ${at}>✗ Needed help</button>
+      </div>`
+      : `${answerLine}<button class="btn primary big" data-action="next" ${at}>${step.type === 'finish' ? 'Finish' : 'Done, next'}</button>`;
   }
   const praiseLine = burst.lastPraise ? `<p class="praise">Say: "${h(burst.lastPraise)}"</p>` : '';
+  // Stop asks first, so a child's stray tap can't end the burst. The phone's Back still leaves.
+  const askStop = burst.askStop
+    ? `<div class="notice">Stop here? You'll finish on an easy one.
+        <div class="row"><button class="btn" data-action="stop">Finish now</button><button class="btn ghost" data-action="stop-cancel">Keep going</button></div></div>`
+    : '';
 
   return `<section class="burst">
-    <div class="burst-top"><span>${h(c.name)} · ${stepNo}<span class="beads" aria-hidden="true">${beads}</span></span><b>${h(step.title)}</b></div>
+    <div class="burst-top"><span>${h(c.name)} · ${stepNo}<span class="beads" aria-hidden="true">${beads}</span></span>${
+      step.type === 'finish' ? '' : '<button class="btn small stop" data-action="stop-ask">Stop</button>'
+    }</div>
+    <h2 class="step-title">${h(step.title)}</h2>
+    ${askStop}
     ${praiseLine}
     ${offer}
     ${childCard(step)}
-    <div class="parent">
-      ${
-        // After a miss, what to show comes straight under the child card, so both fit on a small phone.
-        burst.phase === 'model'
-          ? ''
-          : `<ol class="script">${step.script.map((l) => `<li>${h(l)}</li>`).join('')}</ol>
-      ${step.tip ? `<details><summary>${h(step.tipTitle || 'How to say the sound')}</summary><p>${h(step.tip)}</p></details>` : ''}`
-      }
-      ${controls}
-    </div>
-    <div class="row end">
-      ${step.scored && burst.phase === 'step' && step.type !== 'blend-check' ? '<button class="btn ghost small" data-action="skip">Skip (nothing saved)</button>' : ''}
-      ${step.type === 'finish' ? '' : '<button class="btn ghost small" data-action="stop">Stop (tired or upset)</button>'}
-    </div>
+    <div class="parent">${body}</div>
+    <div class="actions">${actions}</div>
   </section>`;
 }
 
@@ -247,18 +251,29 @@ export function recordBurst(interrupted) {
   return persist() ? record : null;
 }
 
+// Whether a tapped button still belongs to the step on screen.
+const current = (el) => Number(el.dataset.step) === burst.index && el.dataset.phase === burst.phase;
+
 export const actions = {
   // A new step scrolls back to the child's card. After a miss, the burst scrolls to its
   // top, so the card and what to show the child fit on screen together.
   'burst-start': (el) => (startBurst(el.dataset.variant), scrollAfterRender('top')),
   answer: (el) => {
+    if (!current(el)) return false;
     const right = el.dataset.correct === '1';
     answer(right);
     scrollAfterRender(right ? 'top' : '.burst', 'start');
   },
-  next: () => (next(), scrollAfterRender('top')),
-  skip: () => (skip(), scrollAfterRender('top')),
-  stop: () => (stopBurst(), scrollAfterRender('top')),
+  next: (el) => (current(el) ? (next(), scrollAfterRender('top')) : false),
+  skip: (el) => (current(el) ? (skip(), scrollAfterRender('top')) : false),
+  'stop-ask': () => {
+    burst.askStop = true;
+    scrollAfterRender('top');
+  },
+  'stop-cancel': () => {
+    burst.askStop = false;
+  },
+  stop: () => ((burst.askStop = false), stopBurst(), scrollAfterRender('top')),
   'finish-now': () => (finishNow(), scrollAfterRender('top')),
   'keep-going': () => {
     burst.offerFinish = false;

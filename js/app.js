@@ -82,13 +82,21 @@ function render() {
   }
   const links = (list) => list.map(([k, label]) => `<a href="#/${k}" class="${r.name === k || (r.name === 'burst' && k === 'today') ? 'on' : ''}">${label}</a>`).join('');
   app.innerHTML = `<header class="top"><a class="brand" href="#/today">${MARK}Early Reader</a><nav class="screens" aria-label="Screens"><div class="nav-main">${links(NAV)}</div><div class="nav-tools">${links(TOOLS)}</div></nav><nav class="nav-docs" aria-label="Help">${links(DOCS)}</nav></header><main>${VIEWS[r.name](r.arg)}</main><footer class="foot">Everything you enter is saved on this device. Early Reader has no server, so there is nowhere for it to be sent. <a href="#/how">How it works</a></footer>`;
+  focusBurst();
   window.scrollTo(0, 0);
+}
+
+// During a burst the header, tabs and footer step aside (see css/app.css).
+function focusBurst() {
+  const r = route();
+  document.body.classList.toggle('in-burst', r.name === 'burst' && !!burst && (burst.phase === 'step' || burst.phase === 'model'));
 }
 
 function rerender() {
   const y = window.scrollY;
   const r = route();
   app.querySelector('main').innerHTML = VIEWS[r.name](r.arg);
+  focusBurst();
   const target = ui.scrollTo;
   ui.scrollTo = null;
   if (target === 'top') window.scrollTo(0, 0);

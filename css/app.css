@@ -1275,3 +1275,74 @@ pre.prompts {
     padding: 0;
   }
 }
+
+/* During a burst the app's header, tabs and footer step aside, so the child card and the
+   answer buttons fit on a small phone: a 360x800 screen, the commonest in Kenya, leaves
+   about 360x672 inside Chrome. The burst has its own Stop, and the phone's Back still leaves. */
+body.in-burst .top,
+body.in-burst .foot {
+  display: none;
+}
+body.in-burst main {
+  padding-top: 0.5rem;
+  padding-bottom: 0;
+}
+.burst-top {
+  flex-wrap: nowrap;
+  margin-bottom: 0.25rem;
+}
+.burst-top .stop {
+  flex: none;
+  min-height: 40px;
+  min-width: 64px;
+}
+.step-title {
+  margin: 0 0 0.5rem;
+  font-family: var(--child-font);
+  font-size: 1.2rem;
+}
+/* The answer buttons stay in reach at the bottom of the screen on every step. */
+.actions {
+  position: sticky;
+  bottom: 0;
+  z-index: 5;
+  background: var(--bg);
+  border-top: 2px solid var(--line);
+  margin-top: 0.75rem;
+  padding: 0.5rem 0 calc(0.5rem + env(safe-area-inset-bottom));
+}
+.actions .answer {
+  margin: 0 0 0.4rem;
+}
+.actions .row {
+  flex-wrap: nowrap;
+}
+.actions .row .btn.big {
+  flex: 1 1 0;
+  min-width: 0;
+  margin: 0;
+  padding: 0.6rem 0.5rem;
+  font-size: 1rem;
+}
+/* Short screens: a smaller card and tighter spacing leave more of the script above the
+   answer buttons. */
+@media (max-height: 700px) {
+  .child-card {
+    min-height: 200px;
+    padding: 1.25rem 0.75rem 2.4rem;
+  }
+  .parent {
+    padding: 0.6rem 0.9rem;
+    margin-top: 0.6rem;
+  }
+  .script li {
+    margin: 0.3rem 0;
+  }
+  .praise {
+    padding: 0.45rem 0.8rem;
+    margin: 0 0 0.5rem;
+  }
+  .step-title {
+    margin-bottom: 0.3rem;
+  }
+}

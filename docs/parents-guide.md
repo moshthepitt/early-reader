@@ -61,7 +61,7 @@ Keep each child's bursts separate. A younger sibling listening in is fine; some 
 
 ## When it gets hard
 
-Stop when they're upset. Tears, refusal, or two misses in a row mean it's time to finish on something easy. After two misses the app offers "Finish now", and "Stop (tired or upset)" does the same at any time. Pick it up again later or tomorrow.
+Stop when they're upset. Tears, refusal, or two misses in a row mean it's time to finish on something easy. After two misses the app offers "Finish now". At any time, tap **Stop** at the top of the screen: the app checks first, then finishes on an easy one. The phone's Back button leaves straight away, and what your child has done is kept. Pick it up again later or tomorrow.
 
 A break is fine. Weeks, even months. If the games aren't working yet, pause the bursts (on the Kids tab, tick "Paused (taking a break)" and save) and keep story time going: talk about the book, run your finger under a line, and point out a letter from their name. Then try an easy game again in a few weeks. After two weeks or more away, the first day back has no new letters or tricky words. Letters usually return quickly.
 

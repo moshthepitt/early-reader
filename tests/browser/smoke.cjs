@@ -96,6 +96,16 @@ async function firstLoadAndScreens(browser, base) {
     await page.screenshot({ path: path.join(out, `91-${label}-burst.png`) });
     const over = await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth);
     check(`${label}: burst fits the screen width`, over <= 1, { over });
+    // On a scored step the child card and both answer buttons are on screen without scrolling.
+    for (let i = 0; i < 6 && !(await page.$('[data-action="answer"]')); i++) await page.click('[data-action="next"]');
+    const fit = await page.evaluate(() => {
+      const box = (sel) => document.querySelector(sel)?.getBoundingClientRect();
+      const card = box('.child-card');
+      const bar = box('.actions');
+      const buttons = [...document.querySelectorAll('[data-action="answer"]')].map((b) => b.getBoundingClientRect());
+      return { h: innerHeight, cardBottom: card && Math.round(card.bottom), barTop: bar && Math.round(bar.top), buttonsBottom: Math.round(Math.max(...buttons.map((b) => b.bottom))), n: buttons.length };
+    });
+    check(`${label}: answer buttons and child card fit without scrolling`, fit.n === 2 && fit.buttonsBottom <= fit.h && fit.cardBottom <= fit.barTop, fit);
     if (label === 'phone' && BUILT) {
       await page.evaluate(() => navigator.serviceWorker && navigator.serviceWorker.ready);
       await page.waitForTimeout(500);
@@ -161,7 +171,7 @@ async function firstLoadAndScreens(browser, base) {
         const ans = await page.$$('[data-action="answer"]');
         if (ans.length) {
           const right = rightPattern[n % rightPattern.length];
-          const isLetter = (await page.textContent('.burst-top b')) === 'What sound?';
+          const isLetter = (await page.textContent('.step-title')) === 'What sound?';
           const pic = () => page.$('.child-card .big-emoji').then(Boolean);
           const rec = isLetter ? { before: await pic(), after: null } : null;
           await page.click(`[data-action="answer"][data-correct="${right}"]`);
@@ -194,7 +204,10 @@ async function firstLoadAndScreens(browser, base) {
     // Stop button path
     await page.goto(base + '/index.html#/today');
     await (await page.$$('a.btn.primary.big'))[0].click();
-    await page.click('[data-action="burst-start"][data-variant="tiles"]');
+    // Stage 1 has a single Start; it carries the card variant.
+    await page.click('[data-action="burst-start"][data-variant="cards"]');
+    await page.click('[data-action="stop-ask"]');
+    check('stop asks before ending the burst', (await page.$('[data-action="stop"]')) !== null && (await page.$('[data-action="mood"]')) === null);
     await page.click('[data-action="stop"]');
     await shot('40-stop-finish');
     await page.click('[data-action="next"]');
@@ -213,6 +226,7 @@ async function firstLoadAndScreens(browser, base) {
     const stepAfter = (await page.$('[data-action="mood"]')) ? 'done' : await page.locator('.burst-top span').first().innerText();
     check('skip moves on without saving a result', logAfter === logBefore && stepAfter !== stepBefore, { logBefore, logAfter, stepBefore, stepAfter });
     if (stepAfter !== 'done') {
+      await page.click('[data-action="stop-ask"]');
       await page.click('[data-action="stop"]');
       await page.click('[data-action="next"]');
     }
