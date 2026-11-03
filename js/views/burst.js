@@ -130,7 +130,7 @@ function startBurst(variant) {
     siblingName: siblingName(c),
     settings: state.settings,
   });
-  setBurst({ ...burst, phase: 'step', plan, index: 0, startedAt: Date.now(), misses: 0, scored: 0, correct: 0, stopped: false, variant, revealed: false, full: false, lastPraise: '', failed: new Set() });
+  setBurst({ ...burst, phase: 'step', plan, index: 0, startedAt: Date.now(), misses: 0, scored: 0, correct: 0, stopped: false, stopPressed: false, variant, revealed: false, full: false, lastPraise: '', failed: new Set() });
 }
 
 function applyStep(correct) {
@@ -180,7 +180,7 @@ function easyWin() {
   const c = findChild(burst.childId);
   const exclude = new Set(burst.failed);
   if (burst.plan.steps.slice(0, burst.index).some((s) => s.type === 'name-card')) exclude.add('name-card');
-  return { ...session.stopStep(c, content, makeRng(Date.now()), exclude), n: burst.index };
+  return { ...session.stopStep(c, content, makeRng(Date.now()), exclude, { stopped: !!burst.stopPressed }), n: burst.index };
 }
 
 function advance() {
@@ -203,6 +203,7 @@ function finishNow() {
 }
 
 function stopBurst() {
+  burst.stopPressed = true;
   burst.phase = 'step';
   finishNow();
 }

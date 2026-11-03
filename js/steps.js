@@ -488,27 +488,55 @@ export function nameCardStep(child) {
   };
 }
 
-export function finishStep(child, content, rng, exclude = new Set()) {
+// The easy last step. `exclude` holds the ids of items missed in this burst, and
+// 'name-card' if the burst has already shown it. `opts.stopped` is set after Stop.
+export function finishStep(child, content, rng, exclude = new Set(), opts = {}) {
+  const out = opts.stopped ? ['Tired or upset? Skip this, give them a hug and tap Finish.'] : [];
+  const end = 'Stop there, while it is still fun.';
   // Finish with the best-known item, leaving out anything missed in this burst.
   const best = Object.values(child.items)
     .filter((it) => (it.kind === 'sound' || it.kind === 'word') && S.isKnown(it) && !exclude.has(it.id))
     .sort((a, b) => b.box - a.box || b.goodDays.length - a.goodDays.length)[0];
   if (best && best.kind === 'sound') {
     const x = GRAPHEME_MAP[best.key];
-    return { type: 'finish', title: 'Finish on a win', child: { big: best.key, emoji: x.emoji }, script: ['Show one they know well. Ask: "What does this one say?"', 'Celebrate, then stop while it is still fun.'], answer: x.say, scored: false };
+    return {
+      type: 'finish',
+      title: 'Finish on a win',
+      child: { big: best.key, reveal: x.emoji },
+      script: [...out, 'Point to the letter. Ask: "What does this one say?"', 'Then tap "Show picture" and cheer.', end],
+      answer: soundAnswer(x),
+      scored: false,
+    };
   }
   if (best && best.kind === 'word') {
     const w = content.lexicon.get(best.key);
-    if (w) return { type: 'finish', title: 'Finish on a win', child: { word: w.gs, reveal: w.emoji || null }, script: ['A word they know well. Let them read it.', 'Celebrate, then stop while it is still fun.'], answer: w.w, scored: false };
+    if (w) {
+      return {
+        type: 'finish',
+        title: 'Finish on a win',
+        child: { word: w.gs, reveal: w.emoji || null },
+        script: [...out, 'Ask: "Can you read this one?"', w.emoji ? 'Then tap "Show picture" and cheer.' : 'Then cheer.', end],
+        answer: w.w,
+        scored: false,
+      };
+    }
   }
-  // The name card, unless this burst has already shown it.
-  if (child.name && !exclude.has('name-card')) return { ...nameCardStep(child), type: 'finish', title: 'Finish on a win' };
+  if (child.name && !exclude.has('name-card')) {
+    const card = nameCardStep(child);
+    return { ...card, type: 'finish', title: 'Finish on a win', script: [...out, ...card.script, end] };
+  }
   const r = pick(content.C.RHYME_SETS, rng);
-  return { type: 'finish', title: 'Finish on a win', child: { sub: `${r.a.w}, ${r.b.w}` }, script: [`Say: "${r.a.w}, ${r.b.w}... they rhyme!" Make up a silly rhyme together.`, 'Stop while it is still fun.'], scored: false };
+  return {
+    type: 'finish',
+    title: 'Finish on a win',
+    child: { choices: [r.a, r.b].map((o) => ({ emoji: o.emoji })) },
+    script: [...out, `Point to the ${r.a.emoji} and the ${r.b.emoji}. Say: "${capitalize(r.a.w)}, ${r.b.w}. They rhyme!"`, `Ask: "What else rhymes with ${r.a.w}?" Made-up words count.`, end],
+    scored: false,
+  };
 }
 
 // Choose the easy last step using this burst's results, including when Stop is pressed.
 // `exclude` holds the ids of items missed in this burst.
-export function stopStep(child, content, rng = Math.random, exclude = new Set()) {
-  return finishStep(child, content, rng, exclude);
+export function stopStep(child, content, rng = Math.random, exclude = new Set(), opts = {}) {
+  return finishStep(child, content, rng, exclude, opts);
 }
