@@ -6,6 +6,15 @@ import { uid, dayKey } from './util.js';
 import { GRAPHEME_MAP } from './data/en.js';
 
 const KEY = 'early-reader-v1';
+// Some browsers refuse storage outright (blocked cookies, some private modes), and
+// even reading localStorage throws. Treat that as no storage rather than crash.
+function local() {
+  try {
+    return globalThis.localStorage;
+  } catch {
+    return null;
+  }
+}
 const PREV_KEY = 'early-reader-v1-previous';
 
 export function defaultState() {
@@ -36,7 +45,7 @@ export function newChild({ name, birth = '', stage = 1 }) {
   };
 }
 
-export function load(storage = globalThis.localStorage) {
+export function load(storage = local()) {
   try {
     const raw = storage?.getItem(KEY);
     if (!raw) return defaultState();
@@ -48,7 +57,7 @@ export function load(storage = globalThis.localStorage) {
 }
 
 // Returns false if another tab saved newer data first (the caller should reload).
-export function save(state, storage = globalThis.localStorage) {
+export function save(state, storage = local()) {
   if (!storage) return true;
   try {
     const stored = JSON.parse(storage.getItem(KEY) || 'null');
@@ -62,16 +71,20 @@ export function save(state, storage = globalThis.localStorage) {
 }
 
 // Keep one copy of the data before a destructive change (import, reset).
-export function snapshot(storage = globalThis.localStorage) {
+export function snapshot(storage = local()) {
   const raw = storage?.getItem(KEY);
   if (raw) storage.setItem(PREV_KEY, raw);
 }
 
-export function hasSnapshot(storage = globalThis.localStorage) {
-  return !!storage?.getItem(PREV_KEY);
+export function hasSnapshot(storage = local()) {
+  try {
+    return !!storage?.getItem(PREV_KEY);
+  } catch {
+    return false;
+  }
 }
 
-export function restoreSnapshot(storage = globalThis.localStorage) {
+export function restoreSnapshot(storage = local()) {
   const raw = storage?.getItem(PREV_KEY);
   if (!raw) return null;
   return migrate(JSON.parse(raw));

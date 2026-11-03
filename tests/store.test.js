@@ -123,3 +123,16 @@ test('import drops letters the app does not teach, which would break a burst', (
   assert.deepEqual(Object.keys(items), ['sound:s']);
 });
 
+test('a browser that refuses storage gets empty data, not a crash', () => {
+  const desc = Object.getOwnPropertyDescriptor(globalThis, 'localStorage');
+  Object.defineProperty(globalThis, 'localStorage', { configurable: true, get() { throw new Error('SecurityError'); } });
+  try {
+    assert.deepEqual(store.load().children, []);
+    assert.equal(store.hasSnapshot(), false);
+  } finally {
+    if (desc) Object.defineProperty(globalThis, 'localStorage', desc);
+    else delete globalThis.localStorage;
+  }
+  const refusing = { getItem() { throw new Error('SecurityError'); } };
+  assert.equal(store.hasSnapshot(refusing), false);
+});
