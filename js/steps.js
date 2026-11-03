@@ -219,7 +219,7 @@ function findFirstSoundSet(content, g) {
 // have no labels: the game is by ear, and a child who knows some letters could match
 // the labels by sight.
 export function firstSoundOralStep(child, content, rng) {
-  const easy = ['s', 'm', 'f', 'l', 'n', 'z', 'v', 'r'];
+  const easy = ['s', 'm', 'f', 'l', 'n', 'v', 'r'];
   const pool = content.C.FIRST_SOUND_SETS.filter((x) => (child.stage <= 1 ? easy.includes(x.sound) : true));
   const set = pick(pool.length ? pool : content.C.FIRST_SOUND_SETS, rng);
   const [ex, ...rest] = shuffle(set.words, rng);

@@ -325,28 +325,23 @@ al-li-ga-tor=🐊 av-o-ca-do=🥑 lo-co-mo-tive=🚂
 
 const FIRST_SOUND_TEXT = `
 s sun=☀️ snake=🐍 sock=🧦 snail=🐌 / dog=🐶
-a apple=🍎 ant=🐜 alligator=🐊 avocado=🥑 / fish=🐟
-t tiger=🐯 turtle=🐢 tomato=🍅 train=🚂 / cat=🐱
-m mouse=🐭 moon=🌙 monkey=🐒 melon=🍈 / sun=☀️
-i insect=🐞 inchworm=🐛 iguana=🦎 ill=🤒 / apple=🍎
-n nose=👃 nut=🌰 nine=9️⃣ notebook=📓 / bee=🐝
-p pig=🐷 pizza=🍕 penguin=🐧 panda=🐼 / dog=🐶
-o octopus=🐙 otter=🦦 ox=🐂 olive=🫒 / hat=🎩
+a apple=🍎 ant=🐜 ambulance=🚑 avocado=🥑 / fish=🐟
+t tiger=🐯 tortoise=🐢 tomato=🍅 train=🚂 / moon=🌙
+m mouse=🐭 moon=🌙 monkey=🐒 mango=🥭 / sun=☀️
+n nose=👃 nut=🥜 nine=9️⃣ / bee=🐝
+p pig=🐷 pizza=🍕 pineapple=🍍 pencil=✏️ / dog=🐶
 d dog=🐶 duck=🦆 drum=🥁 dinosaur=🦕 / sun=☀️
-f fish=🐟 frog=🐸 fox=🦊 foot=🦶 / pig=🐷
+f fish=🐟 frog=🐸 fire=🔥 flower=🌻 / pig=🐷
 l lion=🦁 lemon=🍋 leaf=🍃 leg=🦵 / cat=🐱
-e egg=🥚 elephant=🐘 elf=🧝 envelope=✉️ / moon=🌙
-g goat=🐐 gorilla=🦍 grapes=🍇 guitar=🎸 / fish=🐟
+g goat=🐐 girl=👧 grapes=🍇 guitar=🎸 / fish=🐟
 k cat=🐱 cake=🎂 key=🔑 kite=🪁 / sun=☀️
 r rabbit=🐰 rainbow=🌈 robot=🤖 rocket=🚀 / bed=🛏️
-h hat=🎩 horse=🐴 house=🏠 helicopter=🚁 / pig=🐷
-u umbrella=☂️ up=⬆️ underpants=🩲 upset=😢 / tree=🌳
+h hat=👒 hand=✋ house=🏠 helicopter=🚁 / pig=🐷
 b ball=⚽ bus=🚌 banana=🍌 butterfly=🦋 / cat=🐱
-j juice=🧃 jacket=🧥 jeans=👖 jigsaw=🧩 / moon=🌙
-v van=🚐 violin=🎻 vest=🦺 volcano=🌋 / dog=🐶
-w whale=🐋 watermelon=🍉 web=🕸️ wolf=🐺 / fish=🐟
-y yarn=🧶 yo-yo=🪀 yawn=🥱 yolk=🍳 / hat=🎩
-z zebra=🦓 zero=0️⃣ zip=🤐 / cat=🐱
+j juice=🧃 jacket=🧥 jeans=👖 / moon=🌙
+v van=🚐 vest=🎽 volcano=🌋 violin=🎻 / dog=🐶
+w watermelon=🍉 watch=⌚ wool=🧶 web=🕸️ / fish=🐟
+y yo-yo=🪀 yawn=🥱 yellow=🟡 / hat=👒
 `;
 
 const DIGRAPHS = new Set(['sh', 'ch', 'th', 'ng', 'ee', 'oo', 'qu', 'ck']);
