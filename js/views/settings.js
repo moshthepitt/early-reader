@@ -69,8 +69,9 @@ export const actions = {
     try {
       recordings = await audio.exportRecordings();
     } catch {
-      // Without IndexedDB nothing was ever recorded here, so nothing is missing.
-      recordingsMissing = typeof indexedDB !== 'undefined';
+      // Only worth a warning if there were recordings to lose. The list is read when
+      // the app opens; where the recordings store can't open, it stays empty.
+      recordingsMissing = ui.recorded.size > 0;
     }
     const blob = new Blob([store.exportJson(state, recordings)], { type: 'application/json' });
     const a = document.createElement('a');
