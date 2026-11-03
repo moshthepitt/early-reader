@@ -11,15 +11,23 @@ export function viewBurst(id) {
   if (!burst || burst.childId !== c.id) setBurst({ childId: c.id, phase: 'choose' });
 
   if (burst.phase === 'choose') {
-    return `<section class="card">
-      <h1>${h(c.name)}'s burst</h1>
-      ${stageBadge(c)}
-      <p>Let ${h(c.name)} choose the game:</p>
+    // Stage 1 uses neither cards nor tiles, so there is nothing honest to choose.
+    const stage = c.stage || 1;
+    const start =
+      stage <= 1
+        ? `<p>Sound games and letters from ${h(c.name)}'s name today.</p>
+      <div class="choose"><button class="choice-btn" data-action="burst-start" data-variant="cards">Start</button></div>`
+        : `<p>Let ${h(c.name)} choose the game:</p>
       <div class="choose">
         <button class="choice-btn" data-action="burst-start" data-variant="cards">${GAMES.cards}Card game</button>
         <button class="choice-btn" data-action="burst-start" data-variant="tiles">${GAMES.tiles}Tile game</button>
       </div>
-      <p class="muted small">Have letter cards or tiles ready from the Print tab. A burst takes about 2-3 minutes. Stop any time.</p>
+      <p class="muted small">${stage === 2 ? 'Have letter cards or tiles ready from the Print tab.' : 'Card game: letter cards and words to read. Tile game: read, then build a word with letter tiles.'}</p>`;
+    return `<section class="card">
+      <h1>${h(c.name)}'s burst</h1>
+      ${stageBadge(c)}
+      ${start}
+      <p class="muted small">A burst takes about 2-3 minutes. Stop any time.</p>
       <a class="btn ghost" href="#/today">Back</a>
     </section>`;
   }

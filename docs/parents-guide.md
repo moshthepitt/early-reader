@@ -45,7 +45,7 @@ The Story time tab has more prompts, and it can prepare questions for a specific
 
 Two to four short bursts a day for each child, two or three minutes each, with gaps in between - after breakfast, after a nap, before the bath. In one small classroom study, three 2-minute goes a day beat one 6-minute lesson, and young children learn new words better when they meet them on different days.
 
-On the Today tab, tap "Start a 2-minute burst". Your child picks the card game or the tile game. Then, for each step:
+On the Today tab, tap "Start a 2-minute burst". From stage 2 your child picks the card game or the tile game; stage 1 just starts. Then, for each step:
 
 1. Read the script and do what it says.
 2. Tap **Right first try** or **Needed help**. Only the first try counts. A pause to think is fine: if their first answer was right and you didn't help, it's right first try.
@@ -81,9 +81,9 @@ Don't mistake memory for reading. Children are good at memorising favourite book
 
 **Stage 2: letter sounds** (late 3 to 4). Letter names and sounds together, two to four new letters a week. Each is taught with a picture; checks show the letter alone. Moves on at 12 known letter sounds, including at least two vowels (a, e, i, o, u).
 
-**Stage 3: blending** (around 4, often later). Sounding out short words like "sat", "mat" and "fun", holding each sound into the next: "sssaaat". Building words with tiles. Moves on when they get 5 of their last 6 new-word checks right, on at least 3 different days.
+**Stage 3: blending** (around 4, often later). Sounding out short words like "sat", "mat" and "fun", holding each sound into the next: "sssaaat". In the tile game, building a word with letter tiles. Moves on when they get 5 of their last 6 new-word checks right, on at least 3 different days.
 
-**Stage 4: first reading.** Tricky words that don't sound like their letters ("the", "was", "said"), two-letter sounds (sh, ch, th, ee, oo) and short sentences and stories. The Texts tab lists the ones your child can read right now. Tap "Print booklet" under a story to make a little booklet they can illustrate.
+**Stage 4: first reading.** Tricky words that don't sound like their letters ("the", "was", "said"), two-letter sounds (sh, ch, th, ee, oo) and short sentences and stories, with a word to build in the tile game. The Texts tab lists the ones your child can read right now. Tap "Print booklet" under a story to make a little booklet they can illustrate.
 
 The app suggests when a child looks ready to move up. You decide.
 

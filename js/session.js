@@ -163,6 +163,13 @@ export function makeNonword(child, content, rng, exclude = new Set()) {
   return null;
 }
 
+// A word to build with tiles: practised letters only, one tile per letter, so the
+// single-letter tile sheet always has what it needs.
+function chooseTileWord(child, content, rng, exclude) {
+  const pool = practiceWordPool(child, content).filter((w) => w.gs.every((g) => g.length === 1) && !exclude.has(w.w));
+  return pool.length ? pick(pool, rng) : null;
+}
+
 function chooseUnseenCheck(child, content, rng, exclude) {
   const real = chooseNewPracticeWord(child, content, rng, exclude);
   if (real && rng() < 0.5) return { target: real, nonword: false };
@@ -204,8 +211,10 @@ export function buildBurst({ child, content, today, rng = Math.random, variant =
   // waited longest, so letters that keep failing can't hold the rest back.
   // Mixing a likely-easy review in with hard ones also keeps success high, as
   // incremental rehearsal does (Tucker & Burns). The split is our design choice.
-  const takeDue = (kinds, n) => {
+  // oldest: fill a single slot with whatever has waited longest instead of the weakest.
+  const takeDue = (kinds, n, oldest = false) => {
     const pool = due.filter((it) => kinds.includes(it.kind) && !used.has(it.id) && wordReady(it));
+    if (oldest) pool.sort((a, b) => (a.due < b.due ? -1 : a.due > b.due ? 1 : 0));
     const out = pool.slice(0, n > 1 ? n - 1 : n);
     // Not the same letter twice in a row (its sound, then its name).
     const waited = pool.filter((it) => !out.some((o) => o.key === it.key)).sort((a, b) => (a.due < b.due ? -1 : a.due > b.due ? 1 : 0));
@@ -266,14 +275,22 @@ export function buildBurst({ child, content, today, rng = Math.random, variant =
 
   // From stage 3, letter names share the letter slots with sounds, so names
   // learned earlier keep coming back (Piasta, Purpura & Wagner 2010 taught both).
+  // In the tile game, building a word takes the place of one review. Which review it
+  // replaces takes turns, so a family that always picks tiles can't leave letters or
+  // words waiting.
+  const tiles = variant === 'tiles';
+  const turn = (child.bursts || []).length % 2;
+
   if (stage === 3) {
     takeDue(['sound', 'name'], 2).forEach(pushLetter);
-    const dueWords = takeDue(['word'], 2);
+    // The tile game reviews one word, alternating the weakest and the longest-waiting.
+    const wordSlots = tiles ? 1 : 2;
+    const dueWords = takeDue(['word'], wordSlots, tiles && turn === 1);
     dueWords.forEach((it) => {
       const w = content.lexicon.get(it.key);
       if (w) steps.push(blendWordStep(child, content, w, it));
     });
-    if (dueWords.length < 2) {
+    if (dueWords.length < wordSlots) {
       const w = chooseNewPracticeWord(child, content, rng);
       if (w) steps.push(blendWordStep(child, content, w, null));
     }
@@ -284,13 +301,12 @@ export function buildBurst({ child, content, today, rng = Math.random, variant =
       const chk = chooseUnseenCheck(child, content, rng, planWords(steps));
       if (chk) steps.push(blendCheckStep(child, content, chk.target, chk.nonword));
     }
+    if (tiles) {
+      const w = chooseTileWord(child, content, rng, planWords(steps));
+      if (w) steps.push(spellStep(child, content, w, rng));
+    }
     // Letters keep coming during blending, within the weekly limit.
     if (steps.length < 5) tryIntroduceSound(perWeek);
-    if (variant === 'tiles' && steps.length < 5) {
-      const inPlan = planWords(steps);
-      const w = pick(practiceWordPool(child, content).filter((x) => !inPlan.has(x.w)), rng);
-      if (w) steps.push(spellStep(child, content, w));
-    }
     if (steps.length < 3) steps.push(oralBlendStep(child, content, rng));
   }
 
@@ -312,7 +328,9 @@ export function buildBurst({ child, content, today, rng = Math.random, variant =
       if (t && gate.ok) steps.push(introTrickyStep(t));
       else if (t && gate) notes.push(`No new tricky word this time: ${gate.reason}`);
     }
-    const dueWords = takeDue(['word'], 1);
+    // One word slot: the weakest word, or every other time the one that has waited
+    // longest, so older words still come back.
+    const dueWords = takeDue(['word'], 1, Math.floor((child.bursts || []).length / 2) % 2 === 1);
     if (dueWords.length) {
       const w = content.lexicon.get(dueWords[0].key);
       if (w) steps.push(blendWordStep(child, content, w, dueWords[0]));
@@ -323,6 +341,20 @@ export function buildBurst({ child, content, today, rng = Math.random, variant =
     const sentences = readableSentences(child, content, siblingName);
     const recent = new Set(child.recentTexts || []);
     const fresh = sentences.filter((s) => !recent.has(s));
+    // The tile game builds a word too. To keep the burst at five steps with the
+    // sentence, it replaces the second letter review or the word, taking turns.
+    if (tiles) {
+      const w = chooseTileWord(child, content, rng, planWords(steps));
+      if (w) {
+        const firstLetter = steps.findIndex((x) => x.type === 'letter-sound' || x.type === 'letter-name');
+        const isReview = (x, i) => i !== firstLetter && (x.type === 'letter-sound' || x.type === 'letter-name');
+        const word = steps.findIndex((x) => x.type === 'blend-word');
+        const letter2 = steps.findIndex(isReview);
+        const drop = turn === 0 ? (letter2 >= 0 ? letter2 : word) : word >= 0 ? word : letter2;
+        if (steps.length >= 4 && drop >= 0) steps.splice(drop, 1);
+        steps.push(spellStep(child, content, w, rng));
+      }
+    }
     const s = pick(fresh.length ? fresh : sentences, rng);
     if (s) steps.push({ ...readTextStep(child, s, siblingName), textKey: s });
     else notes.push('No practice sentence fits yet. Teach a few more sounds or tricky words.');

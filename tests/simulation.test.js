@@ -16,7 +16,7 @@ import { buildBookPrompt } from '../js/readaloud.js';
 
 const content = { G, C, lexicon: buildLexicon(C.WORDS) };
 
-function simulate({ name, stage = 1, days = 180, pRight = 0.85, seed = 1, sibling = 'Ben', settings = { newPerWeek: 3, trickyPerWeek: 2 } }) {
+function simulate({ name, stage = 1, days = 180, pRight = 0.85, seed = 1, sibling = 'Ben', settings = { newPerWeek: 3, trickyPerWeek: 2 }, variant = null }) {
   const child = newChild({ name, stage });
   const rng = makeRng(seed);
   let day = '2026-01-05';
@@ -25,7 +25,8 @@ function simulate({ name, stage = 1, days = 180, pRight = 0.85, seed = 1, siblin
     if (rng() < 0.2) continue; // skipped days
     const nBursts = 2 + Math.floor(rng() * 3);
     for (let b = 0; b < nBursts; b++) {
-      const plan = session.buildBurst({ child, content, today: day, rng, variant: rng() < 0.5 ? 'cards' : 'tiles', siblingName: sibling, settings });
+      const picked = rng() < 0.5 ? 'cards' : 'tiles';
+      const plan = session.buildBurst({ child, content, today: day, rng, variant: variant || picked, siblingName: sibling, settings });
       assert.ok(plan.steps.length >= 2 && plan.steps.length <= 6, `burst size ${plan.steps.length}`);
       assert.equal(plan.steps[plan.steps.length - 1].type === 'finish' || plan.steps[plan.steps.length - 1].title === 'Finish on a win', true, 'ends on a win');
       const ids = plan.steps.filter((s) => s.itemId).map((s) => s.itemId);
@@ -294,6 +295,22 @@ test('a word built with tiles never comes back as a new-word check', () => {
   }
 });
 
+test('the tile game always builds a word at stages 3 and 4, and the sentence stays', () => {
+  for (const stage of [3, 4]) {
+    const child = newChild({ name: 'Kim', stage });
+    for (const g of G.BASE_ORDER.slice(0, 16)) child.items[S.itemId('sound', g)] = { ...S.newItem('sound', g, '2026-01-01'), box: 2, goodDays: ['a', 'b'], lastResult: true, due: '2026-02-01' };
+    for (const t of ['the', 'is']) child.items[S.itemId('tricky', t)] = { ...S.newItem('tricky', t, '2026-01-01'), box: 2, goodDays: ['a', 'b'], lastResult: true, due: '2026-02-01' };
+    for (let seed = 1; seed <= 100; seed++) {
+      child.bursts = Array.from({ length: seed % 4 }, () => ({ day: '2026-01-30' }));
+      const plan = session.buildBurst({ child, content, today: '2026-02-01', rng: makeRng(seed), variant: 'tiles' });
+      const types = plan.steps.map((s) => s.type);
+      assert.ok(types.includes('spell-word'), `stage ${stage} seed ${seed}: ${types}`);
+      assert.ok(plan.steps.length <= 6, `stage ${stage} seed ${seed}: ${plan.steps.length} steps`);
+      if (stage === 4) assert.ok(types.includes('read-text'), `stage 4 seed ${seed}: no sentence in ${types}`);
+    }
+  }
+});
+
 test('spare tiles never sound or look like a letter in the word', () => {
   const child = newChild({ name: 'Kim', stage: 3 });
   for (const g of ['s', 'a', 't', 'p', 'i', 'n', 'm', 'd', 'c', 'k', 'u', 'b']) child.items[S.itemId('sound', g)] = S.newItem('sound', g, '2026-01-01');
@@ -301,5 +318,14 @@ test('spare tiles never sound or look like a letter in the word', () => {
     const tiles = steps.spellStep(child, content, content.lexicon.get('cat'), makeRng(seed)).script[0].replace(/^.*mixed up: |\.$/g, '').split(', ');
     assert.deepEqual(tiles.filter((t) => ['k', 'u'].includes(t)), [], `cat with ${tiles}`);
     assert.equal(tiles.length, 5);
+  }
+});
+
+test('a family that always picks the tile game leaves nothing a month overdue', () => {
+  const { child } = simulate({ name: 'Kim', days: 240, seed: 7, variant: 'tiles' });
+  const end = addDays('2026-01-05', 240);
+  for (const kind of ['sound', 'name', 'word']) {
+    const late = S.itemsOfKind(child.items, kind).filter((it) => daysBetween(it.due, end) > 30);
+    assert.deepEqual(late.map((it) => `${it.key} due ${it.due}`), [], `${kind} reviews left overdue`);
   }
 });
