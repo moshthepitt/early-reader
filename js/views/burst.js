@@ -183,14 +183,16 @@ function advance() {
   burst.offerFinish = burst.misses >= 2 && remaining > 1;
 }
 
+// Ending on an easy one, from Stop or from the offer after two misses, counts as
+// stopping early, so the progress page and its hints see it.
 function finishNow() {
+  burst.stopped = true;
   burst.plan.steps = [...burst.plan.steps.slice(0, burst.index), easyWin()];
   burst.offerFinish = false;
   burst.misses = 0;
 }
 
 function stopBurst() {
-  burst.stopped = true;
   burst.phase = 'step';
   finishNow();
 }
