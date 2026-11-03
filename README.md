@@ -9,23 +9,23 @@ What to teach turns out to be fairly settled. Link letters to sounds, train the 
 
 ## How it works
 
-The screen is for the parent. The kids work with printed cards, letter tiles and a pencil.
+The screen is for the parent, apart from a bright card at the top of each step that shows your child the letter, word or pictures. The kids also work with printed cards, letter tiles and a pencil.
 
 Each day has two kinds of time:
 
 - **Story time** - one or two books, both kids together. The app gives you questions to ask, places to point at the words and sound games to play with the book. This is where vocabulary comes from, and it matters as much as the letters.
-- **Practice bursts** - two to four a day for each child, two or three minutes each, spread out. A burst mixes review with at most one new thing. You read the script, the child answers, you tap "Right first try" or "Needed help". After a miss the app shows you what to model. Every burst ends on something the child knows well, and the Stop button ends early on an easy win.
+- **Practice bursts** - two to four a day for each child, two or three minutes each, spread out. A burst mixes review with at most one new letter; from stage 3 it can also bring a new word to sound out. You read the script, the child answers, you tap "Right first try" or "Needed help". After a miss the app shows you what to model. Every burst ends on something easy, usually something the child knows well, and the Stop button ends early on an easy win.
 
 Each child moves through four stages at their own pace:
 
-1. **Sound play** - rhyme and clapping the beats in words, played together, spotting the first sound in a word, "robot talk" (mmm ... at... mat!) and the letters in their own name.
+1. **Sound play** - rhyme and clapping the beats in words, played together, spotting the first sound in a word, "robot talk" (sss ... un... sun!) and the letters in their own name.
 2. **Letter sounds** - letter names and sounds together, two to four new letters a week, with review spread over days.
 3. **Blending** - sounding out short words like "sat" and "mat", with the occasional made-up word to check they are really blending and not remembering.
 4. **First reading** - tricky words like "the" and "was", then short sentences and tiny stories.
 
 The app suggests when a child is ready to move up. You decide.
 
-There is also a Texts screen listing the sentences and stories each child can read right now, a Print screen for cards, tiles and story booklets, and a Sounds screen that shows how to say each sound and lets you record yourself. Most of us (me included, probably) say "muh" when we mean "mmm".
+There is also a Texts screen listing the sentences and stories each child can read right now, which prints any story as a little booklet, a Print screen for cards and tiles, and a Sounds screen that shows how to say each sound and lets you record yourself. Most of us (me included, probably) say "muh" when we mean "mmm".
 
 ## What it leaves out
 
@@ -33,11 +33,11 @@ The app never talks to the children. There is no chat, no cartoon companion, no 
 
 There is no speech recognition either. A benchmark from October 2026 found current models get 58-76% of preschoolers' words wrong, so the parent judges every answer.
 
-Everything you enter is saved on your device, in the browser: names, progress, voice recordings. There is no Early Reader server, no account and no database, so there is nowhere for any of it to be sent. GitHub Pages hands your browser the app's files, and that's the only contact. Where AI helps (questions for a specific book, new practice stories), the app writes a prompt you paste into whatever AI chat tool you use. Your children's names are swapped for "the child" or a `{NAME}` placeholder, and whatever comes back gets checked word by word against what that child has been taught. AI breaks phonics rules a lot.
+Everything you enter is saved on your device, in the browser: names, progress, voice recordings. There is no Early Reader server, no account and no database, so there is nowhere for any of it to be sent. GitHub Pages hands your browser the app's files, and that's the only contact. Where AI helps (questions for a specific book, new practice stories), the app writes a prompt you paste into whatever AI chat tool you use. Your children's names are swapped for "the child" or a `{NAME}` placeholder. Practice stories that come back get checked word by word against what that child has been taught, because AI breaks phonics rules a lot. Questions for a book are for you, so read them over yourself.
 
 ## Small on purpose
 
-The first visit is four requests and about 44 KB over the wire (121 KB unpacked). The reading font, 12 KB, follows once the page has loaded. After that it works offline, so it costs nothing to use on a data bundle. There are no frameworks and no runtime dependencies: plain JavaScript modules, bundled for hosting by [esbuild](https://esbuild.github.io/). The build fails if a change pushes the first load over budget.
+The first visit is four requests and about 44 KB over the wire (121 KB unpacked). The reading font, 12 KB, follows once the page has loaded. After that it works offline and uses almost no data. There are no frameworks and no runtime dependencies: plain JavaScript modules, bundled for hosting by [esbuild](https://esbuild.github.io/). The build fails if a change pushes the first load over budget.
 
 ## The look
 
