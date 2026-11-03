@@ -3,7 +3,7 @@ import * as session from '../session.js';
 import * as texts from '../texts.js';
 import * as P from '../print.js';
 import { escapeHtml as h } from '../util.js';
-import { state, ui, content, selectedChild, noKids, childPicker, stageBadge, siblingName, findChild, scrollAfterRender } from '../ui.js';
+import { state, ui, content, selectedChild, noKids, childPicker, stageBadge, siblingName, findChild, scrollAfterRender, notify } from '../ui.js';
 import { printHtml } from './print.js';
 
 function statusClass(s) {
@@ -111,6 +111,7 @@ export const forms = {
   'text-check': (f, data) => {
     const c = findChild(f.dataset.child);
     const raw = String(data.get('text') || '');
+    if (!raw.trim()) return notify('Type or paste some text first.'), false;
     ui.textCheck = { childId: c.id, raw };
     scrollAfterRender('.check-out');
   },
