@@ -25,7 +25,7 @@ Accents differ, and that's fine. Say the sounds in the English you speak, short 
 
 ### Story time
 
-One or two books a day, with both children together if you have two. This is where vocabulary, talk and a love of books come from. It matters as much as the letters do, and the studies say its benefits last longer.
+One or two books a day, with both children together if you have two. This is where vocabulary, talk and a love of books come from. It matters as much as the letters do. For understanding what they read later, the research points to the language built here more than to early letter skills.
 
 Reading the book to them is the start. The bigger win is getting them to talk. Ask a question, let them answer, repeat what they said and add a little ("Yes, a dog! A big, muddy dog."), then ask again so they can use the new words. Three to five questions per book is plenty. Keep the story moving.
 
@@ -43,7 +43,7 @@ The Story time tab has more prompts, and it can prepare questions for a specific
 
 ### Practice bursts
 
-Two to four short bursts a day for each child, two or three minutes each, with gaps in between - after breakfast, after a nap, before the bath. In the studies, several short goes on different days did better than one long lesson.
+Two to four short bursts a day for each child, two or three minutes each, with gaps in between - after breakfast, after a nap, before the bath. In one small classroom study, three 2-minute goes a day beat one 6-minute lesson, and young children learn new words better when they meet them on different days.
 
 On the Today tab, tap "Start a 2-minute burst". Your child picks the card game or the tile game. Then, for each step:
 
@@ -55,7 +55,7 @@ Rhyme time and Clap the beats aren't scored: you show them first, play together,
 
 The app decides what comes up: reviews that are due, at most one new letter, and an easy win at the end. From stage 3 a burst can also bring a new word to sound out, and from stage 4 a new tricky word. A letter counts as known once your child gets it right first try on two different days. On a day they needed help with it, a right answer later that day is practice; the app checks again tomorrow.
 
-Keep each child's bursts separate. A younger sibling listening in is fine; they often pick things up that way.
+Keep each child's bursts separate. A younger sibling listening in is fine; some pick things up that way.
 
 ## When it gets hard
 
@@ -63,13 +63,13 @@ Stop when they're upset. Tears, refusal, or two misses in a row mean it's time t
 
 A break is fine. Weeks, even months. If the games aren't working yet, pause the bursts (on the Kids tab, tick "Paused (taking a break)" and save) and keep story time going: talk about the book, run your finger under a line, and point out a letter from their name. Then try an easy game again in a few weeks. After two weeks or more away, the first day back has no new letters or tricky words. Letters usually return quickly.
 
-Aim for about 8 right out of 10. The Progress tab shows this for the week. Much lower than that and the work is too hard: slow down. Always perfect and you can add letters faster (Settings, "New letters per week").
+Aim for about 8 right out of 10, a rule of thumb from teaching older children. The Progress tab shows this for the week. Much lower than that and the work is too hard: slow down. Always perfect and you can add letters faster (Settings, "New letters per week").
 
 Praise the work, not the child. "You said each sound and slid them together" helps more than "You're so clever". The scripts suggest lines like this after each right answer.
 
-Expect a stall at blending. Going from knowing letter sounds to reading "s-a-t... sat" is the step where most children get stuck, sometimes for months. Many 4-year-olds aren't ready yet. That is normal and not a sign of anything wrong.
+Expect a stall at blending. Going from knowing letter sounds to reading "sssaaat... sat" is where parents most often say they got stuck, sometimes for months. Many 4-year-olds aren't ready yet. That is normal and not a sign of anything wrong.
 
-Ask a health worker or clinic if you're worried about how your child hears, understands or talks, in any of their languages. For example, they often ask you to say things again or want the TV loud, family find their speech hard to follow, or they struggle with simple instructions. Finding the games hard isn't a sign of a problem on its own, and the app's scores can't tell you either way.
+Ask a health worker or clinic if you're worried about how your child hears, understands or talks, in any of their languages. NHS advice lists signs such as often asking you to say things again, wanting the TV loud, speech that people find hard to follow, or trouble with simple instructions. Finding the games hard isn't a sign of a problem on its own, and the app's scores can't tell you either way.
 
 Don't mistake memory for reading. Children are good at memorising favourite books and familiar words. At stage 3 the app slips in made-up "monster names" like "fip" and words they have never seen. Those show whether they're really sounding out. Don't help on those.
 
@@ -104,10 +104,10 @@ The catch: if you clear your browser data or lose the phone, it's gone. Use Sett
 
 ## What to expect
 
-Teaching letters and sounds early gives real skills in the short term. It may not give a lasting head start on its own: in one New Zealand school comparison, the early starters' lead had gone by about age 11. The things that seem to last are vocabulary, a love of books, and getting to reading without it becoming a battle. In English, getting to solid sounding-out takes about two and a half years, so this is a slow road.
+Teaching letters and sounds early gives real skills in the short term. It may not give a lasting head start on its own: in one New Zealand school comparison, the early starters' lead had gone by about age 11. Vocabulary has the best evidence of lasting. I also care about a love of books and getting to reading without it becoming a battle, though that's my own priority rather than a finding. In English, getting to solid sounding-out takes two and a half years or more, so this is a slow road.
 
 My own measure is simple. Can they sound out a word they have never seen? Do they talk about the stories? Do they still want to do it tomorrow?
 
 ## Where this comes from
 
-Every choice in the app is based on research on how young children learn to read, what parents have tried at home, and what AI can and can't do at this age. The full write-up, with sources, is in [the research report](research/report.md). Some details - the exact letter order, burst lengths and stage checks - are my own judgment calls built on that research, not tested facts.
+The research behind the app, with sources, is in [the research report](research/report.md). Some details - the exact letter order, burst lengths and stage checks - are my own judgement calls built on it, not tested facts.
