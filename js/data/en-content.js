@@ -10,7 +10,7 @@
 //   SENTENCE_TEXT    one sentence per line; {NAME} and {NAME2} are filled in on the device
 //   STORY_TEXT       id | title | line | line ...
 //   RHYME_TEXT       word=emoji, a word that rhymes with it, a word that does not
-//   SYLLABLE_TEXT    word=number of beats=emoji
+//   SYLLABLE_TEXT    the word in spoken beats=emoji (mon-key=🐒)
 //   FIRST_SOUND_TEXT sound, words that start with it / one word that does not
 
 import { segment } from '../decodable.js';

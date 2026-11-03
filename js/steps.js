@@ -195,8 +195,11 @@ export function syllableStep(child, content, rng) {
     title: 'Clap the beats',
     child: { emoji: s.emoji },
     script: [
-      `Say "${s.w}". Then say it slowly in beats, clapping on each one: "${s.parts.join('\u00a0·\u00a0')}"\u00a0${'👏'.repeat(s.n)}`,
-      'Do it together, then let them try on their own. Counting the claps is optional.',
+      `Point to the ${s.emoji}. Say: "${capitalize(s.w)}."`,
+      s.n === 1
+        ? `Say it again with one clap: "${s.w}"\u00a0👏`
+        : `Say it again in beats, one clap each: "${s.parts.join('\u00a0·\u00a0')}"\u00a0${'👏'.repeat(s.n)}`,
+      'Now together. Then let them try on their own. No need to count the claps.',
     ],
     tipTitle: 'How to find the beats',
     tip: 'Put the back of your hand under your chin and say the word slowly. Each time your chin drops is a beat. Tapping knees or stamping feet works as well as clapping.',
