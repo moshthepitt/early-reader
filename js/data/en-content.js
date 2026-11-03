@@ -315,10 +315,10 @@ const SYLLABLE_TEXT = `
 dog=🐶 cat=🐱 sun=☀️ moon=🌙 fish=🐟 duck=🦆 pig=🐷 bed=🛏️ hat=👒 bus=🚌
 bee=🐝 frog=🐸 cake=🎂 tree=🌳 ap-ple=🍎 piz-za=🍕 rab-bit=🐰 ti-ger=🐯 li-on=🦁
 mon-key=🐒 chick-en=🐔 bis-cuit=🍪 rain-bow=🌈 ro-bot=🤖 car-rot=🥕 tor-toise=🐢 ze-bra=🦓
-pan-da=🐼 man-go=🥭 dough-nut=🍩 trac-tor=🚜 pen-guin=🐧 ba-na-na=🍌 el-e-phant=🐘
+man-go=🥭 dough-nut=🍩 trac-tor=🚜 ba-na-na=🍌 el-e-phant=🐘
 but-ter-fly=🦋 to-ma-to=🍅 po-ta-to=🥔 di-no-saur=🦕 co-co-nut=🥥 oc-to-pus=🐙 um-brel-la=☂️
-pine-ap-ple=🍍 bi-cy-cle=🚲 la-dy-bird=🐞 cat-er-pil-lar=🐛 wa-ter-mel-on=🍉 hel-i-cop-ter=🚁
-croc-o-dile=🐊 av-o-ca-do=🥑 mo-tor-cy-cle=🏍️
+pine-ap-ple=🍍 bi-cy-cle=🚲 com-pu-ter=💻 cat-er-pil-lar=🐛 wa-ter-mel-on=🍉 hel-i-cop-ter=🚁
+croc-o-dile=🐊 av-o-ca-do=🥑
 `;
 
 const FIRST_SOUND_TEXT = `
