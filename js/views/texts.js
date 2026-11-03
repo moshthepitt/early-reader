@@ -26,7 +26,7 @@ export function viewTexts(arg) {
     )
     .join('');
   // Re-check on every render: what counts as readable changes as the child learns.
-  const check = ui.textCheck && ui.textCheck.childId === c.id ? { raw: ui.textCheck.raw, lines: texts.checkPasted(ui.textCheck.raw, c, content, sib) } : null;
+  const check = ui.textCheck && ui.textCheck.childId === c.id ? { raw: ui.textCheck.raw, lines: texts.checkPasted(ui.textCheck.raw, c, content, sib, state.children.map((x) => x.name)) } : null;
   const checkOut = check
     ? `<div class="check-out">${check.lines
         .map(
@@ -90,7 +90,7 @@ export const actions = {
   'print-checked': (el) => {
     const c = findChild(el.dataset.child);
     const sib = siblingName(c);
-    const checked = texts.checkPasted(ui.textCheck.raw, c, content, sib);
+    const checked = texts.checkPasted(ui.textCheck.raw, c, content, sib, state.children.map((x) => x.name));
     if (!checked.length || !checked.every((l) => l.result.ok)) {
       alert('Some words no longer match the sounds or tricky words your child has been taught. Check the text again.');
       return;

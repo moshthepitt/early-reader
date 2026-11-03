@@ -40,8 +40,8 @@ export function buildTextPrompt(child, content, { kind = 'story', lines = 5, top
   ].join('\n');
 }
 
-export function checkPasted(text, child, content, siblingName) {
-  const ctx = textContext(child, content, siblingName);
+export function checkPasted(text, child, content, siblingName, moreNames = []) {
+  const ctx = textContext(child, content, siblingName, moreNames);
   const lines = text
     .split(/\n+/)
     .map((l) => l.trim())

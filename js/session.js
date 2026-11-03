@@ -93,12 +93,13 @@ export function practiceSounds(child, content) {
   return count(known) >= 5 ? known : soundsIntroduced(child);
 }
 
-export function textContext(child, content, siblingName) {
+// moreNames: other family names that a pasted text may use, such as a third child's.
+export function textContext(child, content, siblingName, moreNames = []) {
   return makeContext({
     taught: practiceSounds(child, content),
     trickyTaught: trickyIntroduced(child),
     allTricky: TRICKY_WORDS,
-    names: [child.name, siblingName].filter(Boolean),
+    names: [child.name, siblingName, ...moreNames].filter(Boolean),
     lexicon: content.lexicon,
   });
 }
