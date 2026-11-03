@@ -280,3 +280,16 @@ test('look-alike pictures never share a card', () => {
     }
   }
 });
+
+test('a word built with tiles never comes back as a new-word check', () => {
+  const child = newChild({ name: 'Kim', stage: 3 });
+  for (const g of ['s', 'a', 't', 'm', 'i', 'n', 'p']) child.items[S.itemId('sound', g)] = { ...S.newItem('sound', g, '2026-01-01'), box: 4, goodDays: ['a', 'b', 'c'], lastResult: true, due: '2026-06-01' };
+  const mat = content.lexicon.get('mat');
+  session.applyResult(child, steps.spellStep(child, content, mat), true, '2026-02-01');
+  assert.ok(child.seenWords.includes('mat'));
+  for (let seed = 1; seed <= 300; seed++) {
+    child.bursts = [{ day: '2026-02-01' }, { day: '2026-02-01' }];
+    const plan = session.buildBurst({ child, content, today: '2026-02-02', rng: makeRng(seed), variant: 'cards' });
+    for (const s of plan.steps.filter((x) => x.type === 'blend-check')) assert.notEqual(s.seenWord, 'mat', `seed ${seed}`);
+  }
+});

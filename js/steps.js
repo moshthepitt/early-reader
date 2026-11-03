@@ -370,6 +370,8 @@ export function spellStep(child, content, wordEntry) {
     praise: 'spell',
     scored: true,
     skill: 'spelling',
+    // Once built with tiles, the word isn't new any more, so it can't come back as a new-word check.
+    seenWord: wordEntry.w,
   };
 }
 
