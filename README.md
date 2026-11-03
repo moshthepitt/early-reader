@@ -2,7 +2,7 @@
 
 I want my kids, aged 3 and 4, reading as early as possible. Before building anything I had the research done: what the studies say about teaching preschoolers to read at home, what parents and homeschoolers have tried, and where AI fits. The full report is in [docs/research/report.md](docs/research/report.md).
 
-What to teach turns out to be fairly settled. Link letters to sounds, train the ear to hear the sounds inside words, blend sounds without pauses, and talk a lot about books. Home programmes mostly fail on delivery - lessons run too long, kids get bored, parents stop. In two recent UK trials, parents of 3- and 4-year-olds got through 58-65% of the planned sessions and the programme showed no effect. So this app has one job: tell the parent what to do next, two minutes at a time, and remember what each child knows.
+What to teach turns out to be fairly settled. Link letters to sounds, train the ear to hear the sounds inside words, blend sounds without pauses, and talk a lot about books. Home programmes often stall on delivery - lessons run too long, kids get bored, parents stop. In two recent UK trials, parents of 3- and 4-year-olds got through 58-65% of the planned sessions and the programme showed no effect. So the app tells the parent what to do next, two minutes at a time, and remembers what each child knows.
 
 **Use it:** [moshthepitt.github.io/early-reader](https://moshthepitt.github.io/early-reader/)
 **Parents, start here:** [A parent's guide to Early Reader](docs/parents-guide.md), then [how it works](docs/how-it-works.md) and [books to read aloud](docs/books.md). All three are inside the app too.
@@ -13,7 +13,7 @@ The screen is for the parent, apart from a bright card at the top of each step t
 
 Each day has two kinds of time:
 
-- **Story time** - one or two books, both kids together. The app gives you questions to ask, places to point at the words and sound games to play with the book. This is where vocabulary comes from, and it matters as much as the letters.
+- **Story time** - one or two books, both kids together. The app gives you questions to ask, places to point at the words and sound games to play with the book. This builds vocabulary, and it matters as much as the letters.
 - **Practice bursts** - two to four a day for each child, two or three minutes each, spread out. A burst mixes review with at most one new letter; from stage 3 it can also bring a new word to sound out. You read the script, the child answers, you tap "Right first try" or "Needed help". After a miss the app shows you what to model. Every burst ends on something easy, usually something the child knows well, and the Stop button ends early on an easy win.
 
 Each child moves through four stages at their own pace:
@@ -31,7 +31,7 @@ There is also a Texts screen listing the sentences and stories each child can re
 
 The app never talks to the children. There is no chat, no cartoon companion, no streaks and no ads.
 
-There is no speech recognition either. A benchmark from October 2026 found current models get 58-76% of preschoolers' words wrong, so the parent judges every answer.
+There is no speech recognition either. A benchmark from October 2026 found Whisper, a widely used speech model, got 58-76% of preschoolers' words wrong. Newer systems do better but still struggle with 3- and 4-year-olds, so the parent judges every answer.
 
 Everything you enter is saved on your device, in the browser: names, progress, voice recordings. There is no Early Reader server, no account and no database, so there is nowhere for any of it to be sent. GitHub Pages hands your browser the app's files, and that's the only contact. Where AI helps (questions for a specific book, new practice stories), the app writes a prompt you paste into whatever AI chat tool you use. Your children's names are swapped for "the child" or a `{NAME}` placeholder. Practice stories that come back get checked word by word against what that child has been taught, because AI breaks phonics rules a lot. Questions for a book are for you, so read them over yourself.
 
@@ -45,7 +45,7 @@ The colours and the zigzag come from the kiondo, the sisal basket woven in Kikuy
 
 Letters are set in Andika, SIL's typeface for early readers, which has the single-storey "a" and "g" children learn to write. The app carries a small copy renamed "ER Letters", as the font's licence asks; `scripts/make-font.py` rebuilds it.
 
-The preview WhatsApp and other apps show for a link to the app is drawn in the same style, in `images/share-card.html`. `node scripts/render-share-card.cjs` turns it into the image.
+The link preview that WhatsApp and other apps show is drawn in the same style, in `images/share-card.html`. `node scripts/render-share-card.cjs` turns it into the image.
 
 ## Working on it
 
@@ -63,7 +63,7 @@ The browser test needs Chromium; set `CHROME_PATH` if it isn't in the Playwright
 
 The letter order, burst lengths, review gaps and stage checks are my choices, based on the studies but not tested anywhere. No study has looked at a parent teaching their own 3-year-old to decode with an app like this. The simulated children in the tests move through all four stages in one to two months; real kids will be slower and less tidy.
 
-The research is also honest about expectations. Early phonics gives real short-term skills, but the lead may not last: in one New Zealand school comparison, later starters had caught up by about age 11. The wins that seem to last are vocabulary, enjoying books and reaching reading without tears. In English, getting to solid decoding takes about two and a half years.
+Don't expect a lasting head start. Early phonics gives real short-term skills, but in one New Zealand school comparison later starters had caught up by about age 11. Vocabulary is the gain with the best evidence of lasting. I also care about them enjoying books and getting there without tears, though that's my priority, not a finding. In English, getting to solid decoding takes two and a half years or more.
 
 Not done yet:
 
