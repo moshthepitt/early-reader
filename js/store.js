@@ -107,7 +107,7 @@ export function restoreSnapshot(storage = local()) {
 // damaged or tampered backup cannot inject HTML or break the app.
 
 const DATE = /^\d{4}-\d{2}-\d{2}$/;
-const DATE_MONTH = /^\d{4}-\d{2}$/;
+const DATE_MONTH = /^\d{4}-(0[1-9]|1[0-2])$/;
 const KEY_RE = /^[A-Za-z' -]{1,24}$/;
 const ITEM_KINDS = new Set(['sound', 'name', 'word', 'tricky']);
 const SKILLS = new Set(['first-sound', 'rhyme', 'syllables', 'oral-blend', 'blend-unseen', 'spelling', 'text']);

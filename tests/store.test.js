@@ -163,3 +163,8 @@ test('names are removed without their accents, part by part, and from the author
   const prompt = buildBookPrompt({ title: 'Our day', author: 'Zoë Wambüi', redact: names });
   assert.doesNotMatch(prompt, /Zo[eë]|Wamb/);
 });
+
+test('a birth month that does not exist is dropped', () => {
+  assert.equal(store.newChild({ name: 'Kim', birth: '2022-13' }).birth, '');
+  assert.equal(store.newChild({ name: 'Kim', birth: '2022-12' }).birth, '2022-12');
+});
