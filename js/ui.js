@@ -35,9 +35,13 @@ export function persist() {
 // Ask the browser not to clear saved data when the phone runs low on space. Called
 // after a real save. Best effort: the browser may say no, and it doesn't stop
 // someone clearing browser data by hand (web.dev, "Persistent storage").
+// Asks once per visit: Firefox shows a prompt each time it is asked.
+let keepAsked = false;
 export function keepData() {
   const s = navigator.storage;
-  if (s && s.persisted && s.persist) s.persisted().then((yes) => yes || s.persist()).catch(() => {});
+  if (keepAsked || !s || !s.persisted || !s.persist) return;
+  keepAsked = true;
+  s.persisted().then((yes) => yes || s.persist()).catch(() => {});
 }
 
 // A short confirmation at the bottom of the screen, so every button shows it worked.
