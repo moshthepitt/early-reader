@@ -19,7 +19,7 @@ You run it. The screen tells you what to say and what to show, and keeps track o
 
 **3. Learn to say the sounds.** This part is for you, and it matters more than it looks. Letters have names ("em") and sounds ("mmm"). Reading runs on the sounds, said short and clean. Many of us add an "uh" without noticing - "muh" instead of "mmm", "tuh" instead of a quick "t" - and that "uh" makes blending much harder for a child. The Sounds tab shows how to say each one. They can feel strange at first. Try a few, record yourself and listen back.
 
-Accents differ, and that's fine. Say the sounds in the English you speak, short and clean. If two words in a game sound the same to you, move on: tap "Skip (nothing saved)", or "Done, next" in a game that isn't scored. When you talk about books, use whichever language your family knows best.
+Accents differ, and that's fine. Say the sounds in the English you speak, short and clean, and count your child's usual pronunciation as right. In many Kenyan homes the "u" in "up" sounds like the "a" in "apple", and the "ee" in "bee" like the "i" in "insect". Reading still works: "cup" sounded out your way is the word your child knows. Keep teaching each spelling, and when you see a u in an English word, say it as in "up", not as the Kiswahili u in "uji". If two words in a game sound the same to you, move on: tap "Skip (nothing saved)", or "Done, next" in a game that isn't scored. When you talk about books, use whichever language your family knows best.
 
 ## Every day: two kinds of time
 

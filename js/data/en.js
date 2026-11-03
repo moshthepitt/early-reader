@@ -31,7 +31,7 @@ export const GRAPHEMES = [
   { g: 'k', sound: '/k/', say: 'k', name: 'kay', nameHasSound: true, continuous: false, keyword: 'key', emoji: '🔑', tip: 'Short click from the back of the throat, same as c. Not "kuh".' },
   { g: 'r', sound: '/r/', say: 'rrr', name: 'ar', nameHasSound: false, continuous: true, keyword: 'rabbit', emoji: '🐰', tip: 'Growl gently like a dog: "rrrr". Not "ruh".' },
   { g: 'h', sound: '/h/', say: 'h', name: 'aitch', nameHasSound: false, continuous: false, keyword: 'hat', emoji: '👒', tip: 'A quick breath out, like fogging a mirror. Not "huh".' },
-  { g: 'u', sound: '/u/', say: 'u', name: 'you', nameHasSound: false, continuous: true, keyword: 'umbrella', emoji: '☂️', tip: 'Short "u" as in "up" and "umbrella". Not the letter name "you".' },
+  { g: 'u', sound: '/u/', say: 'u', name: 'you', nameHasSound: false, continuous: true, keyword: 'umbrella', emoji: '☂️', tip: 'Short "u" as in "up" and "umbrella", said the way you say "up". In many Kenyan voices it sounds like the "a" in "apple", and that\'s fine. Not the letter name "you", and not the Kiswahili "u" in "uji".' },
   { g: 'b', sound: '/b/', say: 'b', name: 'bee', nameHasSound: true, continuous: false, keyword: 'ball', emoji: '⚽', tip: 'Lips together, then a quick pop. Short. Not "buh".' },
   { g: 'j', sound: '/j/', say: 'j', name: 'jay', nameHasSound: true, continuous: false, keyword: 'juice', emoji: '🧃', tip: 'Short "j" as in "juice". Not "juh".' },
   { g: 'v', sound: '/v/', say: 'vvv', name: 'vee', nameHasSound: true, continuous: true, keyword: 'van', emoji: '🚐', tip: 'Top teeth on bottom lip and buzz: "vvvv". Not "vuh".' },
@@ -48,7 +48,7 @@ export const GRAPHEMES = [
   { g: 'ch', sound: '/ch/', say: 'ch', name: 'c-h', nameHasSound: false, continuous: false, keyword: 'chick', emoji: '🐤', tip: 'Two letters, one sound: a short sneeze "ch" as in "chick".', digraph: true },
   { g: 'th', sound: '/th/', say: 'th', name: 't-h', nameHasSound: false, continuous: true, keyword: 'thumb', emoji: '👍', tip: 'Two letters, one sound: tongue tip between the teeth and blow, as in "thumb". In "this" and "that", add your voice.', digraph: true },
   { g: 'ng', kpos: 'end', sound: '/ng/', say: 'ng', name: 'n-g', nameHasSound: false, continuous: true, keyword: 'ring', emoji: '💍', tip: 'Two letters, one sound: the hum at the end of "ring".', digraph: true },
-  { g: 'ee', kpos: 'end', sound: '/ee/', say: 'ee', name: 'double e', nameHasSound: false, continuous: true, keyword: 'bee', emoji: '🐝', tip: 'Two letters, one sound: long "ee" as in "bee".', digraph: true },
+  { g: 'ee', kpos: 'end', sound: '/ee/', say: 'ee', name: 'double e', nameHasSound: false, continuous: true, keyword: 'bee', emoji: '🐝', tip: 'Two letters, one sound: "ee" as in "bee". In many Kenyan voices it sounds like the "i" in "insect". That\'s fine.', digraph: true },
   { g: 'oo', kpos: 'middle', sound: '/oo/', say: 'oo', name: 'double o', nameHasSound: false, continuous: true, keyword: 'moon', emoji: '🌙', tip: 'Two letters, one sound: long "oo" as in "moon".', digraph: true },
 ];
 

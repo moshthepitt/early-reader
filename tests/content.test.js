@@ -153,3 +153,16 @@ test('no game set puts two look-alike pictures together', () => {
     for (const a of set) for (const b of set) assert.ok(!C.lookAlike(a.emoji, b.emoji), `${a.w} and ${b.w} look alike`);
   }
 });
+
+test('no game relies on vowels that many Kenyan voices say alike', () => {
+  // Many Kenyan speakers say u as in "up" like a as in "apple", and ee like i. A rhyme
+  // set's odd word mustn't rhyme with the first word once those are merged, and an odd
+  // one out mustn't start with a vowel that merges with the set's sound.
+  const merge = (w) => w.replace(/ee|ea/g, 'i').replace(/u/g, 'a');
+  const rime = (w) => merge(w).replace(/^[^aeio]*/, '');
+  for (const r of C.RHYME_SETS) assert.notEqual(rime(r.odd.w), rime(r.a.w), `${r.odd.w} rhymes with ${r.a.w} in Kenyan English`);
+  for (const set of C.FIRST_SOUND_SETS) {
+    if (!VOWELS.includes(set.sound)) continue;
+    assert.notEqual(merge(set.odd.w[0]), merge(set.sound), `${set.odd.w} starts like ${set.sound} in Kenyan English`);
+  }
+});

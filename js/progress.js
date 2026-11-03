@@ -41,7 +41,7 @@ export function stageCheck(child) {
       next: 3,
       progress: [
         { label: 'Letter sounds known', have: known.size, need: 12 },
-        { label: 'Vowel sounds known (a e i o u)', have: vowels, need: 2 },
+        { label: 'Vowel letters known (a e i o u)', have: vowels, need: 2 },
       ],
     };
   }

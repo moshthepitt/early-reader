@@ -22,7 +22,8 @@ export function viewSounds() {
   }).join('');
   return `<section class="card">
       <h1>How to say each sound</h1>
-      <p>Say sounds short and clean. A common slip is adding "uh": say "mmm", not "muh"; a quick "t", not "tuh". Stretch sounds you can hold (s, m, f, l, n, v, z, sh and the vowels) when blending: "mmmaaat".</p>
+      <p>Say sounds short and clean. A common slip is adding "uh": say "mmm", not "muh"; a quick "t", not "tuh". Stretch sounds you can hold (s, m, f, l, n, r, v, z, sh, th and the vowels) when blending: "mmmaaat".</p>
+      <p>Accents differ. Say each sound the way the picture word starts in your English, and count your child's usual pronunciation as right. In some families "cup" and "cap", or "ship" and "sheep", sound the same. That's fine: keep teaching each spelling.</p>
       ${
         can
           ? '<p>Record yourself saying each sound, then play it back to check for an "uh". Recordings stay on this device.</p>'
