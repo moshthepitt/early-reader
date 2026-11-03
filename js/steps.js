@@ -12,7 +12,7 @@ const PRAISE = {
   listen: ['You listened carefully.', 'You heard the sounds in the word.', 'You listened for the sounds.'],
   spell: ['You said it slowly and found the sounds.', 'You heard every sound in that word.'],
   tricky: ['You remembered the tricky word.', 'You spotted the tricky part.'],
-  text: ['You read every word. Tell me what happened.', 'You pointed to each word as you read.'],
+  text: ['You read every word yourself.', 'You pointed to each word as you read.'],
   effort: ['You kept trying.', 'That was a hard one and you stuck with it.'],
 };
 
@@ -440,8 +440,9 @@ export function readTextStep(child, sentence, siblingName) {
     title: 'Read a sentence',
     child: { text: fillNames(sentence, child, siblingName) },
     script: [
-      'Ask them to point to each word and sound it out. They can say tricky words without sounding them out.',
-      'Afterwards ask: "What happened?" or "Who was in it?"',
+      'Say: "Read this to me. Point to each word as you go."',
+      'They sound out each word. Tricky words they can just say.',
+      'Then ask: "What did it say?"',
     ],
     answer: fillNames(sentence, child, siblingName),
     model: ['Read it together, pointing to each word. Then let them read it again on their own.'],
