@@ -14,7 +14,7 @@ Offline web app that coaches a parent teaching their own 3- to 5-year-old to rea
 - **On-device.** There is no server. All data stays in localStorage and IndexedDB, and the only network requests are for the app's own files. Anything loaded or imported passes through `migrate` in `js/store.js` first.
 - **Decodable.** Every text shown for a child to read passes `checkText` against that child's taught sounds and tricky words.
 - **Escaped.** Every value interpolated into HTML goes through `escapeHtml`.
-- **Light.** First load stays within the budget `npm run build` enforces: four requests, 50 KB over the wire. No frameworks or runtime dependencies.
+- **Light.** First load stays within the budget `npm run build` enforces: four requests, 150 KB unpacked and 60 KB over the wire. No frameworks or runtime dependencies.
 
 ## Writing
 

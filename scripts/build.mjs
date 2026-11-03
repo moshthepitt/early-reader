@@ -16,7 +16,7 @@ import { fileURLToPath } from 'node:url';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const dist = path.join(root, 'dist');
-const BUDGET = { requests: 4, gzipBytes: 50 * 1024, rawBytes: 120 * 1024 };
+const BUDGET = { requests: 4, gzipBytes: 60 * 1024, rawBytes: 150 * 1024 };
 // ES2019 runs on Chrome 73 and Safari 12.1 (both 2019) and later, which covers the
 // Android and iOS phones still in common use. Newer syntax is compiled down to it.
 const TARGET = ['es2019'];

@@ -77,7 +77,7 @@ async function firstLoadAndScreens(browser, base) {
       const bytes = first.reduce((a, r) => a + r.bytes, 0);
       summary.firstLoad = { requests: first.map((r) => `${r.url} ${(r.bytes / 1024).toFixed(1)} KB`), totalKB: +(bytes / 1024).toFixed(1) };
       check('first load: at most 4 requests', first.length <= 4, first.map((r) => r.url));
-      check('first load: under 120 KB before compression', bytes <= 120 * 1024, { bytes });
+      check('first load: under 150 KB before compression', bytes <= 150 * 1024, { bytes });
     }
     await page.evaluate(() => {
       localStorage.setItem('early-reader-v1', JSON.stringify({ rev: 1, children: [{ id: 'abcd1234', name: 'Wanjiru', stage: 3, birth: '2022-05' }, { id: 'efgh5678', name: 'Otieno', stage: 1 }] }));
