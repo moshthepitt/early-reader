@@ -62,8 +62,9 @@ export function notify(message) {
 }
 
 // Ask the next render to bring something into view: a CSS selector, or 'top'.
-export function scrollAfterRender(target) {
+export function scrollAfterRender(target, block = 'center') {
   ui.scrollTo = target;
+  ui.scrollBlock = block;
 }
 
 export const findChild = (id) => state.children.find((c) => c.id === id);

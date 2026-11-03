@@ -92,7 +92,7 @@ function rerender() {
   const target = ui.scrollTo;
   ui.scrollTo = null;
   if (target === 'top') window.scrollTo(0, 0);
-  else if (target) document.querySelector(target)?.scrollIntoView({ block: 'center' });
+  else if (target) document.querySelector(target)?.scrollIntoView({ block: ui.scrollBlock || 'center' });
   else window.scrollTo(0, y);
 }
 

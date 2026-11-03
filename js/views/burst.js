@@ -73,8 +73,13 @@ export function viewBurst(id) {
     ${offer}
     ${childCard(step)}
     <div class="parent">
-      <ol class="script">${step.script.map((l) => `<li>${h(l)}</li>`).join('')}</ol>
-      ${step.tip ? `<details><summary>${h(step.tipTitle || 'How to say the sound')}</summary><p>${h(step.tip)}</p></details>` : ''}
+      ${
+        // After a miss, what to show comes straight under the child card, so both fit on a small phone.
+        burst.phase === 'model'
+          ? ''
+          : `<ol class="script">${step.script.map((l) => `<li>${h(l)}</li>`).join('')}</ol>
+      ${step.tip ? `<details><summary>${h(step.tipTitle || 'How to say the sound')}</summary><p>${h(step.tip)}</p></details>` : ''}`
+      }
       ${controls}
     </div>
     <div class="row end">
@@ -230,13 +235,13 @@ export function recordBurst(interrupted) {
 }
 
 export const actions = {
-  // A new step scrolls back to the child's card. After a miss the step stays, so the
-  // parent keeps their place and sees what to show the child.
+  // A new step scrolls back to the child's card. After a miss, the burst scrolls to its
+  // top, so the card and what to show the child fit on screen together.
   'burst-start': (el) => (startBurst(el.dataset.variant), scrollAfterRender('top')),
   answer: (el) => {
     const right = el.dataset.correct === '1';
     answer(right);
-    if (right) scrollAfterRender('top');
+    scrollAfterRender(right ? 'top' : '.burst', 'start');
   },
   next: () => (next(), scrollAfterRender('top')),
   skip: () => (skip(), scrollAfterRender('top')),
