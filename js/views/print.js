@@ -21,7 +21,7 @@ export function viewPrint(arg) {
         ${c ? `<button class="btn" data-action="print" data-what="letters-next" data-child="${h(c.id)}">Letter cards: next 8 letters</button>` : ''}
         ${c ? `<button class="btn" data-action="print" data-what="letters-plain" data-child="${h(c.id)}">Letter cards without pictures: letters met (${intro.length})</button>` : ''}
         <button class="btn" data-action="print" data-what="letters-all">Letter cards: all</button>
-        ${c ? `<button class="btn" data-action="print" data-what="tiles" data-child="${h(c.id)}">Letter tiles: letters met</button>` : ''}
+        ${c ? `<button class="btn" data-action="print" data-what="tiles" data-child="${h(c.id)}">Letter tiles: letters met (${intro.length})</button>` : ''}
         <button class="btn" data-action="print" data-what="tiles-all">Letter tiles: all single letters</button>
         ${c ? `<button class="btn" data-action="print" data-what="words" data-child="${h(c.id)}">Word and picture cards they can read</button>` : ''}
         <button class="btn" data-action="print" data-what="tricky">Tricky word cards</button>
@@ -53,7 +53,7 @@ function makePrint(what, childId) {
     case 'letters-all':
       return P.letterCards(G.BASE_ORDER);
     case 'tiles':
-      return P.tiles(order.filter((g) => intro.includes(g)));
+      return intro.length ? P.tiles(order.filter((g) => intro.includes(g))) : '<p>No letters met yet. Print "Letter tiles: all single letters" instead.</p>';
     case 'tiles-all':
       return P.tiles(G.SINGLE_LETTERS);
     case 'words': {
