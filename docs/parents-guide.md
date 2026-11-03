@@ -75,7 +75,7 @@ Don't mistake memory for reading. Children are good at memorising favourite book
 
 ## The four stages
 
-**Stage 1: sound play** (often age 3). Listening games with no letters: rhyming and clapping the beats in words, which you play together, spotting which picture starts with a different sound, and "robot talk" ("Listen to the robot: mmm ... at." "Mat!"). Plus the letters in their own name. Moves on when they pick out first sounds right 6 times in their last 8 tries, on at least 3 days, and know the sound of the first letter of their name.
+**Stage 1: sound play** (often age 3). Listening games with no letters: rhyming and clapping the beats in words, which you play together, spotting which picture starts with a different sound, and "robot talk" (you say "Listen to the robot. What's the word? sss ... un", and they say "Sun!"). Plus the letters in their own name. Moves on when they pick out first sounds right 6 times in their last 8 tries, on at least 3 days, and know the sound of the first letter of their name.
 
 **Stage 2: letter sounds** (late 3 to 4). Letter names and sounds together, two to four new letters a week. Each is taught with a picture; checks show the letter alone. Moves on at 12 known letter sounds, including at least two vowels (a, e, i, o, u).
 
