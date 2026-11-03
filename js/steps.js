@@ -166,9 +166,13 @@ export function letterNameStep(child, item) {
 export function rhymeStep(child, content, rng) {
   const sets = content.C.RHYME_SETS;
   const r = pick(sets, rng);
-  // An example pair that shares no word with the question, so a word they just heard
-  // rhyme isn't the wrong answer next.
-  const m = pick(sets.filter((x) => x !== r && ![x.a.w, x.b.w].some((w) => [r.a.w, r.b.w, r.odd.w].includes(w))), rng);
+  // An example pair that shares no word or look-alike picture with the question, so a
+  // word they just heard rhyme isn't the wrong answer next.
+  const onCard = [r.a, r.b, r.odd];
+  const m = pick(
+    sets.filter((x) => x !== r && [x.a, x.b].every((e) => onCard.every((o) => o.w !== e.w && !content.C.lookAlike(o.emoji, e.emoji)))),
+    rng,
+  );
   const [first, second] = shuffle([r.b, r.odd], rng);
   return {
     type: 'rhyme',
@@ -292,7 +296,8 @@ export function oralBlendStep(child, content, rng) {
   const rime = (x) => x.w.slice(x.gs[0].length);
   const split = `${onset(w)} ... ${rime(w)}`; // "mmm ... an"
   const said = chunks ? split : sayList(w.gs);
-  const other = pick(words.filter((x) => x.gs[0] !== w.gs[0] && x.emoji !== w.emoji), rng);
+  // The second picture after a miss starts with another sound and can't be mistaken for the first.
+  const other = pick(words.filter((x) => x.gs[0] !== w.gs[0] && x.emoji !== w.emoji && !content.C.lookAlike(x.emoji, w.emoji)), rng);
   return {
     type: 'oral-blend',
     title: 'Robot talk',

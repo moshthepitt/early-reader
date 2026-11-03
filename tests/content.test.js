@@ -121,3 +121,35 @@ test('every tricky word says which part is tricky and what it says', () => {
     assert.doesNotMatch(lines, /tricky part|does not sound like its letters/, `no explanation for "${t}"`);
   }
 });
+
+// Every picture the child sees, with the word it stands for in each list.
+function pictureWords() {
+  const seen = new Map();
+  const add = (emoji, w, where) => {
+    const k = emoji.replace(/\uFE0F/g, '');
+    seen.set(k, [...(seen.get(k) || []), `${w} (${where})`]);
+  };
+  for (const w of C.WORDS) if (w.emoji) add(w.emoji, w.w, 'words');
+  for (const s of C.FIRST_SOUND_SETS) for (const w of [...s.words, s.odd]) add(w.emoji, w.w, 'odd one out');
+  for (const r of C.RHYME_SETS) for (const x of [r.a, r.b, r.odd]) add(x.emoji, x.w, 'rhyme');
+  for (const s of C.SYLLABLE_WORDS) add(s.emoji, s.w, 'beats');
+  for (const x of Object.values(GRAPHEME_MAP)) add(x.emoji, x.keyword, 'letter card');
+  return seen;
+}
+
+test('each picture stands for one word everywhere in the app', () => {
+  for (const [emoji, uses] of pictureWords()) {
+    const words = new Set(uses.map((u) => u.split(' (')[0]));
+    assert.equal(words.size, 1, `${emoji} is called ${uses.join(', ')}`);
+  }
+});
+
+test('no game set puts two look-alike pictures together', () => {
+  const sets = [
+    ...C.FIRST_SOUND_SETS.map((s) => [...s.words, s.odd]),
+    ...C.RHYME_SETS.map((r) => [r.a, r.b, r.odd]),
+  ];
+  for (const set of sets) {
+    for (const a of set) for (const b of set) assert.ok(!C.lookAlike(a.emoji, b.emoji), `${a.w} and ${b.w} look alike`);
+  }
+});

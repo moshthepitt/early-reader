@@ -364,6 +364,22 @@ const picture = (token) => {
   return { w, emoji };
 };
 
+// Pictures that look alike, or that a young child here could call by the same name.
+// Two from one group never share a card: the child must be able to tell them apart.
+export const LOOKALIKES = [
+  ['🐱', '🐯', '🦁'],
+  ['🐭', '🐀'],
+  ['🐔', '🐤'],
+  ['🚌', '🚐', '🚗', '🚕', '🚑'],
+  ['3️⃣', '4️⃣', '6️⃣', '8️⃣', '9️⃣', '🔟'],
+  ['😢', '😴'],
+  ['🔴', '🔵', '🟢'],
+  ['🖊️', '✏️'],
+  ['👨', '👩', '👧'],
+];
+const bare = (e) => (e || '').replace(/\uFE0F/g, '');
+export const lookAlike = (a, b) => bare(a) !== bare(b) && LOOKALIKES.some((g) => g.some((x) => bare(x) === bare(a)) && g.some((x) => bare(x) === bare(b)));
+
 export const WORDS = [...tokens(WORD_TEXT).map((t) => entry(t, 'word')), ...tokens(NAME_TEXT).map((t) => entry(t, 'name'))];
 
 export const SENTENCES = lines(SENTENCE_TEXT);

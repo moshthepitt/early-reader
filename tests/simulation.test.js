@@ -269,3 +269,14 @@ test('every picture a game script points to is on the child card', () => {
     }
   }
 });
+
+test('look-alike pictures never share a card', () => {
+  for (const fn of [steps.rhymeStep, steps.oralBlendStep, steps.firstSoundOralStep]) {
+    for (let seed = 1; seed <= 600; seed++) {
+      const s = fn(newChild({ name: 'Kim', stage: 1 }), content, makeRng(seed));
+      const c = s.child;
+      const pics = [c.emoji, c.reveal, ...(c.example || []), ...(c.pair || []), ...(c.choices || []).map((x) => x.emoji)].filter(Boolean);
+      for (const a of pics) for (const b of pics) assert.ok(!C.lookAlike(a, b), `${s.type} seed ${seed}: ${a} next to ${b}`);
+    }
+  }
+});
