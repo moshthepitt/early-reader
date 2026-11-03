@@ -204,7 +204,8 @@ export function buildBurst({ child, content, today, rng = Math.random, variant =
   const takeDue = (kinds, n) => {
     const pool = due.filter((it) => kinds.includes(it.kind) && !used.has(it.id) && wordReady(it));
     const out = pool.slice(0, n > 1 ? n - 1 : n);
-    const waited = pool.filter((it) => !out.includes(it)).sort((a, b) => (a.due < b.due ? -1 : a.due > b.due ? 1 : 0));
+    // Not the same letter twice in a row (its sound, then its name).
+    const waited = pool.filter((it) => !out.some((o) => o.key === it.key)).sort((a, b) => (a.due < b.due ? -1 : a.due > b.due ? 1 : 0));
     if (n > 1 && waited.length) out.push(waited[0]);
     out.forEach((it) => used.add(it.id));
     return out;
@@ -298,10 +299,7 @@ export function buildBurst({ child, content, today, rng = Math.random, variant =
     if (letters[0]) pushLetter(letters[0]);
     // Remaining letters and the two-letter sounds (sh, ch, th, ck, ee, oo...).
     const introduced = tryIntroduceSound(perWeek);
-    if (letters[1]) {
-      if (introduced) used.delete(letters[1].id);
-      else pushLetter(letters[1]);
-    }
+    if (letters[1] && !introduced) pushLetter(letters[1]);
     const dueTricky = takeDue(['tricky'], 1);
     if (dueTricky.length) {
       steps.push(trickyStep(dueTricky[0]));

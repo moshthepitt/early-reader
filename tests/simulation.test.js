@@ -221,3 +221,13 @@ test('easy win skips items missed in this burst', () => {
   const fin = session.stopStep(child, content, makeRng(1), new Set(['sound:s']));
   assert.equal(fin.child.big, 'a');
 });
+
+test('a burst never asks the same letter twice, once for its sound and once for its name', () => {
+  const child = newChild({ name: 'Kim', stage: 3 });
+  child.items[S.itemId('sound', 'p')] = { ...S.newItem('sound', 'p', '2026-01-01'), box: 0, lastResult: false, lastSeen: '2026-02-01', lastMissed: '2026-02-01', due: '2026-02-01' };
+  child.items[S.itemId('name', 'p')] = { ...S.newItem('name', 'p', '2026-01-01'), box: 6, goodDays: ['a', 'b', 'c'], lastResult: true, due: '2026-01-02' };
+  child.items[S.itemId('sound', 'm')] = { ...S.newItem('sound', 'm', '2026-01-01'), box: 6, goodDays: ['a', 'b', 'c'], lastResult: true, due: '2026-01-20' };
+  const plan = session.buildBurst({ child, content, today: '2026-02-01', rng: makeRng(3), variant: 'cards' });
+  const letters = plan.steps.filter((s) => s.type === 'letter-sound' || s.type === 'letter-name').map((s) => `${s.type}:${s.child.big}`);
+  assert.deepEqual(letters, ['letter-sound:p', 'letter-sound:m']);
+});
