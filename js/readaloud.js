@@ -54,7 +54,7 @@ export const TIPS = [
 // into the title or notes are replaced with "the child".
 export function buildBookPrompt({ title, author = '', pageNotes = '', age = '3 and 4', redact = [] }) {
   const t = redactNames(String(title || '').trim().slice(0, 140), redact);
-  const a = String(author || '').trim().slice(0, 80);
+  const a = redactNames(String(author || '').trim().slice(0, 80), redact);
   const notes = redactNames(String(pageNotes || '').trim().slice(0, 2500), redact);
   return [
     `I am a parent reading a picture book aloud to my ${age}-year-old children. Help me prepare dialogic reading prompts.`,

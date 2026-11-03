@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import * as store from '../js/store.js';
 import { buildBookPrompt } from '../js/readaloud.js';
 import { buildTextPrompt } from '../js/texts.js';
+import { redactNames } from '../js/util.js';
 import * as G from '../js/data/en.js';
 import * as C from '../js/data/en-content.js';
 import { buildLexicon } from '../js/decodable.js';
@@ -152,4 +153,13 @@ test('undo keeps the current data, so it can be swapped back', () => {
   store.snapshot(storage);
   assert.equal(prev.children[0].name, 'Old');
   assert.equal(store.restoreSnapshot(storage).children[0].name, 'New');
+});
+
+test('names are removed without their accents, part by part, and from the author', () => {
+  const names = ['Zoë Wambüi', 'Émile', 'Ann-Marie'];
+  const out = redactNames('Zoe and Wambui met Emile. Zoë’s cat saw Ann-Marie and Marie. 사랑 Zoe.', names);
+  assert.doesNotMatch(out, /Zo[eë]|Wamb[uü]i|[EÉ]mile|Ann|Marie/);
+  assert.match(out, /사랑 the child\./);
+  const prompt = buildBookPrompt({ title: 'Our day', author: 'Zoë Wambüi', redact: names });
+  assert.doesNotMatch(prompt, /Zo[eë]|Wamb/);
 });

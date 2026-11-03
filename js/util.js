@@ -79,14 +79,38 @@ export function ageText(birth, now = new Date()) {
   return `${Math.floor(months / 12)}y ${months % 12}m`;
 }
 
+// Each letter without its accent, keeping the string the same length: "Zoë" -> "Zoe".
+const fold = (s) =>
+  [...s]
+    .map((ch) => {
+      const base = ch.normalize('NFD').replace(/\p{M}/gu, '');
+      return base.length === ch.length ? base : ch;
+    })
+    .join('');
+
 // Replace whole-word, case-insensitive matches of the given names with a placeholder.
+// Accents don't matter (phone keyboards often drop them), and each part of a
+// two-word or hyphenated name goes too: "Zoë Wambüi" also hides "Zoe" and "Wambui".
 export function redactNames(text, names, placeholder = 'the child') {
-  let out = String(text || '');
+  let out = String(text || '').normalize('NFC');
+  const words = new Set();
   for (const n of names || []) {
-    const name = String(n || '').trim();
-    if (name.length < 2) continue;
-    const esc = name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-    out = out.replace(new RegExp(`(^|[^\\p{L}])${esc}(?=$|[^\\p{L}])`, 'giu'), `$1${placeholder}`);
+    const name = fold(String(n || '').normalize('NFC').trim());
+    for (const w of [name, ...name.split(/[\s-]+/)]) if (w.length >= 2) words.add(w);
+  }
+  // Longest first, so "Ann-Marie" goes before "Ann".
+  for (const w of [...words].sort((a, b) => b.length - a.length)) {
+    const esc = w.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    const re = new RegExp(`(^|[^\\p{L}])(${esc})(?=$|[^\\p{L}])`, 'giu');
+    const folded = fold(out);
+    let result = '';
+    let last = 0;
+    for (let m = re.exec(folded); m; m = re.exec(folded)) {
+      const start = m.index + m[1].length;
+      result += out.slice(last, start) + placeholder;
+      last = start + m[2].length;
+    }
+    out = result + out.slice(last);
   }
   return out;
 }
