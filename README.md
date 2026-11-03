@@ -63,7 +63,7 @@ The browser test needs Chromium; set `CHROME_PATH` if it isn't in the Playwright
 
 The letter order, burst lengths, review gaps and stage checks are my choices, based on the studies but not tested anywhere. No study has looked at a parent teaching their own 3-year-old to decode with an app like this. The simulated children in the tests move through all four stages in one to two months; real kids will be slower and less tidy.
 
-The research is also honest about expectations. Early phonics gives real short-term skills, but later starters catch up by about age 11. The wins that seem to last are vocabulary, enjoying books and reaching reading without tears. In English, getting to solid decoding takes about two and a half years.
+The research is also honest about expectations. Early phonics gives real short-term skills, but the lead may not last: in one New Zealand school comparison, later starters had caught up by about age 11. The wins that seem to last are vocabulary, enjoying books and reaching reading without tears. In English, getting to solid decoding takes about two and a half years.
 
 Not done yet:
 

@@ -59,7 +59,7 @@ Keep each child's bursts separate. A younger sibling listening in is fine; they 
 
 Stop when they're upset. Tears, refusal, or two misses in a row mean it's time to finish on something easy. The Stop button does exactly that. Pick it up again later or tomorrow.
 
-A break is fine. Weeks, even months. After two weeks or more away, the first day back is review only, with no new letters. Letters usually return quickly.
+A break is fine. Weeks, even months. If the games aren't working yet, pause the bursts (Kids, "Paused") and keep story time going: talk about the book, run your finger under a line, and point out a letter from their name. Then try an easy game again in a few weeks. After two weeks or more away, the first day back is review only, with no new letters. Letters usually return quickly.
 
 Aim for about 8 right out of 10. The Progress tab shows this for the week. Much lower than that and the work is too hard: slow down. Always perfect and you can add letters faster (Settings, "new letters per week").
 
@@ -100,7 +100,7 @@ The catch: if you clear your browser data or lose the phone, it's gone. Use Sett
 
 ## What to expect
 
-Teaching letters and sounds early gives real skills in the short term. It does not give a lasting head start on its own: children who start reading later tend to catch up by about age 11. The things that seem to last are vocabulary, a love of books, and getting to reading without it becoming a battle. In English, getting to solid sounding-out takes about two and a half years, so this is a slow road.
+Teaching letters and sounds early gives real skills in the short term. It may not give a lasting head start on its own: in one New Zealand school comparison, the early starters' lead had gone by about age 11. The things that seem to last are vocabulary, a love of books, and getting to reading without it becoming a battle. In English, getting to solid sounding-out takes about two and a half years, so this is a slow road.
 
 My own measure is simple. Can they sound out a word they have never seen? Do they talk about the stories? Do they still want to do it tomorrow?
 

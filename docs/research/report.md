@@ -2,7 +2,7 @@
 
 Code-focused teaching at preschool age produces large short-term gains: effect sizes of about 0.87 on phonological awareness and 0.75 on early reading. Parents can begin at age three without waiting for a "readiness" threshold. That means brief, explicit teaching of letter–sound links and practice hearing phonemes, made playful and accompanied by conversation about books. It does not mean expecting a three-year-old to read. Untrained children almost never segment phonemes before age five, and only some four-year-olds learn to decode.
 
-The early lead also tends to fade. Later starters catch up by about age 11; letter knowledge loses its advantage as other children learn the same letters. Gains from early phonics rarely extend from word reading to comprehension. Oral language is a more lasting investment. Early decoding can give a child access to independent reading sooner, provided the child still wants to read.
+The early lead also tends to fade. In one New Zealand comparison, later starters had caught up by about age 11; letter knowledge loses its advantage as other children learn the same letters. Gains from early phonics rarely extend from word reading to comprehension. Oral language is a more lasting investment. Early decoding can give a child access to independent reading sooner, provided the child still wants to read.
 
 At home, delivery has often been the difficulty. Interventions for ages 3–5 average a literacy effect of only d = 0.10. In two recent UK parent trials, families completed 58–65% of planned sessions and neither trial found an effect. Parent forums describe lessons running too long, children stuck at blending, and boredom or tears.
 

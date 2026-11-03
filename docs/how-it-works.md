@@ -6,7 +6,7 @@ So Early Reader does the remembering and the planning, and you do the teaching. 
 
 ## Two kinds of time
 
-**Story time** builds language: vocabulary, understanding, and the habit of talking about stories. It doesn't teach the letters, and it isn't meant to. The studies are clear that reading aloud builds language strongly, but on its own it does little for decoding.
+**Story time** builds language: vocabulary, understanding, and the habit of talking about stories. Pointing out the words and playing with sounds as you read can build early reading skills too. Children still need help linking letters to sounds, and that's what the bursts are for.
 
 **Practice bursts** build the code: letter sounds, hearing sounds in words, and blending. Each burst lasts two or three minutes. Short goes spread over the day and over different days stick better than one long lesson, so the app asks for two to four bursts a day rather than one sitting.
 
