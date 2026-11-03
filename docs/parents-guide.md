@@ -27,7 +27,7 @@ Accents differ, and that's fine. Say the sounds in the English you speak, short 
 
 One or two books a day, with all your children together if you have more than one. This is where vocabulary, talk and a love of books come from. It matters as much as the letters do. For understanding what they read later, the research points to the language built here more than to early letter skills.
 
-Reading the book to them is the start. The bigger win is getting them to talk. Ask a question, let them answer, repeat what they said and add a little ("Yes, a dog! A big, muddy dog."), then ask again so they can use the new words. Three to five questions per book is plenty. Keep the story moving.
+Reading the book to them is the start. The bigger win is getting them to talk. Ask a question, let them answer, repeat what they said and add a little ("Yes, a dog! A big, muddy dog."), then ask again so they can use the new words. The first time, mostly read and enjoy the story. On later readings, stop more and talk, as long as they're enjoying it. The ideas below are a menu: pick a few, or none.
 
 A few kinds of question that work:
 

@@ -44,7 +44,7 @@ export const SOUND_PROMPTS = [
 
 export const TIPS = [
   'Read one or two books a day, with all your children together if you have more than one.',
-  'Ask 3-5 questions per book. You can leave some pages without questions to keep the story moving.',
+  'The first time, mostly read and enjoy the story. On later readings, stop more and talk. The ideas here are a menu: pick a few, or none.',
   'Print books lead to more back-and-forth talk than e-books, especially those with games or things to tap (Munzer et al. 2019).',
   'Read favourites again. Familiar books leave room for more talk.',
   'Follow their lead. If they want to talk about a picture, give them time.',
@@ -63,11 +63,11 @@ export function buildBookPrompt({ title, author = '', pageNotes = '', redact = [
     notes ? `What happens on each page (my notes):\n${notes}` : 'If you do not know this book well, say so and give prompts that work for any page instead of inventing plot details.',
     '',
     'Please give me the following in short, plain lines:',
-    '1. For each page spread (or every 2-3 pages): 3-5 questions of these kinds: finish the line, what happened, tell me about the picture, what/where/why, and link it to their own life. Label each with its kind in those plain words.',
+    '1. Five questions for the whole book, spread across it, with one for after the ending. Use these kinds: finish the line, what happened, tell me about the picture, what/where/why, and link it to their own life. Label each with its kind in those plain words, and say which page it goes with. I will pick a few, not ask them all.',
     '2. Up to 6 harder or new words from the book with a meaning in one line that a child can understand.',
     '3. 2-3 "point to the print" moments (title, a big word, a letter to find, following the words with a finger).',
     '4. 2 sound games using words from the book (two words that start with the same sound, or a rhyme to pause on).',
-    '5. 3 questions for after the book to help them retell it.',
+    '5. 2 questions for a later reading, to help them retell the story.',
     '',
     'Keep it warm and simple. Questions should be things a 3- to 5-year-old can answer. Do not ask me for personal details about my children.',
   ].join('\n');
