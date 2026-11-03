@@ -95,7 +95,13 @@ write('app.js', appJs);
 const DOCS = ['docs/parents-guide.md', 'docs/how-it-works.md', 'docs/books.md'];
 // The reading font loads after the page (see js/app.js), so it is not part of the first load.
 const FONTS = ['fonts/er-letters-bold.woff2'];
-for (const f of ['manifest.webmanifest', 'icons/icon.svg', 'icons/icon-192.png', 'icons/icon-512.png', 'fonts/OFL.txt', ...DOCS, ...FONTS]) copy(f);
+for (const f of ['manifest.webmanifest', 'icons/icon.svg', 'images/share-card.png', 'icons/icon-192.png', 'icons/icon-512.png', 'fonts/OFL.txt', ...DOCS, ...FONTS]) copy(f);
+
+// Link previews (WhatsApp, X and others) need the image the page names, at the size it states.
+const og = (prop) => (html.match(new RegExp(`property="og:${prop}" content="([^"]+)"`)) || [])[1];
+const card = fs.readFileSync(path.join(dist, og('image').slice(og('url').length)));
+const cardSize = `${card.readUInt32BE(16)}x${card.readUInt32BE(20)}`;
+if (cardSize !== `${og('image:width')}x${og('image:height')}`) throw new Error(`Share card is ${cardSize}, but index.html says ${og('image:width')}x${og('image:height')}`);
 
 // The service worker caches exactly what was built, under a version tied to its content.
 const offline = ['./', './index.html', './app.js', './manifest.webmanifest', './icons/icon-192.png', './icons/icon-512.png', ...[...DOCS, ...FONTS].map((f) => `./${f}`)];
